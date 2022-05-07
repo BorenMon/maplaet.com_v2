@@ -1,0 +1,31 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+[type='checkbox'],[type='radio'] {
+  color: #0a254d;
+}
+
+[type='checkbox']:focus,[type='radio']:focus {
+  @apply focus:border-maplaet-1 focus:ring focus:ring-maplaet-1 focus:ring-opacity-5;
+}
+
+[type='checkbox']:checked,[type='radio']:checked {
+  background-color: #0a254d;
+}
+
+[type='checkbox']:checked:hover,[type='checkbox']:checked:focus,[type='radio']:checked:hover,[type='radio']:checked:focus {
+  background-color: #0a254d;
+}
+
+[type='checkbox']:indeterminate {
+  background-color: #0a254d;
+}
+
+[type='checkbox']:indeterminate:hover,[type='checkbox']:indeterminate:focus {
+  background-color: #0a254d;
+}
+
+.btn {
+  @apply py-2 px-4 text-white text-center text-base shadow-md rounded-lg active:scale-95;
+}
