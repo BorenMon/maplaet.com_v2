@@ -20,7 +20,7 @@ use App\Http\Controllers\SuperAdmin\SuperAdminGeneralController;
 */
 
 Route::get('/', function() {
-    Artisan::call('storage:link');
+    // Artisan::call('storage:link');
     return redirect()->route('login');
 });
 Route::get('/register', function() {
