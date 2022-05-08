@@ -6,7 +6,13 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
-                        <img src="{{ Storage::url(Auth::user()->adminPage->logo_url) }}" alt="" class=" h-12">
+                        <img
+                        @if (str_contains(Auth::user()->adminPage->logo_url, 'public/'))
+                        src="{{ Storage::url(Auth::user()->adminPage->logo_url) }}"
+                        @else
+                        src="{{ asset(Auth::user()->adminPage->logo_url) }}"
+                        @endif
+                        alt="" class=" h-12">
                     </a>
                 </div>
 

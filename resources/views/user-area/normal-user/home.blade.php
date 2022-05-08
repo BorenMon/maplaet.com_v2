@@ -80,7 +80,13 @@
       @php($i = 0)
       @foreach ($brandPages as $page)
       <div class="bg-white p-4 rounded-lg flex items-center cursor-pointer brand-page {{ $i == 0 ? 'active' : '' }} mb-4">
-        <img src="{{ Storage::url($page->logo_url) }}" alt="" class="h-12 w-20 object-contain object-center mr-4">
+        <img
+        @if (str_contains($page->logo_url, 'public/'))
+        src="{{ Storage::url($page->logo_url) }}"
+        @else
+        src="{{ asset($page->logo_url) }}"
+        @endif
+        alt="" class="h-12 w-20 object-contain object-center mr-4">
         <span class="font-semibold text-lg truncate" style="width: calc(100% - 6rem);">{{ $page->name }}</span>
       </div>
       @php($i++)
@@ -115,7 +121,7 @@
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
         </div>
-        @if ($j == count($page->artworkCategories) - 1)
+        @if ($j != count($page->artworkCategories))
         <hr class="mb-6">
         @endif
         @endforeach
