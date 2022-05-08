@@ -72,7 +72,31 @@ class GeneralSeeder extends Seeder
                         'email' => 'borenmon5@gmail.com',
                         'password' => '$2y$10$JW8FdYy9FnjTYF9ulVkiSOlXrUkWpbiesV7L6jZYWKhF5QNf9wURe',
                         'role' => 'admin',
-                    ]
+                    ],
+                    [
+                        'name' => 'Kimthong Hak',
+                        'email' => 'kimthong168@gmail.com',
+                        'password' => '$2y$10$p5YFO.Jh9.QRreVPit9hCObXPbZIxWgUcHSmO2Lf9GniOiiK3/LXK',
+                        'role' => 'admin',
+                    ],
+                    [
+                        'name' => 'Navy',
+                        'email' => 'hanavyrin709@gmail.com',
+                        'password' => '$2y$10$9xiYVTNf9r.Tuzt7/P2HQOg64UMqepoMLzaLgLs0EI.e0JJQ4AKR2',
+                        'role' => 'user',
+                    ],
+                    [
+                        'name' => 'thaven',
+                        'email' => 'thavensan1828@gmail.com',
+                        'password' => '$2y$10$CYSXsBCs7hNEKqD7KPRpr.xaUretBgyUWGe70rsG4g.5xJhRJhguW',
+                        'role' => 'user',
+                    ],
+                    [
+                        'name' => 'changpengleng@gmail.com',
+                        'email' => 'changpengleng@gmail.com',
+                        'password' => '$2y$10$DmPSKZtJYQ2J6CQc9H.yC.wX1m4NDP6iBKy3OiO4ZKpRzxGrtf0eC',
+                        'role' => 'user',
+                    ],
                 ]
             ],
         ];
