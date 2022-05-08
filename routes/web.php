@@ -5,6 +5,7 @@ use App\Models\AdminPage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\SuperAdmin\SuperAdminGeneralController;
 
 /*
@@ -19,6 +20,7 @@ use App\Http\Controllers\SuperAdmin\SuperAdminGeneralController;
 */
 
 Route::get('/', function() {
+    Artisan::call('storage:link');
     return redirect()->route('login');
 });
 Route::get('/register', function() {
