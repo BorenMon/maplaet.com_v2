@@ -403,6 +403,7 @@
             <option value="kumnit-finance">Kumnit Finance</option>
             <option value="kumnit-tech">Kumnit Tech</option>
             <option value="ponlork">Ponlork</option>
+            <option value="ponlork-white">Ponlork (White Logo)</option>
           </select>
         </div>
         <div class="input-group">
@@ -529,6 +530,10 @@
     } else if(page == 'ponlork') {
       shape1Bg = 'linear-gradient(0deg, rgba(27,68,114,1) 0%, rgba(17,52,92,1) 100%)'
       logoImgSrc = '{{ asset("assets/kumnit/images/logo/default/ponlork-logo.svg") }}'
+      quoteIconSrc = '{{ asset("assets/kumnit/images/kumnit/general-social-media-post/1/ponlork-quote-icon.svg") }}'
+    } else {
+      shape1Bg = 'linear-gradient(0deg, rgba(27,68,114,1) 0%, rgba(17,52,92,1) 100%)'
+      logoImgSrc = '{{ asset("assets/kumnit/images/logo/white/ponlork-white-logo.svg") }}'
       quoteIconSrc = '{{ asset("assets/kumnit/images/kumnit/general-social-media-post/1/ponlork-quote-icon.svg") }}'
     }
 
