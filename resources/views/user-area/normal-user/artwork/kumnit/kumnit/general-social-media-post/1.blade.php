@@ -598,11 +598,25 @@
   $('#uploadProfile').on('change', function() {
     destroyCropper()
 
-    $('.featured-image').each((i, obj) => {
-      featuredImgSrc = URL.createObjectURL(this.files[0])
-      obj.src = featuredImgSrc
-    })
-    $('#cropperImg').attr('src', featuredImgSrc)
+    new Compressor(this.files[0], {
+        quality : 0.8,
+        maxHeight: 2000,
+        maxWidth: 2000,
+        success(result) {
+          $('.featured-image').each((i, obj) => {
+            featuredImgSrc = URL.createObjectURL(result)
+            obj.src = featuredImgSrc
+          })
+          $('#cropperImg').attr('src', featuredImgSrc)
+        }
+      }
+    )
+
+    // $('.featured-image').each((i, obj) => {
+    //   featuredImgSrc = URL.createObjectURL(this.files[0])
+    //   obj.src = featuredImgSrc
+    // })
+    // $('#cropperImg').attr('src', featuredImgSrc)
     closeUploadModal()
   })
 
