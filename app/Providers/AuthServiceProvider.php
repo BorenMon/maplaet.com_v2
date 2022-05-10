@@ -26,6 +26,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         $this->registerPolicies();
 
         Gate::define('manage_user', fn(User $user) => $user->role == 'admin');
@@ -37,7 +38,7 @@ class AuthServiceProvider extends ServiceProvider
             if($user->admin_page_id == $adminPage->id) {
                 if($user->role == 'admin') {
                     return true;
-                } else if(isset($user->accessible_pages_id) && in_array($artwork->id, $user->accessible_pages_id)){
+                } else if(isset($user->accessible_pages_id) && in_array($brandPage->id, $user->accessible_pages_id)){
                     return true;
                 }
             }
