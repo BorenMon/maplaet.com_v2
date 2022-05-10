@@ -645,11 +645,11 @@
       .toJpeg(document.getElementById('download'), {
         quality: 0.8
       })
-      .then(dataUrl2 => {
+      .then(dataUrl => {
         $('#loading').css('display', 'none')
         var link = document.createElement('a');
         link.download = 'poster.jpeg';
-        link.href = dataUrl2;
+        link.href = dataUrl;
         link.click()
       });
     });
