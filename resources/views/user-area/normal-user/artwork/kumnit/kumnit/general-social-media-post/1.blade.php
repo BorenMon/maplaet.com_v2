@@ -638,15 +638,30 @@
   // Download
   $('#download-poster').on('click', () => {
     $('#loading').css('display', 'flex')
+    domtoimage.toJpeg(document.getElementById('download'), {
+      quality: 0.8
+    }).then(dataUrl => {
     domtoimage
-    .toJpeg(document.getElementById('download'), { quality: 0.8 })
-    .then(function (dataUrl) {
-      $('#loading').css('display', 'none')
-      var link = document.createElement('a');
-      link.download = 'poster.jpeg';
-      link.href = dataUrl;
-      link.click()
-    })
+      .toJpeg(document.getElementById('download'), {
+        quality: 0.8
+      })
+      .then(dataUrl2 => {
+        $('#loading').css('display', 'none')
+        var link = document.createElement('a');
+        link.download = 'poster.jpeg';
+        link.href = dataUrl2;
+        link.click()
+      });
+    });
+    // domtoimage
+    // .toJpeg(document.getElementById('download'), { quality: 0.8 })
+    // .then(function (dataUrl) {
+    //   $('#loading').css('display', 'none')
+    //   var link = document.createElement('a');
+    //   link.download = 'poster.jpeg';
+    //   link.href = dataUrl;
+    //   link.click()
+    // })
   })
 </script>
 @endsection
