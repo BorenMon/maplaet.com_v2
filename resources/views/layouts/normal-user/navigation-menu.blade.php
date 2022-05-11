@@ -179,7 +179,7 @@
 
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
-                <x-jet-responsive-nav-link href="{{ route('superadmin.profile') }}" :active="request()->routeIs('superadmin.profile')">
+                <x-jet-responsive-nav-link href="{{ route('profile') }}" :active="request()->routeIs('profile')">
                     {{ __('Profile') }}
                 </x-jet-responsive-nav-link>
 
