@@ -481,6 +481,30 @@
 
 @section('js')
 <script>
+    // ***Here is the code for converting "image source" (url) to "Base64".***
+
+let url = 'https://cdn.shopify.com/s/files/1/0234/8017/2591/products/young-man-in-bright-fashion_925x_f7029e2b-80f0-4a40-a87b-834b9a283c39.jpg'
+const toDataURL = url => fetch(url)
+      .then(response => response.blob())
+      .then(blob => new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onloadend = () => resolve(reader.result)
+      reader.onerror = reject
+      reader.readAsDataURL(blob)
+     }))
+
+
+// ***Here is code for converting "Base64" to javascript "File Object".***
+
+  function dataURLtoFile(dataurl, filename) {
+     let arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+     bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+     while(n--){
+     u8arr[n] = bstr.charCodeAt(n);
+     }
+   return new File([u8arr], filename, {type:mime});
+  }
+
   // Upload Image Into Artwork Handler
   const inputImageURL = url => {
     const tester = new Image()
@@ -490,11 +514,22 @@
     }
     tester.onload = () => {
       destroyCropper()
-      $('.background').each(function() {
-        backgroundImgSrc = url
-        this.src = backgroundImgSrc
+      toDataURL(url)
+      .then(dataUrl => {
+        const file = dataURLtoFile(dataUrl, "imageName.jpg")
+        new Compressor(file, {
+            quality : 0.8,
+            maxHeight: 2000,
+            maxWidth: 2000,
+            success(result) {
+              $('.background').each((i, obj) => {
+                obj.src = URL.createObjectURL(result)
+              })
+              $('#cropperImg').attr('src', URL.createObjectURL(result))
+            }
+          }
+        )
       })
-      $('#cropperImg').attr('src', backgroundImgSrc)
       closeUploadModal()
     }
   }
@@ -520,11 +555,18 @@
     const file = e.dataTransfer.files[0]
     if(file.type.includes('image')){
     destroyCropper()
-    $('.background').each(function() {
-      backgroundImgSrc = URL.createObjectURL(file)
-      this.src = backgroundImgSrc
-    })
-    $('#cropperImg').attr('src', backgroundImgSrc)
+    new Compressor(file, {
+        quality : 0.8,
+        maxHeight: 2000,
+        maxWidth: 2000,
+        success(result) {
+          $('.background').each((i, obj) => {
+            obj.src = URL.createObjectURL(result)
+          })
+          $('#cropperImg').attr('src', URL.createObjectURL(result))
+        }
+      }
+    )
     closeUploadModal()
     }
   })
@@ -582,12 +624,18 @@
   // Upload Profile Image
   $('#uploadProfile').on('change', function() {
     destroyCropper()
-
-    $('.background').each((i, obj) => {
-      backgroundImgSrc = URL.createObjectURL(this.files[0])
-      obj.src = backgroundImgSrc
-    })
-    $('#cropperImg').attr('src', backgroundImgSrc)
+    new Compressor(this.files[0], {
+        quality : 0.8,
+        maxHeight: 2000,
+        maxWidth: 2000,
+        success(result) {
+          $('.background').each((i, obj) => {
+            obj.src = URL.createObjectURL(result)
+          })
+          $('#cropperImg').attr('src', URL.createObjectURL(result))
+        }
+      }
+    )
     closeUploadModal()
   })
 
@@ -623,14 +671,20 @@
   // Download
   $('#download-poster').on('click', () => {
     $('#loading').css('display', 'flex')
+    domtoimage.toJpeg(document.getElementById('download'), {
+      quality: 0.8
+    }).then(dataUrl => {
     domtoimage
-    .toJpeg(document.getElementById('download'), { quality: 0.8 })
-    .then(function (dataUrl) {
-      $('#loading').css('display', 'none')
-      var link = document.createElement('a');
-      link.download = 'poster.jpeg';
-      link.href = dataUrl;
-      link.click()
+      .toJpeg(document.getElementById('download'), {
+        quality: 0.8
+      })
+      .then(dataUrl => {
+        $('#loading').css('display', 'none')
+        var link = document.createElement('a')
+        link.download = 'poster.jpeg'
+        link.href = dataUrl
+        link.click()
+      })
     })
   })
 </script>
