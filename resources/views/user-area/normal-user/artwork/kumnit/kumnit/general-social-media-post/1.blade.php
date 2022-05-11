@@ -7,7 +7,7 @@
   <style>
     @font-face {
       font-family: "Krasar-Bold";
-      src: url("/assets/kumnit/fonts/Krasar-Bold.ttf");
+      src: url("/assets/kumnit/fonts/Krasar-Bold.woff2");
     }
     @font-face {
       font-family: "Krasar-Medium";
