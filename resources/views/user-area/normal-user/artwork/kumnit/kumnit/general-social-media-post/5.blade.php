@@ -29,6 +29,10 @@
       font-family: "Stem-Regular";
       src: url("/assets/kumnit/fonts/Stem-Regular.ttf");
     }
+    @font-face {
+      font-family: "Koulen";
+      src: url("/assets/kumnit/fonts/Koulen.ttf");
+    }
     .input-group {
       position: relative;
       border-radius: 0.25rem;
