@@ -6,28 +6,32 @@
 @section('css')
   <style>
     @font-face {
-        font-family: Krasar-Bold;
-        src: url(/assets/kumnit/fonts/Krasar-Bold.ttf);
+        font-family: "Krasar-Bold";
+        src: url("/assets/kumnit/fonts/Krasar-Bold.ttf");
     }
     @font-face {
-        font-family: Krasar-Medium;
-        src: url(/assets/kumnit/fonts/Krasar-Medium.ttf);
+        font-family: "Krasar-Medium";
+        src: url("/assets/kumnit/fonts/Krasar-Medium.ttf");
     }
     @font-face {
-        font-family: Krasar-Regular;
-        src: url(/assets/kumnit/fonts/Krasar-Regular.ttf);
+        font-family: "Krasar-Regular";
+        src: url("/assets/kumnit/fonts/Krasar-Regular.ttf");
     }
     @font-face {
-        font-family: Stem-Bold;
-        src: url(/assets/kumnit/fonts/Stem-Bold.ttf);
+        font-family: "Stem-Bold";
+        src: url("/assets/kumnit/fonts/Stem-Bold.ttf");
     }
     @font-face {
-        font-family: Stem-Medium;
-        src: url(/assets/kumnit/fonts/Stem-Medium.ttf);
+        font-family: "Stem-Medium";
+        src: url("/assets/kumnit/fonts/Stem-Medium.ttf");
     }
     @font-face {
-        font-family: Stem-Regular;
-        src: url(/assets/kumnit/fonts/Stem-Regular.ttf);
+        font-family: "Stem-Regular";
+        src: url("/assets/kumnit/fonts/Stem-Regular.ttf");
+    }
+    @font-face {
+      font-family: "Koulen";
+      src: url("/assets/kumnit/fonts/Koulen.ttf");
     }
     .input-group {
     border-radius: 0.25rem;
