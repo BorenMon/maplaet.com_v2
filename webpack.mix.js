@@ -15,6 +15,7 @@ mix
 .js('resources/js/app.js', 'public/js')
 .postCss('resources/css/app.css', 'public/css')
 .sass('resources/sass/main.scss', 'public/css')
+.sass('resources/sass/production.scss', 'public/css')
 ;
 
 if (mix.inProduction()) {
