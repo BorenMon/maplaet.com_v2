@@ -433,6 +433,9 @@
           link.click()
         })
       })
+      setTimeout(() => {
+        
+      }, 1000);
     })
   }
 </script>
