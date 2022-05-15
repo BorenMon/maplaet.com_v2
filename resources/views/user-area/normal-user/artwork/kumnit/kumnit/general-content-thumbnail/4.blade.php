@@ -30,7 +30,7 @@
       bottom: 0;
       right: 0;
       left: 0;
-      height: 70%;
+      height: 100%;
       background: linear-gradient(0deg, #2857a5, rgba(40, 87, 165, 0));
     }
     .artwork-preview .title {
