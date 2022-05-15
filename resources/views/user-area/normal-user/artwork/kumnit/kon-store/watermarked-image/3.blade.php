@@ -416,7 +416,9 @@
   })
 
   const downloadPoster = () => {
+    let i = 0
     $('#multiple-images-download-container .artwork').each(function(){
+      $i++
       $('#loading').css('display', 'flex')
       domtoimage.toJpeg(this, {
         quality: 0.8
@@ -428,14 +430,11 @@
         .then(dataUrl => {
           $('#loading').css('display', 'none')
           var link = document.createElement('a')
-          link.download = `${fileName}.jpeg`
+          link.download = `${fileName}-${i}.jpeg`
           link.href = dataUrl
           link.click()
         })
       })
-      setTimeout(() => {
-        
-      }, 1000);
     })
   }
 </script>
