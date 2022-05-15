@@ -1,49 +1,24 @@
-@font-face {
-  font-family: 'Koulen';
-  src: url('/assets/kumnit/fonts/Koulen.ttf');
-}
 .artwork-preview {
   width: 88vw;
-  height: calc(8800vw / 191);
+  height: 88vw;
   position: relative;
   overflow: hidden;
   background-color: white;
   .featured-image {
     width: 100%;
-    height: 89%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
   }
-  .overlay {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    height: 70%;
-    background: linear-gradient(0deg, #2857a5, rgba(40, 87, 165, 0));
-  }
-  .title {
-    max-width: 94%;
-    position: absolute;
-    bottom: 5.5%;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    font-family: 'Stem-Bold', 'Koulen', sans-serif;
-    color: #fff;
-    word-wrap: break-word;
-    font-size: 4vw;
-    text-shadow: 0.25vw 0.25vw 0 rgba($color: #000000, $alpha: 0.25);
-  }
   .logo {
     position: absolute;
-    top: 5%;
-    right: 2.5%;
-    width: 7%;
+    top: 4%;
+    left: 4%;
+    height: 11%;
   }
 }
 
-#download {
+#download, #multiple-images-download-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -51,11 +26,38 @@
 
   .artwork-preview {
     width: calc(88vw * 7);
-    height: calc(8800vw / 191 * 7);
-    .title {
-      font-size: calc(4vw * 7);
-      text-shadow: calc(0.25vw * 7) calc(0.25vw * 7) 0 rgba($color: #000000, $alpha: 0.25);
-    }
+    height: calc(88vw * 7);
+  }
+}
+
+.artwork {
+  width: 100%;
+  padding-top: 100%;
+  background-color: white;
+  position: relative;
+  .image {
+    @apply absolute left-0 top-0 w-full h-full object-cover object-center;
+  }
+  .logo {
+    position: absolute;
+    top: 4%;
+    left: 4%;
+    height: 11%;
+  }
+  i {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    cursor: pointer;
+  }
+}
+
+#multiple-images-download-container {
+  .artwork {
+    flex-shrink: 0;
+    padding-top: 0;
+    width: calc(88vw * 7);
+    height: calc(88vw * 7);
   }
 }
 
@@ -73,11 +75,7 @@
   .customized-container {
     .artwork-preview {
       width: 36vw;
-      height: calc(3600vw / 191);
-      .title {
-        font-size: calc(4vw * 36 / 88);
-        text-shadow: calc(0.25vw * 36 / 88) calc(0.25vw * 36 / 88) 0 rgba($color: #000000, $alpha: 0.25);
-      }
+      height: 36vw;
     }
   }
 }
