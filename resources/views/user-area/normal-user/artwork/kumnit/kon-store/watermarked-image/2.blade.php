@@ -373,7 +373,7 @@
 
       if(!cropper) {
         cropper = new Cropper(document.getElementById('cropperImg'), {
-          aspectRatio: 3/2,
+          aspectRatio: 2/3,
           autoCropArea: 1,
         })
       }

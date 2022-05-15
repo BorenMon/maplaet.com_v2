@@ -1,6 +1,6 @@
 .artwork-preview {
   width: 88vw;
-  height: 132vw;
+  height: 58.6666666667vw;
   position: relative;
   overflow: hidden;
   background-color: white;
@@ -15,9 +15,9 @@
 }
 .artwork-preview .logo {
   position: absolute;
-  top: 3%;
+  top: 6%;
   left: 4%;
-  height: 8%;
+  height: 11%;
 }
 #download, #multiple-images-download-container {
   position: fixed;
@@ -27,11 +27,11 @@
 }
 #download .artwork-preview, #multiple-images-download-container .artwork-preview {
   width: 616vw;
-  height: 924vw;
+  height: 410.6666666667vw;
 }
 .artwork {
   width: 100%;
-  padding-top: 150%;
+  padding-top: 66.6666666667%;
   background-color: white;
   position: relative;
 }
@@ -48,9 +48,9 @@
 }
 .artwork .logo {
   position: absolute;
-  top: 3%;
+  top: 6%;
   left: 4%;
-  height: 8%;
+  height: 11%;
 }
 .artwork i {
   position: absolute;
@@ -62,11 +62,11 @@
   flex-shrink: 0;
   padding-top: 0;
   width: 616vw;
-  height: 924vw;
+  height: 410.6666666667vw;
 }
 #download-overlay {
   width: 616vw;
-  height: 924vw;
+  height: 410.6666666667vw;
   background-color: white;
   position: fixed;
   top: 0;
@@ -76,6 +76,6 @@
 @media (min-width: 800px) {
   .customized-container .artwork-preview {
     width: 36vw;
-    height: 54vw;
+    height: 24vw;
   }
 }

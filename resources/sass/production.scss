@@ -1,6 +1,6 @@
 .artwork-preview {
   width: 88vw;
-  height: 132vw;
+  height: calc(176vw / 3);
   position: relative;
   overflow: hidden;
   background-color: white;
@@ -12,9 +12,9 @@
   }
   .logo {
     position: absolute;
-    top: 3%;
+    top: 6%;
     left: 4%;
-    height: 8%;
+    height: 11%;
   }
 }
 
@@ -26,13 +26,13 @@
 
   .artwork-preview {
     width: calc(88vw * 7);
-    height: calc(132vw * 7);
+    height: calc(176vw / 3 * 7);
   }
 }
 
 .artwork {
   width: 100%;
-  padding-top: 150%;
+  padding-top: calc(200% / 3);
   background-color: white;
   position: relative;
   .image {
@@ -40,9 +40,9 @@
   }
   .logo {
     position: absolute;
-    top: 3%;
+    top: 6%;
     left: 4%;
-    height: 8%;
+    height: 11%;
   }
   i {
     position: absolute;
@@ -57,13 +57,13 @@
     flex-shrink: 0;
     padding-top: 0;
     width: calc(88vw * 7);
-    height: calc(132vw * 7);
+    height: calc(176vw / 3 * 7);
   }
 }
 
 #download-overlay {
   width: calc(88vw * 7);
-  height: calc(132vw * 7);
+  height: calc(176vw / 3 * 7);
   background-color: white;
   position: fixed;
   top: 0;
@@ -75,7 +75,7 @@
   .customized-container {
     .artwork-preview {
       width: 36vw;
-      height: 54vw;
+      height: 24vw;
     }
   }
 }

@@ -5,7 +5,89 @@
 
 @section('css')
   @include('layouts.normal-user.default-artwork-css')
-  <link rel="stylesheet" href="{{ asset('css/production.css') }}">
+  <style>
+    .artwork-preview {
+      width: 88vw;
+      height: calc(176vw / 3);
+      position: relative;
+      overflow: hidden;
+      background-color: white;
+      .featured-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+      .logo {
+        position: absolute;
+        top: 6%;
+        left: 4%;
+        height: 11%;
+      }
+    }
+
+    #download, #multiple-images-download-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+
+      .artwork-preview {
+        width: calc(88vw * 7);
+        height: calc(176vw / 3 * 7);
+      }
+    }
+
+    .artwork {
+      width: 100%;
+      padding-top: calc(200% / 3);
+      background-color: white;
+      position: relative;
+      .image {
+        @apply absolute left-0 top-0 w-full h-full object-cover object-center;
+      }
+      .logo {
+        position: absolute;
+        top: 6%;
+        left: 4%;
+        height: 11%;
+      }
+      i {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        cursor: pointer;
+      }
+    }
+
+    #multiple-images-download-container {
+      .artwork {
+        flex-shrink: 0;
+        padding-top: 0;
+        width: calc(88vw * 7);
+        height: calc(176vw / 3 * 7);
+      }
+    }
+
+    #download-overlay {
+      width: calc(88vw * 7);
+      height: calc(176vw / 3 * 7);
+      background-color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    @media(min-width: 800px) {
+      .customized-container {
+        .artwork-preview {
+          width: 36vw;
+          height: 24vw;
+        }
+      }
+    }
+  </style>
 @endsection
 
 @section('content')
@@ -120,7 +202,7 @@
           $(this).css({
             'left' : '4%',
             'right' : 'unset',
-            'top' : '3%',
+            'top' : '6%',
             'bottom' : 'unset',
           })
         }); break
@@ -129,7 +211,7 @@
           $(this).css({
             'left' : 'unset',
             'right' : '4%',
-            'top' : '3%',
+            'top' : '6%',
             'bottom' : 'unset',
           })
         }); break
@@ -139,7 +221,7 @@
             'left' : '4%',
             'right' : 'unset',
             'top' : 'unset',
-            'bottom' : '3%',
+            'bottom' : '6%',
           })
         }); break
       case 4 : 
@@ -148,7 +230,7 @@
             'left' : 'unset',
             'right' : '4%',
             'top' : 'unset',
-            'bottom' : '3%',
+            'bottom' : '6%',
           })
         }); break
     }
