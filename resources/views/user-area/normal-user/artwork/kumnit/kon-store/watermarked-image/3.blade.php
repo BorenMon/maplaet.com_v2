@@ -418,7 +418,7 @@
   const downloadPoster = () => {
     let i = 0
     $('#multiple-images-download-container .artwork').each(function(){
-      $i++
+      i++
       $('#loading').css('display', 'flex')
       domtoimage.toJpeg(this, {
         quality: 0.8
