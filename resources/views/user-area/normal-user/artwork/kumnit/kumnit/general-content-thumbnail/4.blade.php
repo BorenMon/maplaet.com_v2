@@ -19,7 +19,7 @@
     }
     .artwork-preview .featured-image {
       width: 100%;
-      height: 89%;
+      height: 100%;
       -o-object-fit: cover;
         object-fit: cover;
       -o-object-position: center;
@@ -30,7 +30,7 @@
       bottom: 0;
       right: 0;
       left: 0;
-      height: 100%;
+      height: 70%;
       background: linear-gradient(0deg, #2857a5, rgba(40, 87, 165, 0));
     }
     .artwork-preview .title {
