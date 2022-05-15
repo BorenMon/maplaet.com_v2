@@ -8,7 +8,7 @@
   <style>
     .artwork-preview {
       width: 88vw;
-      height: 88vw;
+      height: 132vw;
       position: relative;
       overflow: hidden;
       background-color: white;
@@ -23,9 +23,9 @@
     }
     .artwork-preview .logo {
       position: absolute;
-      top: 4%;
+      top: 3%;
       left: 4%;
-      height: 11%;
+      height: 8%;
     }
     #download, #multiple-images-download-container {
       position: fixed;
@@ -35,11 +35,11 @@
     }
     #download .artwork-preview, #multiple-images-download-container .artwork-preview {
       width: 616vw;
-      height: 616vw;
+      height: 924vw;
     }
     .artwork {
       width: 100%;
-      padding-top: 100%;
+      padding-top: 150%;
       background-color: white;
       position: relative;
     }
@@ -56,9 +56,9 @@
     }
     .artwork .logo {
       position: absolute;
-      top: 4%;
+      top: 3%;
       left: 4%;
-      height: 11%;
+      height: 8%;
     }
     .artwork i {
       position: absolute;
@@ -70,11 +70,11 @@
       flex-shrink: 0;
       padding-top: 0;
       width: 616vw;
-      height: 616vw;
+      height: 924vw;
     }
     #download-overlay {
       width: 616vw;
-      height: 616vw;
+      height: 924vw;
       background-color: white;
       position: fixed;
       top: 0;
@@ -84,7 +84,7 @@
     @media (min-width: 800px) {
       .customized-container .artwork-preview {
         width: 36vw;
-        height: 36vw;
+        height: 54vw;
       }
     }
   </style>
@@ -202,7 +202,7 @@
           $(this).css({
             'left' : '4%',
             'right' : 'unset',
-            'top' : '4%',
+            'top' : '3%',
             'bottom' : 'unset',
           })
         }); break
@@ -211,7 +211,7 @@
           $(this).css({
             'left' : 'unset',
             'right' : '4%',
-            'top' : '4%',
+            'top' : '3%',
             'bottom' : 'unset',
           })
         }); break
@@ -221,7 +221,7 @@
             'left' : '4%',
             'right' : 'unset',
             'top' : 'unset',
-            'bottom' : '4%',
+            'bottom' : '3%',
           })
         }); break
       case 4 : 
@@ -230,7 +230,7 @@
             'left' : 'unset',
             'right' : '4%',
             'top' : 'unset',
-            'bottom' : '4%',
+            'bottom' : '3%',
           })
         }); break
     }
@@ -373,7 +373,7 @@
 
       if(!cropper) {
         cropper = new Cropper(document.getElementById('cropperImg'), {
-          aspectRatio: 1/1,
+          aspectRatio: 3/2,
           autoCropArea: 1,
         })
       }

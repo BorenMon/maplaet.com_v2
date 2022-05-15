@@ -5,89 +5,7 @@
 
 @section('css')
   @include('layouts.normal-user.default-artwork-css')
-  <style>
-    .artwork-preview {
-      width: 88vw;
-      height: 88vw;
-      position: relative;
-      overflow: hidden;
-      background-color: white;
-    }
-    .artwork-preview .featured-image {
-      width: 100%;
-      height: 100%;
-      -o-object-fit: cover;
-        object-fit: cover;
-      -o-object-position: center;
-        object-position: center;
-    }
-    .artwork-preview .logo {
-      position: absolute;
-      top: 4%;
-      left: 4%;
-      height: 11%;
-    }
-    #download, #multiple-images-download-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-    #download .artwork-preview, #multiple-images-download-container .artwork-preview {
-      width: 616vw;
-      height: 616vw;
-    }
-    .artwork {
-      width: 100%;
-      padding-top: 100%;
-      background-color: white;
-      position: relative;
-    }
-    .artwork .image {
-      position: absolute;
-      left: 0px;
-      top: 0px;
-      height: 100%;
-      width: 100%;
-      -o-object-fit: cover;
-        object-fit: cover;
-      -o-object-position: center;
-        object-position: center;
-    }
-    .artwork .logo {
-      position: absolute;
-      top: 4%;
-      left: 4%;
-      height: 11%;
-    }
-    .artwork i {
-      position: absolute;
-      top: 0.5rem;
-      right: 0.5rem;
-      cursor: pointer;
-    }
-    #multiple-images-download-container .artwork {
-      flex-shrink: 0;
-      padding-top: 0;
-      width: 616vw;
-      height: 616vw;
-    }
-    #download-overlay {
-      width: 616vw;
-      height: 616vw;
-      background-color: white;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-    @media (min-width: 800px) {
-      .customized-container .artwork-preview {
-        width: 36vw;
-        height: 36vw;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="{{ asset('css/production.css') }}">
 @endsection
 
 @section('content')
@@ -202,7 +120,7 @@
           $(this).css({
             'left' : '4%',
             'right' : 'unset',
-            'top' : '4%',
+            'top' : '3%',
             'bottom' : 'unset',
           })
         }); break
@@ -211,7 +129,7 @@
           $(this).css({
             'left' : 'unset',
             'right' : '4%',
-            'top' : '4%',
+            'top' : '3%',
             'bottom' : 'unset',
           })
         }); break
@@ -221,7 +139,7 @@
             'left' : '4%',
             'right' : 'unset',
             'top' : 'unset',
-            'bottom' : '4%',
+            'bottom' : '3%',
           })
         }); break
       case 4 : 
@@ -230,7 +148,7 @@
             'left' : 'unset',
             'right' : '4%',
             'top' : 'unset',
-            'bottom' : '4%',
+            'bottom' : '3%',
           })
         }); break
     }
@@ -373,7 +291,7 @@
 
       if(!cropper) {
         cropper = new Cropper(document.getElementById('cropperImg'), {
-          aspectRatio: 1/1,
+          aspectRatio: 3/2,
           autoCropArea: 1,
         })
       }
