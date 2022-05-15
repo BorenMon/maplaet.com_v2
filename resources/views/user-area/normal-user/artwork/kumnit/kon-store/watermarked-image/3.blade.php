@@ -8,83 +8,83 @@
   <style>
     .artwork-preview {
       width: 88vw;
-      height: calc(176vw / 3);
+      height: 58.6666666667vw;
       position: relative;
       overflow: hidden;
       background-color: white;
-      .featured-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-      }
-      .logo {
-        position: absolute;
-        top: 6%;
-        left: 4%;
-        height: 11%;
-      }
     }
-
+    .artwork-preview .featured-image {
+      width: 100%;
+      height: 100%;
+      -o-object-fit: cover;
+        object-fit: cover;
+      -o-object-position: center;
+        object-position: center;
+    }
+    .artwork-preview .logo {
+      position: absolute;
+      top: 6%;
+      left: 4%;
+      height: 11%;
+    }
     #download, #multiple-images-download-container {
       position: fixed;
       top: 0;
       left: 0;
       z-index: -1;
-
-      .artwork-preview {
-        width: calc(88vw * 7);
-        height: calc(176vw / 3 * 7);
-      }
     }
-
+    #download .artwork-preview, #multiple-images-download-container .artwork-preview {
+      width: 616vw;
+      height: 410.6666666667vw;
+    }
     .artwork {
       width: 100%;
-      padding-top: calc(200% / 3);
+      padding-top: 66.6666666667%;
       background-color: white;
       position: relative;
-      .image {
-        @apply absolute left-0 top-0 w-full h-full object-cover object-center;
-      }
-      .logo {
-        position: absolute;
-        top: 6%;
-        left: 4%;
-        height: 11%;
-      }
-      i {
-        position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
-        cursor: pointer;
-      }
     }
-
-    #multiple-images-download-container {
-      .artwork {
-        flex-shrink: 0;
-        padding-top: 0;
-        width: calc(88vw * 7);
-        height: calc(176vw / 3 * 7);
-      }
+    .artwork .image {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      height: 100%;
+      width: 100%;
+      -o-object-fit: cover;
+        object-fit: cover;
+      -o-object-position: center;
+        object-position: center;
     }
-
+    .artwork .logo {
+      position: absolute;
+      top: 6%;
+      left: 4%;
+      height: 11%;
+    }
+    .artwork i {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      cursor: pointer;
+    }
+    #multiple-images-download-container .artwork {
+      flex-shrink: 0;
+      padding-top: 0;
+      width: 616vw;
+      height: 410.6666666667vw;
+    }
     #download-overlay {
-      width: calc(88vw * 7);
-      height: calc(176vw / 3 * 7);
+      width: 616vw;
+      height: 410.6666666667vw;
       background-color: white;
       position: fixed;
       top: 0;
       left: 0;
       z-index: -1;
     }
-
-    @media(min-width: 800px) {
-      .customized-container {
-        .artwork-preview {
-          width: 36vw;
-          height: 24vw;
-        }
+    @media (min-width: 800px) {
+      .customized-container .artwork-preview {
+        width: 36vw;
+        height: 24vw;
       }
     }
   </style>
