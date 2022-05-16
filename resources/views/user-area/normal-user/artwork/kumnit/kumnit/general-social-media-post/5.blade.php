@@ -424,18 +424,19 @@
             <option value="kumnit">Kumnit</option>
             <option value="ponlork">Ponlork</option>
             <option value="ponlork-white">Ponlork (White Logo)</option>
+            <option value="neak-arn">Neak Arn</option>
           </select>
           <div>
             <label class="mr-2">Position :</label>
-            <div class="grid grid-cols-3 gap-4 w-52 mt-2">
+            <div class="grid grid-cols-2 gap-4 w-16 mt-2">
               <input type="radio" name="logo-position" value="1">
-              <input type="radio" name="logo-position" value="2">
+              {{-- <input type="radio" name="logo-position" value="2"> --}}
               <input type="radio" name="logo-position" value="3" checked>
-              <input type="radio" name="logo-position" value="4">
+              {{-- <input type="radio" name="logo-position" value="4">
               <input type="radio" name="logo-position" value="5">
-              <input type="radio" name="logo-position" value="6">
+              <input type="radio" name="logo-position" value="6"> --}}
               <input type="radio" name="logo-position" value="7">
-              <input type="radio" name="logo-position" value="8">
+              {{-- <input type="radio" name="logo-position" value="8"> --}}
               <input type="radio" name="logo-position" value="9">
             </div>
           </div>
@@ -642,7 +643,18 @@ const toDataURL = url => fetch(url)
       $('.title-3').each(function(){
         this.style.backgroundColor = '#1b4472'
       })
-    }
+    } 
+    else if(name == 'neak-arn') {
+      $('.logo').each(function(){
+        this.src = '{{ asset("assets/kumnit/images/logo/default/neakarn-logo.svg") }}'
+      })
+      $('.title-2').each(function(){
+        this.style.color = '#d04f1b'
+      })
+      $('.title-3').each(function(){
+        this.style.backgroundColor = '#d04f1b'
+      })
+    } 
     else {
       $('.logo').each(function(){
         this.src = '{{ asset("assets/kumnit/images/logo/white/ponlork-white-logo.svg") }}'
