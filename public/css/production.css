@@ -1,6 +1,18 @@
+@font-face {
+  font-family: "Kh-Ang-Midnight";
+  src: url("/assets/kumnit/fonts/Kh-Ang-Midnight.otf");
+}
+@font-face {
+  font-family: "FredokaOne";
+  src: url("/assets/kumnit/fonts/FredokaOne-Regular.ttf");
+}
+@font-face {
+  font-family: "AKbalthom-Freehand";
+  src: url("/assets/kumnit/fonts/AKbalthom-Freehand.ttf");
+}
 .artwork-preview {
   width: 88vw;
-  height: 58.6666666667vw;
+  height: 70.4vw;
   position: relative;
   overflow: hidden;
   background-color: white;
@@ -13,69 +25,90 @@
   -o-object-position: center;
      object-position: center;
 }
-.artwork-preview .logo {
+.artwork-preview .wish {
   position: absolute;
-  top: 6%;
-  left: 4%;
-  height: 11%;
-}
-#download, #multiple-images-download-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-#download .artwork-preview, #multiple-images-download-container .artwork-preview {
-  width: 616vw;
-  height: 410.6666666667vw;
-}
-.artwork {
-  width: 100%;
-  padding-top: 66.6666666667%;
-  background-color: white;
-  position: relative;
-}
-.artwork .image {
-  position: absolute;
+  top: 50%;
   left: 0px;
-  top: 0px;
-  height: 100%;
+  display: flex;
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
+  flex-direction: column;
+  align-items: center;
 }
-.artwork .logo {
-  position: absolute;
-  top: 6%;
-  left: 4%;
-  height: 11%;
-}
-.artwork i {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  cursor: pointer;
-}
-#multiple-images-download-container .artwork {
-  flex-shrink: 0;
-  padding-top: 0;
-  width: 616vw;
-  height: 410.6666666667vw;
-}
-#download-overlay {
-  width: 616vw;
-  height: 410.6666666667vw;
+.artwork-preview .wish .main {
+  min-width: 70%;
+  max-width: 100%;
+  overflow: hidden;
   background-color: white;
+  text-align: center;
+  white-space: nowrap;
+  font-family: "FredokaOne", "Kh-Ang-Midnight", sans-serif;
+  color: #34c8f4;
+  padding: 2vw;
+  border-radius: 2vw;
+  font-size: 4vw;
+}
+.artwork-preview .wish .secondary {
+  color: white;
+  font-family: "AKbalthom-Freehand", sans-serif;
+  text-align: center;
+  width: 80%;
+  margin-top: 1.5vw;
+  font-size: 2.5vw;
+  word-wrap: break-word;
+}
+.artwork-preview .from {
+  position: absolute;
+  bottom: 3%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-family: "AKbalthom-Freehand", sans-serif;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 2.5vw;
+}
+#download {
   position: fixed;
   top: 0;
   left: 0;
   z-index: -1;
+  width: 700vw;
+  height: 990vw;
+  background-color: white;
+  padding: 49vw;
+}
+#download .artwork-preview {
+  width: 315vw;
+  height: 252vw;
+}
+#download .artwork-preview .wish .main {
+  padding: 7.1590909091vw;
+  border-radius: 7.1590909091vw;
+  font-size: 14.3181818182vw;
+}
+#download .artwork-preview .wish .secondary {
+  margin-top: 5.3693181818vw;
+  font-size: 8.9488636364vw;
+}
+#download .artwork-preview .from {
+  font-size: 8.9488636364vw;
 }
 @media (min-width: 800px) {
   .customized-container .artwork-preview {
     width: 36vw;
-    height: 24vw;
+    height: 28.8vw;
+  }
+  .customized-container .artwork-preview .wish .main {
+    padding: 0.8181818182vw;
+    border-radius: 0.8181818182vw;
+    font-size: 1.6363636364vw;
+  }
+  .customized-container .artwork-preview .wish .secondary {
+    margin-top: 0.6136363636vw;
+    font-size: 1.0227272727vw;
+  }
+  .customized-container .artwork-preview .from {
+    font-size: 1.0227272727vw;
   }
 }
