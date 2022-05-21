@@ -407,10 +407,18 @@
       })
       .then(dataUrl => {
         $('#loading').css('display', 'none')
-        var link = document.createElement('a')
-        link.download = `${fileName}.jpeg`
-        link.href = dataUrl
-        link.click()
+        new Compressor(dataURLtoFile(dataUrl), {
+            quality : 0.8,
+            maxHeight: 2000,
+            maxWidth: 2000,
+            success(result) {
+              const link = document.createElement('a')
+              link.download = `${fileName}.jpeg`
+              link.href = URL.createObjectURL(result)
+              link.click()
+            }
+          }
+        )
       })
     })
   })
@@ -427,10 +435,18 @@
         })
         .then(dataUrl => {
           $('#loading').css('display', 'none')
-          var link = document.createElement('a')
-          link.download = `${fileName}.jpeg`
-          link.href = dataUrl
-          link.click()
+          new Compressor(dataURLtoFile(dataUrl), {
+              quality : 0.8,
+              maxHeight: 2000,
+              maxWidth: 2000,
+              success(result) {
+                const link = document.createElement('a')
+                link.download = `${fileName}.jpeg`
+                link.href = URL.createObjectURL(result)
+                link.click()
+              }
+            }
+          )
         })
       })
     })
