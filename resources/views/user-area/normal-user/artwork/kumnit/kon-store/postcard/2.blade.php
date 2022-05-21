@@ -5,7 +5,116 @@
 
 @section('css')
   @include('layouts.normal-user.default-artwork-css')
-  <link rel="stylesheet" href="{{ asset('css/production.css') }}">
+  <style>
+    @font-face {
+      font-family: "Kh-Ang-Midnight";
+      src: url("/assets/kumnit/fonts/Kh-Ang-Midnight.otf");
+    }
+    @font-face {
+      font-family: "FredokaOne";
+      src: url("/assets/kumnit/fonts/FredokaOne-Regular.ttf");
+    }
+    @font-face {
+      font-family: "AKbalthom-Freehand";
+      src: url("/assets/kumnit/fonts/AKbalthom-Freehand.ttf");
+    }
+    .artwork-preview {
+      width: 88vw;
+      height: 110vw;
+      position: relative;
+      overflow: hidden;
+      background-color: white;
+    }
+    .artwork-preview .featured-image {
+      width: 100%;
+      height: 100%;
+      -o-object-fit: cover;
+        object-fit: cover;
+      -o-object-position: center;
+        object-position: center;
+    }
+    .artwork-preview .wish {
+      top: 37%;
+      position: absolute;
+      left: 0px;
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+    }
+    .artwork-preview .wish .main {
+      max-width: 88%;
+      overflow: hidden;
+      text-align: center;
+      word-wrap: break-word;
+      font-family: "FredokaOne", "Kh-Ang-Midnight", sans-serif;
+      color: #f06499;
+      font-size: 6vw;
+    }
+    .artwork-preview .wish .secondary {
+      color: #606060;
+      font-family: "AKbalthom-Freehand", sans-serif;
+      text-align: center;
+      word-wrap: break-word;
+      width: 80%;
+      margin-top: 1.5vw;
+      font-size: 3.3vw;
+    }
+    .artwork-preview .from {
+      position: absolute;
+      bottom: 2.5%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-family: "AKbalthom-Freehand", sans-serif;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 3.3vw;
+    }
+    #download {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 700vw;
+      height: 990vw;
+      background-color: white;
+      padding: 49vw;
+    }
+    #download .artwork-preview {
+      border-width: 2px;
+      border-style: dashed;
+      width: 252vw;
+      height: 315vw;
+    }
+    #download .artwork-preview .wish .main {
+      font-size: 17.1818181818vw;
+    }
+    #download .artwork-preview .wish .secondary {
+      margin-top: 4.2954545455vw;
+      font-size: 9.45vw;
+    }
+    #download .artwork-preview .from {
+      font-size: 9.45vw;
+    }
+    @media (min-width: 800px) {
+      .customized-container .artwork-preview {
+        width: 36vw;
+        height: 45vw;
+      }
+      .customized-container .artwork-preview .wish .main {
+        font-size: 2.4545454545vw;
+      }
+      .customized-container .artwork-preview .wish .secondary {
+        margin-top: 0.6136363636vw;
+        font-size: 1.35vw;
+      }
+      .customized-container .artwork-preview .from {
+        font-size: 1.35vw;
+      }
+    }
+  </style>
 @endsection
 
 @section('content')
