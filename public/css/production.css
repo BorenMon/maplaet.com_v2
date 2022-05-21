@@ -42,8 +42,8 @@
   text-align: center;
   white-space: nowrap;
   font-family: "FredokaOne", "Kh-Ang-Midnight", sans-serif;
-  color: #34c8f4;
-  padding: 2vw;
+  color: #f06499;
+  padding: 1vw 2vw;
   border-radius: 2vw;
   font-size: 4vw;
 }
@@ -83,7 +83,7 @@
   height: 252vw;
 }
 #download .artwork-preview .wish .main {
-  padding: 7.1590909091vw;
+  padding: 3.5795454545vw 7.1590909091vw;
   border-radius: 7.1590909091vw;
   font-size: 14.3181818182vw;
 }
@@ -100,7 +100,7 @@
     height: 28.8vw;
   }
   .customized-container .artwork-preview .wish .main {
-    padding: 0.8181818182vw;
+    padding: 0.4090909091vw 0.8181818182vw;
     border-radius: 0.8181818182vw;
     font-size: 1.6363636364vw;
   }
