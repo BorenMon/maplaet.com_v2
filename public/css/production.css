@@ -12,7 +12,7 @@
 }
 .artwork-preview {
   width: 88vw;
-  height: 70.4vw;
+  height: 110vw;
   position: relative;
   overflow: hidden;
   background-color: white;
@@ -26,8 +26,8 @@
      object-position: center;
 }
 .artwork-preview .wish {
+  top: 37%;
   position: absolute;
-  top: 50%;
   left: 0px;
   display: flex;
   width: 100%;
@@ -35,30 +35,26 @@
   align-items: center;
 }
 .artwork-preview .wish .main {
-  min-width: 70%;
-  max-width: 100%;
+  max-width: 88%;
   overflow: hidden;
-  background-color: white;
   text-align: center;
-  white-space: nowrap;
+  word-wrap: break-word;
   font-family: "FredokaOne", "Kh-Ang-Midnight", sans-serif;
   color: #f06499;
-  padding: 1vw 2vw;
-  border-radius: 2vw;
-  font-size: 4vw;
+  font-size: 6vw;
 }
 .artwork-preview .wish .secondary {
-  color: white;
+  color: #606060;
   font-family: "AKbalthom-Freehand", sans-serif;
   text-align: center;
+  word-wrap: break-word;
   width: 80%;
   margin-top: 1.5vw;
-  font-size: 2.5vw;
-  word-wrap: break-word;
+  font-size: 3.3vw;
 }
 .artwork-preview .from {
   position: absolute;
-  bottom: 3%;
+  bottom: 2.5%;
   left: 0;
   width: 100%;
   text-align: center;
@@ -66,7 +62,7 @@
   font-family: "AKbalthom-Freehand", sans-serif;
   overflow: hidden;
   white-space: nowrap;
-  font-size: 2.5vw;
+  font-size: 3.3vw;
 }
 #download {
   position: fixed;
@@ -79,36 +75,34 @@
   padding: 49vw;
 }
 #download .artwork-preview {
-  width: 315vw;
-  height: 252vw;
+  border-width: 2px;
+  border-style: dashed;
+  width: 252vw;
+  height: 315vw;
 }
 #download .artwork-preview .wish .main {
-  padding: 3.5795454545vw 7.1590909091vw;
-  border-radius: 7.1590909091vw;
-  font-size: 14.3181818182vw;
+  font-size: 17.1818181818vw;
 }
 #download .artwork-preview .wish .secondary {
-  margin-top: 5.3693181818vw;
-  font-size: 8.9488636364vw;
+  margin-top: 4.2954545455vw;
+  font-size: 9.45vw;
 }
 #download .artwork-preview .from {
-  font-size: 8.9488636364vw;
+  font-size: 9.45vw;
 }
 @media (min-width: 800px) {
   .customized-container .artwork-preview {
     width: 36vw;
-    height: 28.8vw;
+    height: 45vw;
   }
   .customized-container .artwork-preview .wish .main {
-    padding: 0.4090909091vw 0.8181818182vw;
-    border-radius: 0.8181818182vw;
-    font-size: 1.6363636364vw;
+    font-size: 2.4545454545vw;
   }
   .customized-container .artwork-preview .wish .secondary {
     margin-top: 0.6136363636vw;
-    font-size: 1.0227272727vw;
+    font-size: 1.35vw;
   }
   .customized-container .artwork-preview .from {
-    font-size: 1.0227272727vw;
+    font-size: 1.35vw;
   }
 }

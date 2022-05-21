@@ -12,7 +12,7 @@
 }
 .artwork-preview {
   width: 88vw;
-  height: calc(352vw / 5);
+  height: 110vw;
   position: relative;
   overflow: hidden;
   background-color: white;
@@ -23,34 +23,31 @@
     object-position: center;
   }
   .wish {
-    @apply absolute top-1/2 left-0 w-full flex flex-col items-center;
+    top: 37%;
+    @apply absolute left-0 w-full flex flex-col items-center;
 
     .main {
-      min-width: 70%;
-      max-width: 100%;
+      max-width: 88%;
       overflow: hidden;
-      background-color: white;
       text-align: center;
-      white-space: nowrap;
+      word-wrap: break-word;
       font-family: 'FredokaOne', 'Kh-Ang-Midnight', sans-serif;
       color: #f06499;
-      padding: 1vw 2vw;
-      border-radius: 2vw;
-      font-size: 4vw;
+      font-size: 6vw;
     }
     .secondary {
-      color: white;
+      color: rgb(96, 96, 96);
       font-family: 'AKbalthom-Freehand', sans-serif;
       text-align: center;
+      word-wrap: break-word;
       width: 80%;
       margin-top: 1.5vw;
-      font-size: 2.5vw;
-      word-wrap: break-word;
+      font-size: 3.3vw;
     }
   }
   .from {
     position: absolute;
-    bottom: 3%;
+    bottom: 2.5%;
     left: 0;
     width: 100%;
     text-align: center;
@@ -58,7 +55,7 @@
     font-family: 'AKbalthom-Freehand', sans-serif;
     overflow: hidden;
     white-space: nowrap;
-    font-size: 2.5vw;
+    font-size: 3.3vw;
   }
 }
 
@@ -73,21 +70,20 @@
   padding: calc(7vw * 7);
 
   .artwork-preview {
-    width: calc(45vw * 7);
-    height: calc(36vw * 7);
-    .wish {   
+    @apply border-2 border-dashed;
+    width: calc(36vw * 7);
+    height: calc(45vw * 7);
+    .wish {
       .main {
-        padding: calc(1vw * 45 / 88 * 7) calc(2vw * 45 / 88 * 7);
-        border-radius: calc(2vw * 45 / 88 * 7);
-        font-size: calc(4vw * 45 / 88 * 7);
+        font-size: calc(6vw * 36 / 88 * 7);
       }
       .secondary {
-        margin-top: calc(1.5vw * 45 / 88 * 7);
-        font-size: calc(2.5vw * 45 / 88 * 7);
+        margin-top: calc(1.5vw * 36 / 88 * 7);
+        font-size: calc(3.3vw * 36 / 88 * 7);
       }
     }
     .from {
-      font-size: calc(2.5vw * 45 / 88 * 7);
+      font-size: calc(3.3vw * 36 / 88 * 7);
     }
   }
 }
@@ -96,20 +92,18 @@
   .customized-container {
     .artwork-preview {
       width: 36vw;
-      height: calc(144vw / 5);
-      .wish {   
+      height: 45vw;
+      .wish {
         .main {
-          padding: calc(1vw * 36 / 88) calc(2vw * 36 / 88);
-          border-radius: calc(2vw * 36 / 88);
-          font-size: calc(4vw * 36 / 88);
+          font-size: calc(6vw * 36 / 88);
         }
         .secondary {
           margin-top: calc(1.5vw * 36 / 88);
-          font-size: calc(2.5vw * 36 / 88);
+          font-size: calc(3.3vw * 36 / 88);
         }
       }
       .from {
-        font-size: calc(2.5vw * 36 / 88);
+        font-size: calc(3.3vw * 36 / 88);
       }
     }
   }
