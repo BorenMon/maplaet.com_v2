@@ -761,7 +761,7 @@ const toDataURL = url => fetch(url)
               maxWidth: 2000,
               success(result) {
                 const link = document.createElement('a')
-                link.download = `${fileName}.jpeg`
+                link.download = 'poster.jpeg'
                 link.href = URL.createObjectURL(result)
                 link.click()
               }
