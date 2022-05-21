@@ -5,14 +5,129 @@
 
 @section('css')
   @include('layouts.normal-user.default-artwork-css')
-  <link rel="stylesheet" href="{{ asset('css/production.css') }}">
+  <style>
+    @font-face {
+      font-family: "Kh-Ang-Midnight";
+      src: url("/assets/kumnit/fonts/Kh-Ang-Midnight.otf");
+    }
+    @font-face {
+      font-family: "FredokaOne";
+      src: url("/assets/kumnit/fonts/FredokaOne-Regular.ttf");
+    }
+    @font-face {
+      font-family: "AKbalthom-Freehand";
+      src: url("/assets/kumnit/fonts/AKbalthom-Freehand.ttf");
+    }
+    .artwork-preview {
+      width: 88vw;
+      height: 70.4vw;
+      position: relative;
+      overflow: hidden;
+      background-color: white;
+    }
+    .artwork-preview .featured-image {
+      width: 100%;
+      height: 100%;
+      -o-object-fit: cover;
+        object-fit: cover;
+      -o-object-position: center;
+        object-position: center;
+    }
+    .artwork-preview .wish {
+      position: absolute;
+      top: 50%;
+      left: 0px;
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+    }
+    .artwork-preview .wish .main {
+      min-width: 70%;
+      max-width: 100%;
+      overflow: hidden;
+      background-color: white;
+      text-align: center;
+      white-space: nowrap;
+      font-family: "FredokaOne", "Kh-Ang-Midnight", sans-serif;
+      color: #f06499;
+      padding: 1vw 2vw;
+      border-radius: 2vw;
+      font-size: 4vw;
+    }
+    .artwork-preview .wish .secondary {
+      color: white;
+      font-family: "AKbalthom-Freehand", sans-serif;
+      text-align: center;
+      width: 80%;
+      margin-top: 1.5vw;
+      font-size: 2.5vw;
+      word-wrap: break-word;
+    }
+    .artwork-preview .from {
+      position: absolute;
+      bottom: 3%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-family: "AKbalthom-Freehand", sans-serif;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 2.5vw;
+    }
+    #download {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 700vw;
+      height: 990vw;
+      background-color: white;
+      padding: 49vw;
+    }
+    #download .artwork-preview {
+      width: 315vw;
+      height: 252vw;
+    }
+    #download .artwork-preview .wish .main {
+      padding: 3.5795454545vw 7.1590909091vw;
+      border-radius: 7.1590909091vw;
+      font-size: 14.3181818182vw;
+    }
+    #download .artwork-preview .wish .secondary {
+      margin-top: 5.3693181818vw;
+      font-size: 8.9488636364vw;
+    }
+    #download .artwork-preview .from {
+      font-size: 8.9488636364vw;
+    }
+    @media (min-width: 800px) {
+      .customized-container .artwork-preview {
+        width: 36vw;
+        height: 28.8vw;
+      }
+      .customized-container .artwork-preview .wish .main {
+        padding: 0.4090909091vw 0.8181818182vw;
+        border-radius: 0.8181818182vw;
+        font-size: 1.6363636364vw;
+      }
+      .customized-container .artwork-preview .wish .secondary {
+        margin-top: 0.6136363636vw;
+        font-size: 1.0227272727vw;
+      }
+      .customized-container .artwork-preview .from {
+        font-size: 1.0227272727vw;
+      }
+    }
+  </style>
 @endsection
 
 @section('content')
 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
   <div id="download">
     <div class="artwork-preview">
-      <img src="{{ asset('assets/kumnit/images/kon-store/baby-girl-postcard/1/background.svg') }}" alt="" class="featured-image">
+      <img src="{{ asset('assets/kumnit/images/kon-store/postcard/1/girl-background.svg') }}" alt="" class="featured-image">
       <div class="wish">
         <div class="main hidden"></div>
         <div class="secondary hidden"></div>
@@ -24,7 +139,7 @@
 
   <div class="customized-container">
     <div class="artwork-preview shadow">
-      <img src="{{ asset('assets/kumnit/images/kon-store/baby-girl-postcard/1/background.svg') }}" alt="" class="featured-image">
+      <img src="{{ asset('assets/kumnit/images/kon-store/postcard/1/girl-background.svg') }}" alt="" class="featured-image">
       <div class="wish">
         <div class="main hidden"></div>
         <div class="secondary hidden"></div>
@@ -37,6 +152,17 @@
         <button class="btn" style="background-color: #0a254d;" id="download-poster">
           Download
         </button>
+      </div>
+      <div class="input-group mb-4">
+        <h2 class="label">Girl or Boy</h2>
+        <div class="flex space-x-4">
+          <div class="flex items-center space-x-2">
+            <input type="radio" checked name="gender" value="girl"><i class="fa-solid fa-child-dress text-xl" style="font-family: 'Font Awesome 6 Free'; color: #f06499;"></i>
+          </div>
+          <div class="flex items-center space-x-2">
+            <input type="radio" name="gender" value="boy"><i class="fa-solid fa-child text-xl" style="font-family: 'Font Awesome 6 Free'; color: #34c8f4;"></i>
+          </div>
+        </div>
       </div>
       <div class="input-group mb-4">
         <h2 class="label">Wish</h2>
@@ -70,6 +196,24 @@
 @section('js')
 @include('layouts.normal-user.default-artwork-js')
 <script>
+
+    $('input[name="gender"]').on('change', function(){
+      if(this.value == 'boy') {
+        $('.featured-image').each(function(){
+          this.src = '{{ asset("assets/kumnit/images/kon-store/postcard/1/boy-background.svg") }}'
+        })
+        $('.main').each(function(){
+          this.style.color = '#34c8f4'
+        })
+      } else {
+        $('.featured-image').each(function(){
+          this.src = '{{ asset("assets/kumnit/images/kon-store/postcard/1/girl-background.svg") }}'
+        })
+        $('.main').each(function(){
+          this.style.color = '#f06499'
+        })
+      }
+    })
 
     $('#main').on('input', function(){
       const main = this.value.trim()
