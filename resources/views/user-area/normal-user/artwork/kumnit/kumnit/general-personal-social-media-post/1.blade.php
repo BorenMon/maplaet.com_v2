@@ -5,7 +5,205 @@
 
 @section('css')
   @include('layouts.normal-user.default-artwork-css')
-  <link rel="stylesheet" href="{{ asset('css/production.css') }}">
+  <style>
+    .artwork-preview {
+      width: 88vw;
+      height: 88vw;
+      position: relative;
+      overflow: hidden;
+    }
+    .artwork-preview .background {
+      width: 100%;
+      height: 100%;
+      -o-object-fit: cover;
+        object-fit: cover;
+      -o-object-position: center;
+        object-position: center;
+    }
+    .artwork-preview .overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #2857a5 0%, #0a3e89 100%);
+      opacity: 90%;
+    }
+    .artwork-preview .box,
+    .artwork-preview .mark,
+    .artwork-preview .info {
+      position: absolute;
+    }
+    .artwork-preview .box {
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      min-height: 35%;
+      width: 67.5%;
+      background-color: rgba(255, 255, 255, 0.88);
+      padding: 5.5vw 0;
+      border-radius: 3vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .artwork-preview .box .mark {
+      left: 50%;
+      top: 0;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.88) 51%, rgba(255, 255, 255, 0) 51%, rgba(255, 255, 255, 0) 100%);
+      width: 10vw;
+      height: 10vw;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .artwork-preview .box .mark img {
+      width: 4.5vw;
+    }
+    .artwork-preview .box .quote {
+      text-align: center;
+      font-family: "Stem-Bold", "Krasar-Bold", sans-serif;
+      line-height: 1.5;
+      width: 85%;
+      word-wrap: break-word;
+      font-size: 4.5vw;
+    }
+    .artwork-preview .box .info {
+      width: 133%;
+      overflow: hidden;
+      bottom: 0;
+      transform: translate(-50%, 100%);
+      left: 50%;
+      padding-top: 1vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    .artwork-preview .box .info .page {
+      font-size: 1.8vw;
+      letter-spacing: 0.2vw;
+      font-family: "Stem-Regular";
+      line-height: 0;
+    }
+    .artwork-preview .box .info .divider {
+      margin: 0 1vw;
+      width: 0.3vw;
+      height: 3vw;
+      background-color: #fff;
+    }
+    .artwork-preview .box .info img {
+      height: 3vw;
+    }
+    .artwork-preview .box .info .name {
+      font-family: "Stem-Medium", "Krasar-Medium";
+      white-space: nowrap;
+      line-height: 0;
+      font-size: 1.8vw;
+      margin-left: 1vw;
+    }
+    #download {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    #download .artwork-preview {
+      width: 616vw;
+      height: 616vw;
+    }
+    #download .artwork-preview .box {
+      padding: 38.5vw 0;
+      border-radius: 21vw;
+    }
+    #download .artwork-preview .box .mark {
+      width: 70vw;
+      height: 70vw;
+    }
+    #download .artwork-preview .box .mark img {
+      width: 31.5vw;
+    }
+    #download .artwork-preview .box .quote {
+      font-size: 31.5vw;
+    }
+    #download .artwork-preview .box .info {
+      padding-top: 7vw;
+    }
+    #download .artwork-preview .box .info .page {
+      font-size: 12.6vw;
+      letter-spacing: 1.4vw;
+    }
+    #download .artwork-preview .box .info .divider {
+      margin: 0 7vw;
+      width: 2.1vw;
+      height: 21vw;
+    }
+    #download .artwork-preview .box .info img {
+      height: 21vw;
+    }
+    #download .artwork-preview .box .info .name {
+      font-size: 12.6vw;
+      margin-left: 7vw;
+    }
+    @media (min-width: 800px) {
+      .customized-container {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .customized-container .artwork-preview {
+        width: 36vw;
+        height: 36vw;
+      }
+      .customized-container .artwork-preview .box {
+        padding: 2.25vw 0;
+        border-radius: 1.2272727273vw;
+      }
+      .customized-container .artwork-preview .box .mark {
+        width: 4.0909090909vw;
+        height: 4.0909090909vw;
+      }
+      .customized-container .artwork-preview .box .mark img {
+        width: 1.8409090909vw;
+      }
+      .customized-container .artwork-preview .box .quote {
+        font-size: 1.8409090909vw;
+      }
+      .customized-container .artwork-preview .box .info {
+        padding-top: 0.4090909091vw;
+      }
+      .customized-container .artwork-preview .box .info .page {
+        font-size: 0.7363636364vw;
+        letter-spacing: 0.0818181818vw;
+      }
+      .customized-container .artwork-preview .box .info .divider {
+        margin: 0 0.4090909091vw;
+        width: 0.1227272727vw;
+        height: 1.2272727273vw;
+      }
+      .customized-container .artwork-preview .box .info img {
+        height: 1.2272727273vw;
+      }
+      .customized-container .artwork-preview .box .info .name {
+        font-size: 0.7363636364vw;
+        margin-left: 0.4090909091vw;
+      }
+      .customized-container #input-container {
+        margin-top: 0;
+        width: calc(100% - 36vw - 2rem);
+      }
+
+      #saved-backgrounds {
+        margin-left: 0px;
+        margin-right: 0px;
+      }
+
+      #saved-backgrounds {
+        margin-top: 3.5rem;
+      }
+    }
+  </style>
 @endsection
 
 @section('content')
@@ -14,8 +212,9 @@
     <div id="download">
       <div class="artwork-preview">
         <img src="{{ asset('assets/general-assets/images/background.jpg') }}" class="background">
+        <div class="overlay hidden"></div>
             
-        <div class="box shadow">
+        <div class="box">
           <div class="mark">
             <img src="{{ asset('assets/kumnit/images/kumnit/general-personal-social-media-post/1/kumnit-quote-mark.svg') }}">
           </div>
@@ -37,8 +236,9 @@
     <div class="customized-container">
       <div class="artwork-preview shadow">
         <img src="{{ asset('assets/general-assets/images/background.jpg') }}" class="background">
+        <div class="overlay hidden"></div>
             
-        <div class="box shadow">
+        <div class="box">
           <div class="mark">
             <img src="{{ asset('assets/kumnit/images/kumnit/general-personal-social-media-post/1/kumnit-quote-mark.svg') }}">
           </div>
@@ -100,6 +300,23 @@
               <input class="form-check-input" type="radio" id="mark-2" name="mark" data-mark="quote">
               <label class="form-check-label" for="mark-2">
                 Quote
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-4">
+          <h3 class="label">Overlay</h3>
+          <div class="flex">
+            <div class="form-check mr-4">
+              <input class="form-check-input" type="radio" name="overlay" value="1" checked>
+              <label class="form-check-label" for="mark-1">
+                Hide
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" value="0" name="overlay">
+              <label class="form-check-label" for="mark-2">
+                show
               </label>
             </div>
           </div>
@@ -201,6 +418,18 @@
 @section('js')
 @include('layouts.normal-user.default-artwork-js')
 <script>
+    $('input[name="overlay"]').on('change', function(){
+      if(+this.value){
+        $('.overlay').each(function(){
+          $(this).addClass('hidden')
+        })
+      } else {
+        $('.overlay').each(function(){
+          $(this).removeClass('hidden')
+        })
+      }
+    })
+
     let windowWidth = $(window).width(), quoteFontSizePercentage = 100
 
     $('#quote-font-size-percentage').on('input', function() {
@@ -336,6 +565,15 @@
           markSrc = markSrc.replace('viniyuk-', data.bg+'-')
         } else markSrc = markSrc.replace('kumnit-', data.bg+'-')
         document.querySelectorAll('.mark img').forEach(el => el.src = markSrc)
+        if(data.bg == 'kumnit') {
+          $('.overlay').each(function(){
+            this.style.background = 'linear-gradient(135deg, rgba(40,87,165,1) 0%, rgba(10,62,137,1) 100%)'
+          })
+        } else {
+          $('.overlay').each(function(){
+            this.style.background = 'linear-gradient(135deg, rgba(165,40,40,1) 0%, rgba(129,6,6,1) 100%)'
+          })
+        }
       })
     })
 

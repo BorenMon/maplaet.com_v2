@@ -1,10 +1,14 @@
+@font-face {
+  font-family: "Kh Ang Kouteok";
+  src: url("/assets/kumnit/fonts/Kh Ang Kouteok.ttf");
+}
 .artwork-preview {
   width: 88vw;
   height: 88vw;
   position: relative;
   overflow: hidden;
 }
-.artwork-preview .background {
+.artwork-preview .featured-image {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -12,92 +16,31 @@
   -o-object-position: center;
      object-position: center;
 }
-.artwork-preview .box,
-.artwork-preview .mark,
-.artwork-preview .info {
+.artwork-preview .overlay {
   position: absolute;
-}
-.artwork-preview .photo {
-  position: absolute;
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 0px;
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
-  opacity: 16%;
+  background-image: linear-gradient(0deg, #2857a5 0%, #00387c 100%);
 }
-.artwork-preview .box {
-  top: 60%;
+.artwork-preview .text {
+  position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -60%);
-  min-height: 35%;
-  width: 67.5%;
-  background-color: rgba(255, 255, 255, 0.88);
-  padding: 5.5vw 0;
-  border-radius: 3vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.artwork-preview .box .mark {
-  left: 50%;
-  top: 0;
-  transform: translate(-50%, -50%);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.88) 51%, rgba(255, 255, 255, 0) 51%, rgba(255, 255, 255, 0) 100%);
-  width: 10vw;
-  height: 10vw;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.artwork-preview .box .mark img {
-  width: 4.5vw;
-}
-.artwork-preview .box .quote {
-  text-align: center;
-  font-family: "Stem-Bold", "Krasar-Bold", sans-serif;
-  line-height: 1.5;
-  width: 85%;
-  word-wrap: break-word;
-  font-size: 4.5vw;
-}
-.artwork-preview .box .info {
-  width: 133%;
-  overflow: hidden;
-  bottom: 0;
-  transform: translate(-50%, 100%);
-  left: 50%;
-  padding-top: 1vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  max-width: 90%;
+  font-family: "Kh Ang Kouteok", sans-serif;
   color: white;
+  transform: translate(-50%, -50%) skewY(-5deg);
+  word-wrap: break-word;
 }
-.artwork-preview .box .info .page {
-  font-size: 1.8vw;
-  letter-spacing: 0.2vw;
-  font-family: "Stem-Regular";
-  line-height: 0;
+.artwork-preview .text .text-1 {
+  font-size: 11vw;
+  text-align: center;
 }
-.artwork-preview .box .info .divider {
-  margin: 0 1vw;
-  width: 0.3vw;
-  height: 3vw;
-  background-color: #fff;
-}
-.artwork-preview .box .info img {
-  height: 3vw;
-}
-.artwork-preview .box .info .name {
-  font-family: "Stem-Medium", "Krasar-Medium";
-  white-space: nowrap;
-  line-height: 0;
-  font-size: 1.8vw;
-  margin-left: 1vw;
+.artwork-preview .text .text-2 {
+  font-size: 4vw;
+  text-align: center;
 }
 #download {
   position: fixed;
@@ -109,38 +52,11 @@
   width: 616vw;
   height: 616vw;
 }
-#download .artwork-preview .box {
-  padding: 38.5vw 0;
-  border-radius: 21vw;
+#download .artwork-preview .text .text-1 {
+  font-size: 77vw;
 }
-#download .artwork-preview .box .mark {
-  width: 70vw;
-  height: 70vw;
-}
-#download .artwork-preview .box .mark img {
-  width: 31.5vw;
-}
-#download .artwork-preview .box .quote {
-  font-size: 31.5vw;
-}
-#download .artwork-preview .box .info {
-  padding-top: 7vw;
-}
-#download .artwork-preview .box .info .page {
-  font-size: 12.6vw;
-  letter-spacing: 1.4vw;
-}
-#download .artwork-preview .box .info .divider {
-  margin: 0 7vw;
-  width: 2.1vw;
-  height: 21vw;
-}
-#download .artwork-preview .box .info img {
-  height: 21vw;
-}
-#download .artwork-preview .box .info .name {
-  font-size: 12.6vw;
-  margin-left: 7vw;
+#download .artwork-preview .text .text-2 {
+  font-size: 28vw;
 }
 @media (min-width: 800px) {
   .customized-container {
@@ -151,38 +67,11 @@
     width: 36vw;
     height: 36vw;
   }
-  .customized-container .artwork-preview .box {
-    padding: 2.25vw 0;
-    border-radius: 1.2272727273vw;
+  .customized-container .artwork-preview .text .text-1 {
+    font-size: 4.5vw;
   }
-  .customized-container .artwork-preview .box .mark {
-    width: 4.0909090909vw;
-    height: 4.0909090909vw;
-  }
-  .customized-container .artwork-preview .box .mark img {
-    width: 1.8409090909vw;
-  }
-  .customized-container .artwork-preview .box .quote {
-    font-size: 1.8409090909vw;
-  }
-  .customized-container .artwork-preview .box .info {
-    padding-top: 0.4090909091vw;
-  }
-  .customized-container .artwork-preview .box .info .page {
-    font-size: 0.7363636364vw;
-    letter-spacing: 0.0818181818vw;
-  }
-  .customized-container .artwork-preview .box .info .divider {
-    margin: 0 0.4090909091vw;
-    width: 0.1227272727vw;
-    height: 1.2272727273vw;
-  }
-  .customized-container .artwork-preview .box .info img {
-    height: 1.2272727273vw;
-  }
-  .customized-container .artwork-preview .box .info .name {
-    font-size: 0.7363636364vw;
-    margin-left: 0.4090909091vw;
+  .customized-container .artwork-preview .text .text-2 {
+    font-size: 1.6363636364vw;
   }
   .customized-container #input-container {
     margin-top: 0;
