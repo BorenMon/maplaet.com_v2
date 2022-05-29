@@ -10,6 +10,14 @@
       font-family: "Kh Ang Kouteok";
       src: url("/assets/kumnit/fonts/Kh Ang Kouteok.ttf");
     }
+    @font-face {
+      font-family: "NotoSansKhmer-Bold";
+      src: url("/assets/kumnit/fonts/NotoSansKhmer-Bold.ttf");
+    }
+    @font-face {
+      font-family: "Khmer Busra Bold";
+      src: url("/assets/kumnit/fonts/Khmer Busra Bold.ttf");
+    }
     .artwork-preview {
       width: 88vw;
       height: 88vw;
@@ -36,14 +44,14 @@
       position: absolute;
       top: 57.5%;
       left: 50%;
-      max-width: 90%;
-      font-family: "Kh Ang Kouteok", sans-serif;
+      width: 80%;
+      font-family: "NotoSansKhmer-Bold", sans-serif;
       color: white;
       transform: translate(-50%, -50%) skewY(-5deg);
       word-wrap: break-word;
     }
     .artwork-preview .text .text-1 {
-      font-size: 11vw;
+      font-size: 7.7vw;
       text-align: center;
     }
     .artwork-preview .text .text-2 {
@@ -68,7 +76,7 @@
       height: 616vw;
     }
     #download .artwork-preview .text .text-1 {
-      font-size: 77vw;
+      font-size: calc(77vw * 0.7);
     }
     #download .artwork-preview .text .text-2 {
       font-size: 28vw;
@@ -83,7 +91,7 @@
         height: 36vw;
       }
       .customized-container .artwork-preview .text .text-1 {
-        font-size: 4.5vw;
+        font-size: calc(4.5vw * 0.7);
       }
       .customized-container .artwork-preview .text .text-2 {
         font-size: 1.6363636364vw;
@@ -146,7 +154,7 @@
             Download
           </button>
         </div>
-        <div class="input-group mb-4 mt-8 space-y-4">
+        <div class="input-group mb-4 mt-8">
           <h2 class="label">Overlay</h2>
           <div>
             <label for="overlay-opacity" class="mr-2 mb-2">Opacity (%)</label>
@@ -156,6 +164,14 @@
         <div class="input-group mb-4">
           <h2 class="label">Text</h2>
           <div class="space-y-6">
+            <div>
+              <label for="font" class="mr-2 mb-2">Font</label>
+              <select id="font">
+                <option value="Kh Ang Kouteok">Kh Ang Kouteok</option>
+                <option value="NotoSansKhmer-Bold" selected>Noto Sans Khmer Bold</option>
+                <option value="Khmer Busra Bold">Khmer Busra Bold</option>
+              </select>
+            </div>
             <div>
               <label>SkewY Degree (deg)</label>
               <input class="form-control mt-2" type="number" id="skew-y-degree" min="-365" max="365" value="-5">
@@ -234,6 +250,12 @@
 @section('js')
 @include('layouts.normal-user.default-artwork-js')
 <script>
+  $('#font').on('change', function(){
+    const value = this.value
+    $('.text').each(function(){
+      this.style.fontFamily = `"${value}", sans-serif`
+    })
+  })
   $('#overlay-opacity').on('change', function(){
     const value = `${this.value}%`
     $('.overlay').each(function(){
@@ -333,12 +355,12 @@
         switch(i) {
           case 0 : {
             $(obj).css({
-              'font-size' : `calc(11vw * 7 * (${text1FontSizePercentage} / 100))`
+              'font-size' : `calc(7.7vw * 7 * (${text1FontSizePercentage} / 100))`
             })             
           } break
           case 1 : {
             $(obj).css({
-              'font-size' : `calc(11vw * (${text1FontSizePercentage} / 100))`
+              'font-size' : `calc(7.7vw * (${text1FontSizePercentage} / 100))`
             })             
           } break
         }
@@ -362,12 +384,12 @@
         switch(i) {
           case 0 : {
             $(obj).css({
-              'font-size' : `calc(11vw * 7 * (${text1FontSizePercentage} / 100))`
+              'font-size' : `calc(7.7vw * 7 * (${text1FontSizePercentage} / 100))`
             })             
           } break
           case 1 : {
             $(obj).css({
-              'font-size' : `calc(11vw * 36 / 88 * (${text1FontSizePercentage} / 100))`
+              'font-size' : `calc(7.7vw * 36 / 88 * (${text1FontSizePercentage} / 100))`
             })             
           } break
         }
