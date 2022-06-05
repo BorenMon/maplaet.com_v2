@@ -38,7 +38,7 @@
       left: 0px;
       width: 100%;
       height: 100%;
-      background-image: radial-gradient(circle, rgba(174,31,85,1) 0%, rgba(154,28,76,1) 100%);
+      background-image: radial-gradient(circle, rgba(249,166,29,1) 0%, rgba(249,135,29,1) 100%);
     }
     .artwork-preview .text {
       position: absolute;
@@ -124,7 +124,7 @@
           <div class="text-1"></div>
           <div class="text-2"></div>
         </div>
-        <img src="{{ asset('assets/kumnit/images/logo/default/rikreaydelbanskoil-logo.png') }}" alt="" class="logo">
+        <img src="{{ asset('assets/kumnit/images/logo/white/tumnongta-white-logo.svg') }}" alt="" class="logo">
       </div>
     </div>
     <div id="download-overlay"></div>
@@ -137,7 +137,7 @@
           <div class="text-1"></div>
           <div class="text-2"></div>
         </div>
-        <img src="{{ asset('assets/kumnit/images/logo/default/rikreaydelbanskoil-logo.png') }}" alt="" class="logo">
+        <img src="{{ asset('assets/kumnit/images/logo/white/tumnongta-white-logo.svg') }}" alt="" class="logo">
       </div>
       
       <div id="input-container">
