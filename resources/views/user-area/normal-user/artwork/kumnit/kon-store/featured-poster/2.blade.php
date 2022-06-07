@@ -20,7 +20,7 @@
     }
     .artwork-preview {
       width: 88vw;
-      height: 132vw;
+      height: 176vw;
       position: relative;
       overflow: hidden;
     }
@@ -44,10 +44,10 @@
       border-radius: 2.5vw;
     }
     .artwork-preview .footer img {
-      height: 7vw;
+      height: 9vw;
     }
     .artwork-preview .footer .divider {
-      height: 7vw;
+      height: 9vw;
       border-left: 0.1vw solid #7f8080;
       margin: 0 2.5vw;
     }
@@ -58,13 +58,13 @@
       justify-content: center;
       flex-direction: column;
       white-space: nowrap;
-      padding-top: 1vw;
-      height: 7vw;
-      font-size: 2.3vw;
-      line-height: 1.2;
+      padding-top: 1.5vw;
+      height: 9vw;
+      font-size: 2.7vw;
+      line-height: 1.3;
     }
     .artwork-preview .footer .contact .phone {
-      font-size: 2.7vw;
+      font-size: 3vw;
     }
     .artwork-preview .overlay {
       background: linear-gradient(0deg, #f58e8b 0%, rgba(245, 142, 139, 0) 100%);
@@ -76,10 +76,10 @@
     }
     .artwork-preview .boundary {
       position: absolute;
-      top: 5%;
+      top: 3.5%;
       left: 8%;
       right: 8%;
-      height: 76%;
+      height: 78%;
     }
     .artwork-preview .boundary .key-message {
       position: absolute;
@@ -90,7 +90,7 @@
       left: 50%;
       transform: translate(-50%, 0);
       text-align: center;
-      font-size: 6.5vw;
+      font-size: 9vw;
       font-family: "Romnea", sans-serif;
       word-wrap: break-word;
     }
@@ -102,30 +102,30 @@
     }
     #download .artwork-preview {
       width: 616vw;
-      height: 924vw;
+      height: 1232vw;
     }
     #download .artwork-preview .footer {
       padding: 17.5vw;
       border-radius: 17.5vw;
     }
     #download .artwork-preview .footer img {
-      height: 49vw;
+      height: 63vw;
     }
     #download .artwork-preview .footer .divider {
-      height: 49vw;
+      height: 63vw;
       border-left: 0.7vw solid #7f8080;
       margin: 0 17.5vw;
     }
     #download .artwork-preview .footer .contact {
-      padding-top: 7vw;
-      height: 49vw;
-      font-size: 16.1vw;
-    }
-    #download .artwork-preview .footer .contact .phone {
+      padding-top: 10.5vw;
+      height: 63vw;
       font-size: 18.9vw;
     }
+    #download .artwork-preview .footer .contact .phone {
+      font-size: 21vw;
+    }
     #download .artwork-preview .boundary .key-message {
-      font-size: 45.5vw;
+      font-size: 63vw;
     }
     @media (min-width: 800px) {
       .customized-container {
@@ -134,30 +134,30 @@
       }
       .customized-container .artwork-preview {
         width: 36vw;
-        height: 54vw;
+        height: 72vw;
       }
       .customized-container .artwork-preview .footer {
         padding: 1.0227272727vw;
         border-radius: 1.0227272727vw;
       }
       .customized-container .artwork-preview .footer img {
-        height: 2.8636363636vw;
+        height: 3.6818181818vw;
       }
       .customized-container .artwork-preview .footer .divider {
-        height: 2.8636363636vw;
+        height: 3.6818181818vw;
         border-left: 0.0409090909vw solid #7f8080;
         margin: 0 1.0227272727vw;
       }
       .customized-container .artwork-preview .footer .contact {
-        padding-top: 0.4090909091vw;
-        height: 2.8636363636vw;
-        font-size: 0.9409090909vw;
-      }
-      .customized-container .artwork-preview .footer .contact .phone {
+        padding-top: 0.6136363636vw;
+        height: 3.6818181818vw;
         font-size: 1.1045454545vw;
       }
+      .customized-container .artwork-preview .footer .contact .phone {
+        font-size: 1.2272727273vw;
+      }
       .customized-container .artwork-preview .boundary .key-message {
-        font-size: 2.6590909091vw;
+        font-size: 3.6818181818vw;
       }
       .customized-container #input-container {
         margin-top: 0;
@@ -346,27 +346,27 @@
     if(windowWidth < 800) {
       $('.primary-text').each((i, obj) => {
         switch(i) {
-          case 0 : obj.style.fontSize = `calc(6.5vw * 7 * (${primaryTextFontSizePercentage} / 100))`; break
-          case 1 : obj.style.fontSize = `calc(6.5vw * (${primaryTextFontSizePercentage} / 100))`; break
+          case 0 : obj.style.fontSize = `calc(9vw * 7 * (${primaryTextFontSizePercentage} / 100))`; break
+          case 1 : obj.style.fontSize = `calc(9vw * (${primaryTextFontSizePercentage} / 100))`; break
         }
       })
       $('.secondary-text').each((i, obj) => {
         switch(i) {
-          case 0 : obj.style.fontSize = `calc(6.5vw * 7 * (${secondaryTextFontSizePercentage} / 100))`; break
-          case 1 : obj.style.fontSize = `calc(6.5vw * (${secondaryTextFontSizePercentage} / 100))`; break
+          case 0 : obj.style.fontSize = `calc(9vw * 7 * (${secondaryTextFontSizePercentage} / 100))`; break
+          case 1 : obj.style.fontSize = `calc(9vw * (${secondaryTextFontSizePercentage} / 100))`; break
         }
       })
     } else {
       $('.primary-text').each((i, obj) => {
         switch(i) {
-          case 0 : obj.style.fontSize = `calc(6.5vw * 7 * (${primaryTextFontSizePercentage} / 100))`; break
-          case 1 : obj.style.fontSize = `calc((6.5vw * 36 / 88) * (${primaryTextFontSizePercentage} / 100))`; break
+          case 0 : obj.style.fontSize = `calc(9vw * 7 * (${primaryTextFontSizePercentage} / 100))`; break
+          case 1 : obj.style.fontSize = `calc((9vw * 36 / 88) * (${primaryTextFontSizePercentage} / 100))`; break
         }
       })
       $('.secondary-text').each((i, obj) => {
         switch(i) {
-          case 0 : obj.style.fontSize = `calc(6.5vw * 7 * (${secondaryTextFontSizePercentage} / 100))`; break
-          case 1 : obj.style.fontSize = `calc((6.5vw * 36 / 88) * (${secondaryTextFontSizePercentage} / 100))`; break
+          case 0 : obj.style.fontSize = `calc(9vw * 7 * (${secondaryTextFontSizePercentage} / 100))`; break
+          case 1 : obj.style.fontSize = `calc((9vw * 36 / 88) * (${secondaryTextFontSizePercentage} / 100))`; break
         }
       })
     }
@@ -559,7 +559,7 @@
 
       if(!cropper) {
         cropper = new Cropper(document.getElementById('cropperImg'), {
-          aspectRatio: 2/3,
+          aspectRatio: 1/2,
           autoCropArea: 1,
         })
       }

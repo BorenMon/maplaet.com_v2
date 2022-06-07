@@ -20,7 +20,7 @@
     }
     .artwork-preview {
       width: 88vw;
-      height: 132vw;
+      height: 88vw;
       position: relative;
       overflow: hidden;
     }
@@ -40,8 +40,8 @@
       background-color: white;
       display: flex;
       align-items: center;
-      padding: 2.5vw;
-      border-radius: 2.5vw;
+      padding: 2vw;
+      border-radius: 2vw;
     }
     .artwork-preview .footer img {
       height: 7vw;
@@ -49,7 +49,7 @@
     .artwork-preview .footer .divider {
       height: 7vw;
       border-left: 0.1vw solid #7f8080;
-      margin: 0 2.5vw;
+      margin: 0 2vw;
     }
     .artwork-preview .footer .contact {
       font-family: "Bahnschrift", "Dangrek", sans-serif;
@@ -58,10 +58,10 @@
       justify-content: center;
       flex-direction: column;
       white-space: nowrap;
-      padding-top: 1vw;
+      padding-top: 1.5vw;
       height: 7vw;
-      font-size: 2.3vw;
-      line-height: 1.2;
+      font-size: 2.4vw;
+      line-height: 1.3;
     }
     .artwork-preview .footer .contact .phone {
       font-size: 2.7vw;
@@ -76,10 +76,10 @@
     }
     .artwork-preview .boundary {
       position: absolute;
-      top: 5%;
-      left: 8%;
-      right: 8%;
-      height: 76%;
+      top: 4.5%;
+      left: 5%;
+      right: 5%;
+      height: 72%;
     }
     .artwork-preview .boundary .key-message {
       position: absolute;
@@ -90,7 +90,7 @@
       left: 50%;
       transform: translate(-50%, 0);
       text-align: center;
-      font-size: 6.5vw;
+      font-size: 6vw;
       font-family: "Romnea", sans-serif;
       word-wrap: break-word;
     }
@@ -102,11 +102,11 @@
     }
     #download .artwork-preview {
       width: 616vw;
-      height: 924vw;
+      height: 616vw;
     }
     #download .artwork-preview .footer {
-      padding: 17.5vw;
-      border-radius: 17.5vw;
+      padding: 14vw;
+      border-radius: 14vw;
     }
     #download .artwork-preview .footer img {
       height: 49vw;
@@ -114,18 +114,18 @@
     #download .artwork-preview .footer .divider {
       height: 49vw;
       border-left: 0.7vw solid #7f8080;
-      margin: 0 17.5vw;
+      margin: 0 14vw;
     }
     #download .artwork-preview .footer .contact {
-      padding-top: 7vw;
+      padding-top: 10.5vw;
       height: 49vw;
-      font-size: 16.1vw;
+      font-size: 16.8vw;
     }
     #download .artwork-preview .footer .contact .phone {
       font-size: 18.9vw;
     }
     #download .artwork-preview .boundary .key-message {
-      font-size: 45.5vw;
+      font-size: 42vw;
     }
     @media (min-width: 800px) {
       .customized-container {
@@ -134,11 +134,11 @@
       }
       .customized-container .artwork-preview {
         width: 36vw;
-        height: 54vw;
+        height: 36vw;
       }
       .customized-container .artwork-preview .footer {
-        padding: 1.0227272727vw;
-        border-radius: 1.0227272727vw;
+        padding: 0.8181818182vw;
+        border-radius: 0.8181818182vw;
       }
       .customized-container .artwork-preview .footer img {
         height: 2.8636363636vw;
@@ -146,18 +146,18 @@
       .customized-container .artwork-preview .footer .divider {
         height: 2.8636363636vw;
         border-left: 0.0409090909vw solid #7f8080;
-        margin: 0 1.0227272727vw;
+        margin: 0 0.8181818182vw;
       }
       .customized-container .artwork-preview .footer .contact {
-        padding-top: 0.4090909091vw;
+        padding-top: 0.6136363636vw;
         height: 2.8636363636vw;
-        font-size: 0.9409090909vw;
+        font-size: 0.9818181818vw;
       }
       .customized-container .artwork-preview .footer .contact .phone {
         font-size: 1.1045454545vw;
       }
       .customized-container .artwork-preview .boundary .key-message {
-        font-size: 2.6590909091vw;
+        font-size: 2.4545454545vw;
       }
       .customized-container #input-container {
         margin-top: 0;
@@ -346,27 +346,27 @@
     if(windowWidth < 800) {
       $('.primary-text').each((i, obj) => {
         switch(i) {
-          case 0 : obj.style.fontSize = `calc(6.5vw * 7 * (${primaryTextFontSizePercentage} / 100))`; break
-          case 1 : obj.style.fontSize = `calc(6.5vw * (${primaryTextFontSizePercentage} / 100))`; break
+          case 0 : obj.style.fontSize = `calc(6vw * 7 * (${primaryTextFontSizePercentage} / 100))`; break
+          case 1 : obj.style.fontSize = `calc(6vw * (${primaryTextFontSizePercentage} / 100))`; break
         }
       })
       $('.secondary-text').each((i, obj) => {
         switch(i) {
-          case 0 : obj.style.fontSize = `calc(6.5vw * 7 * (${secondaryTextFontSizePercentage} / 100))`; break
-          case 1 : obj.style.fontSize = `calc(6.5vw * (${secondaryTextFontSizePercentage} / 100))`; break
+          case 0 : obj.style.fontSize = `calc(6vw * 7 * (${secondaryTextFontSizePercentage} / 100))`; break
+          case 1 : obj.style.fontSize = `calc(6vw * (${secondaryTextFontSizePercentage} / 100))`; break
         }
       })
     } else {
       $('.primary-text').each((i, obj) => {
         switch(i) {
-          case 0 : obj.style.fontSize = `calc(6.5vw * 7 * (${primaryTextFontSizePercentage} / 100))`; break
-          case 1 : obj.style.fontSize = `calc((6.5vw * 36 / 88) * (${primaryTextFontSizePercentage} / 100))`; break
+          case 0 : obj.style.fontSize = `calc(6vw * 7 * (${primaryTextFontSizePercentage} / 100))`; break
+          case 1 : obj.style.fontSize = `calc((6vw * 36 / 88) * (${primaryTextFontSizePercentage} / 100))`; break
         }
       })
       $('.secondary-text').each((i, obj) => {
         switch(i) {
-          case 0 : obj.style.fontSize = `calc(6.5vw * 7 * (${secondaryTextFontSizePercentage} / 100))`; break
-          case 1 : obj.style.fontSize = `calc((6.5vw * 36 / 88) * (${secondaryTextFontSizePercentage} / 100))`; break
+          case 0 : obj.style.fontSize = `calc(6vw * 7 * (${secondaryTextFontSizePercentage} / 100))`; break
+          case 1 : obj.style.fontSize = `calc((6vw * 36 / 88) * (${secondaryTextFontSizePercentage} / 100))`; break
         }
       })
     }
