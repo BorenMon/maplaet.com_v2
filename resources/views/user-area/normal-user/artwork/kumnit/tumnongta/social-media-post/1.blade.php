@@ -258,7 +258,7 @@
           $('style:first').prepend(`
             @font-face {
               font-family: "${fontFamily + '-' + key}";
-              src: url('${value}');
+              src: url("${value.replace('http://', 'https://')}");
               font-weight: ${key};
             }
           `)
@@ -321,7 +321,7 @@
   })
 
 
-  
+
   $('#overlay-opacity').on('change', function(){
     const value = `${this.value}%`
     $('.overlay').each(function(){
