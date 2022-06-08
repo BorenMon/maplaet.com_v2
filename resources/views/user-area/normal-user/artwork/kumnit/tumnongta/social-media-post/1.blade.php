@@ -6,18 +6,6 @@
 @section('css')
   @include('layouts.normal-user.default-artwork-css')
   <style>
-    @font-face {
-      font-family: "Kh Ang Kouteok";
-      src: url("/assets/kumnit/fonts/Kh Ang Kouteok.ttf");
-    }
-    @font-face {
-      font-family: "NotoSansKhmer-Bold";
-      src: url("/assets/kumnit/fonts/NotoSansKhmer-Bold.ttf");
-    }
-    @font-face {
-      font-family: "Khmer Busra Bold";
-      src: url("/assets/kumnit/fonts/Khmer Busra Bold.ttf");
-    }
     .artwork-preview {
       width: 88vw;
       height: 88vw;
@@ -45,7 +33,6 @@
       top: 57.5%;
       left: 50%;
       width: 80%;
-      font-family: "NotoSansKhmer-Bold", sans-serif;
       color: white;
       transform: translate(-50%, -50%) skewY(-5deg);
       word-wrap: break-word;
@@ -165,12 +152,10 @@
           <h2 class="label">Text</h2>
           <div class="space-y-6">
             <div>
-              <label for="font" class="mr-2 mb-2">Font</label>
-              <select id="font">
-                <option value="Kh Ang Kouteok">Kh Ang Kouteok</option>
-                <option value="NotoSansKhmer-Bold" selected>Noto Sans Khmer Bold</option>
-                <option value="Khmer Busra Bold">Khmer Busra Bold</option>
-              </select>
+              <label for="font-family">Font Family</label>
+              <select id="font-family"></select>
+              <label for="font-style">Font Style</label>
+              <select id="font-style"></select>
             </div>
             <div>
               <label>SkewY Degree (deg)</label>
@@ -250,12 +235,93 @@
 @section('js')
 @include('layouts.normal-user.default-artwork-js')
 <script>
-  $('#font').on('change', function(){
-    const value = this.value
-    $('.text').each(function(){
-      this.style.fontFamily = `"${value}", sans-serif`
+  // Google Font API
+  let googleFonts
+  window.onload = async () => {
+    const response = await fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyB6rEXLdBoL4enkt4-H6xQ63BksLir8Uio')
+    const data = await response.json()
+    googleFonts = await data.items
+    
+    initGoogleFont()
+  }
+
+  let fontFamily, fontStyle
+
+  function initGoogleFont() {
+    $.each(googleFonts, function(key, value){
+      if(value.subsets.includes('khmer')){
+        fontFamily = value.family
+        $('#font-family').append(`
+          <option value="${value.family}">${value.family}</option>
+        `)
+        $.each(value.files, function(key, value){
+          $('style:first').prepend(`
+            @font-face {
+              font-family: "${fontFamily + '-' + key}";
+              src: url('${value}');
+              font-weight: ${key};
+            }
+          `)
+        })
+      }
+
+      // if(true) {
+      //   fontFamily = value.family
+      //   $('#font-family').append(`
+      //     <option value="${value.family}">${value.family}</option>
+      //   `)
+      //   $.each(value.files, function(key, value){
+      //     $('style:first').prepend(`
+      //       @font-face {
+      //         font-family: "${fontFamily + '-' + key}";
+      //         src: url('${value}');
+      //         font-weight: ${key};
+      //       }
+      //     `)
+      //   })
+      // }
     })
+    $.each(googleFonts, function(key, value){
+      if(value.family == $('#font-family').val()){
+        $.each(value.files, (style, file) => {
+          $('#font-style').append(`
+            <option value="${file}">${style.toUpperCase()}</option>
+          `)
+        })
+      }
+    })
+    updateTextStyle()
+  }
+
+  const updateTextStyle = () => {
+    fontFamily = $('#font-family').find(":selected").val()
+    fontStyle = $('#font-style').find(":selected").text().trim().toLowerCase()
+    $('.text').each(function(){
+      this.style.fontFamily = fontFamily + '-' + fontStyle
+    })
+  }
+
+  $('#font-family').on('change', function(){
+    fontFamily = this.value
+    $.each(googleFonts, function(key, value){
+      if(value.family == fontFamily){
+        $('#font-style').html('')
+        $.each(value.files, (style, file) => {
+          $('#font-style').append(`
+            <option value="${file}">${style.toUpperCase()}</option>
+          `)
+        })
+      }
+    })
+    updateTextStyle()
   })
+
+  $('#font-style').on('change', () => {
+    updateTextStyle()
+  })
+
+
+  
   $('#overlay-opacity').on('change', function(){
     const value = `${this.value}%`
     $('.overlay').each(function(){

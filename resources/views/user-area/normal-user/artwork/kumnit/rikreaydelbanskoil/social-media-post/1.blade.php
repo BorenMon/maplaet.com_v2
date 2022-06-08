@@ -151,14 +151,6 @@
         <div class="input-group mb-4">
           <h2 class="label">Text</h2>
           <div class="space-y-6">
-            {{-- <div>
-              <label for="font" class="mr-2 mb-2">Font</label>
-              <select id="font">
-                <option value="Kh Ang Kouteok">Kh Ang Kouteok</option>
-                <option value="NotoSansKhmer-Bold" selected>Noto Sans Khmer Bold</option>
-                <option value="Khmer Busra Bold">Khmer Busra Bold</option>
-              </select>
-            </div> --}}
             <div>
               <label for="font-family">Font Family</label>
               <select id="font-family"></select>
