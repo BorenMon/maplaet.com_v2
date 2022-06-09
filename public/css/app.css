@@ -1244,14 +1244,11 @@ select {
 .w-52 {
   width: 13rem;
 }
-.w-32 {
-  width: 8rem;
-}
 .w-24 {
   width: 6rem;
 }
-.w-2 {
-  width: 0.5rem;
+.w-32 {
+  width: 8rem;
 }
 .min-w-0 {
   min-width: 0px;

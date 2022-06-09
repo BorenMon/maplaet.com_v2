@@ -1,14 +1,6 @@
 @font-face {
-  font-family: "Dangrek";
-  src: url("/assets/kumnit/fonts/Dangrek.ttf");
-}
-@font-face {
-  font-family: "Bahnschrift";
-  src: url("/assets/kumnit/fonts/BAHNSCHRIFT.TTF");
-}
-@font-face {
-  font-family: "Romnea";
-  src: url("/assets/kumnit/fonts/Romnea-Italic.ttf");
+  font-family: "Lazy";
+  src: url("/assets/kumnit/fonts/Kh BL LazySmooth.ttf");
 }
 .artwork-preview {
   width: 88vw;
@@ -16,75 +8,40 @@
   position: relative;
   overflow: hidden;
 }
-.artwork-preview .featured-image {
+.artwork-preview .background {
   width: 100%;
   height: 100%;
+}
+.artwork-preview .content {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: flex;
+  height: 80%;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.artwork-preview .content .text {
+  width: 90%;
+  font-family: "Lazy";
+  text-align: center;
+  color: #faa61a;
+  word-wrap: break-word;
+  font-size: 5vw;
+  margin: 5vw 0;
+  text-shadow: 0.4vw 0.4vw 0 white;
+}
+.artwork-preview .content .featured-image {
+  width: 80%;
+  height: 55%;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
-}
-.artwork-preview .footer {
-  position: absolute;
-  bottom: 5%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: white;
-  display: flex;
-  align-items: center;
-  padding: 2vw;
-  border-radius: 2vw;
-}
-.artwork-preview .footer img {
-  height: 7vw;
-}
-.artwork-preview .footer .divider {
-  height: 7vw;
-  border-left: 0.1vw solid #7f8080;
-  margin: 0 2vw;
-}
-.artwork-preview .footer .contact {
-  font-family: "Bahnschrift", "Dangrek", sans-serif;
-  color: #7f8080;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  white-space: nowrap;
-  padding-top: 1.5vw;
-  height: 7vw;
-  font-size: 2.4vw;
-  line-height: 1.3;
-}
-.artwork-preview .footer .contact .phone {
-  font-size: 2.7vw;
-}
-.artwork-preview .overlay {
-  background: linear-gradient(0deg, #f58e8b 0%, rgba(245, 142, 139, 0) 100%);
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 30%;
-}
-.artwork-preview .boundary {
-  position: absolute;
-  top: 4.5%;
-  left: 5%;
-  right: 5%;
-  height: 72%;
-}
-.artwork-preview .boundary .key-message {
-  position: absolute;
-  color: white;
-  width: 80%;
-  text-shadow: 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b, 0 0 0.15em #f58e8b;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
-  text-align: center;
-  font-size: 6vw;
-  font-family: "Romnea", sans-serif;
-  word-wrap: break-word;
+  border-radius: 5vw;
+  box-shadow: 0.7vw 0.7vw 0.5vw rgba(250, 166, 26, 0.05);
 }
 #download {
   position: fixed;
@@ -96,61 +53,35 @@
   width: 616vw;
   height: 616vw;
 }
-#download .artwork-preview .footer {
-  padding: 14vw;
-  border-radius: 14vw;
+#download .artwork-preview .content .text {
+  font-size: 35vw;
+  margin: 35vw 0;
+  text-shadow: 2.8vw 2.8vw 0 white;
 }
-#download .artwork-preview .footer img {
-  height: 49vw;
-}
-#download .artwork-preview .footer .divider {
-  height: 49vw;
-  border-left: 0.7vw solid #7f8080;
-  margin: 0 14vw;
-}
-#download .artwork-preview .footer .contact {
-  padding-top: 10.5vw;
-  height: 49vw;
-  font-size: 16.8vw;
-}
-#download .artwork-preview .footer .contact .phone {
-  font-size: 18.9vw;
-}
-#download .artwork-preview .boundary .key-message {
-  font-size: 42vw;
+#download .artwork-preview .content .featured-image {
+  border-radius: 35vw;
+  box-shadow: 4.9vw 4.9vw 3.5vw rgba(250, 166, 26, 0.05);
 }
 @media (min-width: 800px) {
   .customized-container {
     flex-direction: row;
     justify-content: space-between;
   }
+
   .customized-container .artwork-preview {
     width: 36vw;
     height: 36vw;
   }
-  .customized-container .artwork-preview .footer {
-    padding: 0.8181818182vw;
-    border-radius: 0.8181818182vw;
+  .customized-container .artwork-preview .content .text {
+    font-size: 2.0454545455vw;
+    margin: 2.0454545455vw 0;
+    text-shadow: 0.1636363636vw 0.1636363636vw 0 white;
   }
-  .customized-container .artwork-preview .footer img {
-    height: 2.8636363636vw;
+  .customized-container .artwork-preview .content .featured-image {
+    border-radius: 2.0454545455vw;
+    box-shadow: 0.2863636364vw 0.2863636364vw 0.2045454545vw rgba(250, 166, 26, 0.05);
   }
-  .customized-container .artwork-preview .footer .divider {
-    height: 2.8636363636vw;
-    border-left: 0.0409090909vw solid #7f8080;
-    margin: 0 0.8181818182vw;
-  }
-  .customized-container .artwork-preview .footer .contact {
-    padding-top: 0.6136363636vw;
-    height: 2.8636363636vw;
-    font-size: 0.9818181818vw;
-  }
-  .customized-container .artwork-preview .footer .contact .phone {
-    font-size: 1.1045454545vw;
-  }
-  .customized-container .artwork-preview .boundary .key-message {
-    font-size: 2.4545454545vw;
-  }
+
   .customized-container #input-container {
     margin-top: 0;
     width: calc(100% - 36vw - 2rem);
