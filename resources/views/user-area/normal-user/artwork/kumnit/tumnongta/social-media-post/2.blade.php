@@ -112,7 +112,7 @@
   <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
     <div id="download">
       <div class="artwork-preview">
-        <img src="{{ asset('assets/kumnit/images/tumnongta/social-media-post/2/background.jpg') }}" alt="" class="background">
+        <img src="{{ mix('assets/kumnit/images/tumnongta/social-media-post/2/background.jpg') }}" alt="" class="background">
         <div class="content">
           <div class="text"></div>
           <img src="{{ asset('assets/general-assets/images/background.jpg') }}" alt="" class="featured-image">
@@ -123,7 +123,7 @@
   
     <div class="customized-container">
       <div class="artwork-preview shadow">
-        <img src="{{ asset('assets/kumnit/images/tumnongta/social-media-post/2/background.jpg') }}" alt="" class="background">
+        <img src="{{ mix('assets/kumnit/images/tumnongta/social-media-post/2/background.jpg') }}" alt="" class="background">
         <div class="content">
           <div class="text"></div>
           <img src="{{ asset('assets/general-assets/images/background.jpg') }}" alt="" class="featured-image">
