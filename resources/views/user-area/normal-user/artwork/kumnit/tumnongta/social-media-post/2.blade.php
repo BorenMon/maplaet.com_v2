@@ -35,7 +35,7 @@
       width: 90%;
       font-family: "Lazy";
       text-align: center;
-      color: #faa61a;
+      color: #f9a61a;
       word-wrap: break-word;
       font-size: 5vw;
       margin: 5vw 0;
@@ -49,7 +49,7 @@
       -o-object-position: center;
         object-position: center;
       border-radius: 5vw;
-      box-shadow: 0.7vw 0.7vw 0.5vw rgba(250, 166, 26, 0.05);
+      box-shadow: 0.7vw 0.7vw 0.5vw rgba(248, 166, 27, 0.1);
     }
     #download {
       position: fixed;
@@ -68,7 +68,7 @@
     }
     #download .artwork-preview .content .featured-image {
       border-radius: 35vw;
-      box-shadow: 4.9vw 4.9vw 3.5vw rgba(250, 166, 26, 0.05);
+      box-shadow: 4.9vw 4.9vw 3.5vw rgba(248, 166, 27, 0.1);
     }
     @media (min-width: 800px) {
       .customized-container {
@@ -87,7 +87,7 @@
       }
       .customized-container .artwork-preview .content .featured-image {
         border-radius: 2.0454545455vw;
-        box-shadow: 0.2863636364vw 0.2863636364vw 0.2045454545vw rgba(250, 166, 26, 0.05);
+        box-shadow: 0.2863636364vw 0.2863636364vw 0.2045454545vw rgba(248, 166, 27, 0.1);
       }
 
       .customized-container #input-container {
