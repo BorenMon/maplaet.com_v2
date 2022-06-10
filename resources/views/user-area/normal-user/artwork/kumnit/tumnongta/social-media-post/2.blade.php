@@ -143,7 +143,7 @@
           <button class="btn" style="background-color: #0a254d;" id="download-poster">
             Download
           </button>
-          <button class="btn ml-1" style="background-color: #2AABEE;" onclick="sendToTelegram()">
+          <button @if(!Auth::user()->telegram_id) disabled title="Update your telegram id in profile setting to enable this feature." @endif class="btn ml-1 disabled:opacity-30 disabled:cursor-not-allowed disabled:transform-none" style="background-color: #2AABEE;" onclick="sendToTelegram()">
             <i class="fa-brands fa-telegram" style="font-family: 'Font Awesome 6 Brands' !important;"></i>
           </button>
         </div>
@@ -518,7 +518,7 @@
             maxHeight: 2000,
             maxWidth: 2000,
             success(result) {
-              var chat_id = '897328113'
+              var chat_id = '{{ Auth::user()->telegram_id }}'
               var token = "5348766637:AAFS9CRCB1mtG3YirFj-OZV83IDR0LCCgC0"
 
               var formData = new FormData();

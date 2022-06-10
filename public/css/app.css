@@ -2226,8 +2226,23 @@ select {
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
 }
+.disabled\:transform:disabled {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.disabled\:transform-none:disabled {
+  transform: none;
+}
+.disabled\:cursor-not-allowed:disabled {
+  cursor: not-allowed;
+}
 .disabled\:opacity-25:disabled {
   opacity: 0.25;
+}
+.disabled\:opacity-50:disabled {
+  opacity: 0.5;
+}
+.disabled\:opacity-30:disabled {
+  opacity: 0.3;
 }
 @media (prefers-color-scheme: dark) {
 
@@ -2372,6 +2387,11 @@ select {
 
   .sm\:rounded-md {
     border-radius: 0.375rem;
+  }
+
+  .sm\:rounded-b {
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
   }
 
   .sm\:rounded-tl-md {

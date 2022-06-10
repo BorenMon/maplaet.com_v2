@@ -30,6 +30,7 @@ class User extends Authenticatable
         'role',
         'admin_page_id',
         'accessible_pages_id',
+        'telegram_id',
     ];
 
     /**

@@ -1,12 +1,13 @@
 <?php
 
+use App\Models\User;
 use App\Models\Artwork;
 use App\Models\AdminPage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
-use App\Http\Controllers\SuperAdmin\SuperAdminGeneralController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,3 +84,13 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
         })->name('artwork-preview');
     });
 });
+
+Route::post('/user/update-telegram-id', function(Request $request){
+    // $request->validate(['telegram_id' => 'required']);
+
+    User::find(Auth::id())->update([
+        'telegram_id' => $request->telegram_id
+    ]);
+
+    return redirect()->back();
+})->name('user.update.telegram_id');
