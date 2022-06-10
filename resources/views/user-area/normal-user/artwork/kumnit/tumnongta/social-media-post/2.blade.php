@@ -143,6 +143,9 @@
           <button class="btn" style="background-color: #0a254d;" id="download-poster">
             Download
           </button>
+          <button class="btn ml-1" style="background-color: #2AABEE;" onclick="sendToTelegram()">
+            <i class="fa-brands fa-telegram" style="font-family: 'Font Awesome 6 Brands' !important;"></i>
+          </button>
         </div>
         <div class="input-group mb-4 mt-8">
           <h2 class="label">Text</h2>
@@ -497,5 +500,39 @@
       })
     })
   })
+
+  // Send to Telegram
+  const sendToTelegram = () => {
+    $('#loading').css('display', 'flex')
+    domtoimage.toJpeg(document.getElementById('download'), {
+      quality: 0.8
+    }).then(dataUrl => {
+    domtoimage
+      .toJpeg(document.getElementById('download'), {
+        quality: 0.8
+      })
+      .then(dataUrl => {
+        $('#loading').css('display', 'none')
+        new Compressor(dataURLtoFile(dataUrl), {
+            quality : 0.8,
+            maxHeight: 2000,
+            maxWidth: 2000,
+            success(result) {
+              var chat_id = '897328113'
+              var token = "5348766637:AAFS9CRCB1mtG3YirFj-OZV83IDR0LCCgC0"
+
+              var formData = new FormData();
+              formData.append('chat_id', chat_id)
+              formData.append('document', result, 'poster.jpeg')
+
+              var request = new XMLHttpRequest();
+              request.open('POST', `https://api.telegram.org/bot${token}/sendDocument`)
+              request.send(formData)
+            }
+          }
+        )
+      })
+    })
+  }
 </script>
 @endsection
