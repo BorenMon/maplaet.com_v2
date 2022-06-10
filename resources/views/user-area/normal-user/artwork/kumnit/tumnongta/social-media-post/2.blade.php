@@ -131,7 +131,7 @@
       </div>
       
       <div id="input-container">
-        <div class="mb-12 text-center" id="_1">
+        <div class="mb-12 text-center space-y-2" id="_1">
           <button id="upload-image" class="btn mb-0 text-white mr-2 cursor-pointer" style="background-color: #61c3f5;">
             Upload
           </button>
