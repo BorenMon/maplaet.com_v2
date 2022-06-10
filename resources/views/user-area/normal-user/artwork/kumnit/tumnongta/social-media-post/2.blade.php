@@ -21,12 +21,13 @@
       height: 100%;
     }
     .artwork-preview .content {
-      position: absolute;
-      left: 0px;
-      top: 0px;
-      display: flex;
-      height: 80%;
       width: 100%;
+      height: 80%;
+      position: absolute;
+      left: 50%;
+      top: 40%;
+      transform: translate(-50%, -50%);
+      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -112,7 +113,7 @@
   <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
     <div id="download">
       <div class="artwork-preview">
-        <img src="{{ asset('assets/kumnit/images/tumnongta/social-media-post/2/background.jpg') }}" alt="" class="background">
+        <img src="{{ asset('assets/kumnit/images/tumnongta/social-media-post/2/background.jpgb') }}" alt="" class="background">
         <div class="content">
           <div class="text"></div>
           <img src="{{ asset('assets/general-assets/images/background.jpg') }}" alt="" class="featured-image">
@@ -123,7 +124,7 @@
   
     <div class="customized-container">
       <div class="artwork-preview shadow">
-        <img src="{{ asset('assets/kumnit/images/tumnongta/social-media-post/2/background.jpg') }}" alt="" class="background">
+        <img src="{{ asset('assets/kumnit/images/tumnongta/social-media-post/2/background.jpgb') }}" alt="" class="background">
         <div class="content">
           <div class="text"></div>
           <img src="{{ asset('assets/general-assets/images/background.jpg') }}" alt="" class="featured-image">
