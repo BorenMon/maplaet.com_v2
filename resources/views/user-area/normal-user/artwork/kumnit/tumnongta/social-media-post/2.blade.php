@@ -39,9 +39,8 @@
       color: #f9a61a;
       word-wrap: break-word;
       font-size: 5vw;
-      margin: 5vw 0;
+      margin: 5vw auto;
       text-shadow: 0.4vw 0.4vw 0 white;
-      margin: 0 auto;
     }
     .artwork-preview .content .featured-image {
       width: 80%;
@@ -66,7 +65,7 @@
     }
     #download .artwork-preview .content .text {
       font-size: 35vw;
-      margin: 35vw 0;
+      margin: 35vw auto;
       text-shadow: 2.8vw 2.8vw 0 white;
     }
     #download .artwork-preview .content .featured-image {
@@ -85,7 +84,7 @@
       }
       .customized-container .artwork-preview .content .text {
         font-size: 2.0454545455vw;
-        margin: 2.0454545455vw 0;
+        margin: 2.0454545455vw auto;
         text-shadow: 0.1636363636vw 0.1636363636vw 0 white;
       }
       .customized-container .artwork-preview .content .featured-image {
