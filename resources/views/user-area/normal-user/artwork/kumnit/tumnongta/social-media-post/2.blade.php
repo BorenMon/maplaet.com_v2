@@ -51,6 +51,7 @@
         object-position: center;
       border-radius: 5vw;
       box-shadow: 0.7vw 0.7vw 0.5vw rgba(248, 166, 27, 0.1);
+      margin: 0 auto;
     }
     #download {
       position: fixed;
