@@ -41,6 +41,7 @@
       font-size: 5vw;
       margin: 5vw 0;
       text-shadow: 0.4vw 0.4vw 0 white;
+      margin: 0 auto;
     }
     .artwork-preview .content .featured-image {
       width: 80%;
