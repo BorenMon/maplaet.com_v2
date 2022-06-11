@@ -379,19 +379,7 @@
     </div>
     
     <div id="input-container">
-      <div class="mb-12 text-center" id="_1">
-        <button id="upload-image" class="btn mb-0 text-white mr-2 cursor-pointer" style="background-color: #61c3f5;">
-          Upload
-        </button>
-        <input type="file" id="uploadProfile" class="hidden" accept="image/*">
-
-        <button class="btn mr-1" style="background-color: #725bd2;" id="openCropperModal">
-          Crop
-        </button>
-        <button class="btn" style="background-color: #0a254d;" id="download-poster">
-          Download
-        </button>
-      </div>
+      @include('layouts.normal-user.operation-buttons')
       <div class="input-group mt-8 mb-4">
         <h2 class="label">Page</h2>
         <select id="page">
@@ -805,5 +793,39 @@ const toDataURL = url => fetch(url)
         })
       })
     })
+
+    // Send to Telegram
+  const sendToTelegram = () => {
+    $('#loading').css('display', 'flex')
+    domtoimage.toJpeg(document.getElementById('download'), {
+      quality: 0.8
+    }).then(dataUrl => {
+    domtoimage
+      .toJpeg(document.getElementById('download'), {
+        quality: 0.8
+      })
+      .then(dataUrl => {
+        $('#loading').css('display', 'none')
+        new Compressor(dataURLtoFile(dataUrl), {
+            quality : 0.8,
+            maxHeight: 2000,
+            maxWidth: 2000,
+            success(result) {
+              var chat_id = '{{ Auth::user()->telegram_id }}'
+              var token = "5348766637:AAFS9CRCB1mtG3YirFj-OZV83IDR0LCCgC0"
+
+              var formData = new FormData();
+              formData.append('chat_id', chat_id)
+              formData.append('document', result, 'poster.jpeg')
+
+              var request = new XMLHttpRequest();
+              request.open('POST', `https://api.telegram.org/bot${token}/sendDocument`)
+              request.send(formData)
+            }
+          }
+        )
+      })
+    })
+  }
 </script>
 @endsection

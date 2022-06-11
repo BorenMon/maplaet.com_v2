@@ -20,7 +20,7 @@
                 <h3 class="text-lg font-medium text-gray-900">Link Telegram</h3>
         
                 <p class="mt-1 text-sm text-gray-600">
-                    Update your telegram account id and let maplaet telegram bot can send messages and files by following provided tutorial video <a href="" class="underline text-maplaet-2">here</a>.
+                    Update your telegram account id and let maplaet telegram bot can send messages and files by following provided tutorial video <a href="https://www.youtube.com/channel/UCXVSw-JowZpjR9GZHjQwckQ" target="_blank" class="underline text-maplaet-2">here</a>.
                 </p>
             </div>
         

@@ -36,10 +36,9 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      max-width: 90%;
-      font-family: "Kh Ang Kouteok", sans-serif;
+      width: 90%;
       color: white;
-      transform: translate(-50%, -50%) skewY(-5deg);
+      transform: translate(-50%, -50%) skewY(0);
       word-wrap: break-word;
     }
     .artwork-preview .text .text-1 {
@@ -124,19 +123,7 @@
       </div>
       
       <div id="input-container">
-        <div class="mb-12 text-center" id="_1">
-          <button id="upload-image" class="btn mb-0 text-white mr-2 cursor-pointer" style="background-color: #61c3f5;">
-            Upload
-          </button>
-          <input type="file" id="uploadProfile" class="hidden" accept="image/*">
-
-          <button class="btn mr-1" style="background-color: #725bd2;" id="openCropperModal">
-            Crop
-          </button>
-          <button class="btn" style="background-color: #0a254d;" id="download-poster">
-            Download
-          </button>
-        </div>
+        @include('layouts.normal-user.operation-buttons')
         <div class="input-group mb-4 mt-8 space-y-4">
           <h2 class="label">Overlay</h2>
           <div>
@@ -153,8 +140,14 @@
           <h2 class="label">Text</h2>
           <div class="space-y-6">
             <div>
+              <label for="font-family">Font Family</label>
+              <select id="font-family"></select>
+              <label for="font-style">Font Style</label>
+              <select id="font-style"></select>
+            </div>
+            <div>
               <label>SkewY Degree (deg)</label>
-              <input class="form-control mt-2" type="number" id="skew-y-degree" min="-365" max="365" value="-5">
+              <input class="form-control mt-2" type="number" id="skew-y-degree" min="-365" max="365" value="0">
             </div>
             <div>
               <label for="text-1">Text #1</label>
@@ -230,6 +223,91 @@
 @section('js')
 @include('layouts.normal-user.default-artwork-js')
 <script>
+  // Google Font API
+  let googleFonts
+  window.onload = async () => {
+    const response = await fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyB6rEXLdBoL4enkt4-H6xQ63BksLir8Uio')
+    const data = await response.json()
+    googleFonts = await data.items
+    
+    initGoogleFont()
+  }
+
+  let fontFamily, fontStyle
+
+  function initGoogleFont() {
+    $.each(googleFonts, function(key, value){
+      if(value.subsets.includes('khmer') || JSON.stringify(value.subsets)==JSON.stringify(['latin'])){
+        fontFamily = value.family
+        $('#font-family').append(`
+          <option value="${value.family}">${value.family}</option>
+        `)
+        $.each(value.files, function(key, value){
+          $('style:first').prepend(`
+            @font-face {
+              font-family: "${fontFamily + '-' + key}";
+              src: url("${value.replace('http://', 'https://')}");
+              font-weight: ${key};
+            }
+          `)
+        })
+      }
+
+      // if(true) {
+      //   fontFamily = value.family
+      //   $('#font-family').append(`
+      //     <option value="${value.family}">${value.family}</option>
+      //   `)
+      //   $.each(value.files, function(key, value){
+      //     $('style:first').prepend(`
+      //       @font-face {
+      //         font-family: "${fontFamily + '-' + key}";
+      //         src: url('${value}');
+      //         font-weight: ${key};
+      //       }
+      //     `)
+      //   })
+      // }
+    })
+    $.each(googleFonts, function(key, value){
+      if(value.family == $('#font-family').val()){
+        $.each(value.files, (style, file) => {
+          $('#font-style').append(`
+            <option value="${file}">${style.toUpperCase()}</option>
+          `)
+        })
+      }
+    })
+    updateTextStyle()
+  }
+
+  const updateTextStyle = () => {
+    fontFamily = $('#font-family').find(":selected").val()
+    fontStyle = $('#font-style').find(":selected").text().trim().toLowerCase()
+    $('.text').each(function(){
+      this.style.fontFamily = fontFamily + '-' + fontStyle
+    })
+  }
+
+  $('#font-family').on('change', function(){
+    fontFamily = this.value
+    $.each(googleFonts, function(key, value){
+      if(value.family == fontFamily){
+        $('#font-style').html('')
+        $.each(value.files, (style, file) => {
+          $('#font-style').append(`
+            <option value="${file}">${style.toUpperCase()}</option>
+          `)
+        })
+      }
+    })
+    updateTextStyle()
+  })
+
+  $('#font-style').on('change', () => {
+    updateTextStyle()
+  })
+
   $('#overlay-opacity').on('change', function(){
     const value = `${this.value}%`
     $('.overlay').each(function(){
@@ -513,5 +591,39 @@
       })
     })
   })
+
+  // Send to Telegram
+  const sendToTelegram = () => {
+    $('#loading').css('display', 'flex')
+    domtoimage.toJpeg(document.getElementById('download'), {
+      quality: 0.8
+    }).then(dataUrl => {
+    domtoimage
+      .toJpeg(document.getElementById('download'), {
+        quality: 0.8
+      })
+      .then(dataUrl => {
+        $('#loading').css('display', 'none')
+        new Compressor(dataURLtoFile(dataUrl), {
+            quality : 0.8,
+            maxHeight: 2000,
+            maxWidth: 2000,
+            success(result) {
+              var chat_id = '{{ Auth::user()->telegram_id }}'
+              var token = "5348766637:AAFS9CRCB1mtG3YirFj-OZV83IDR0LCCgC0"
+
+              var formData = new FormData();
+              formData.append('chat_id', chat_id)
+              formData.append('document', result, 'poster.jpeg')
+
+              var request = new XMLHttpRequest();
+              request.open('POST', `https://api.telegram.org/bot${token}/sendDocument`)
+              request.send(formData)
+            }
+          }
+        )
+      })
+    })
+  }
 </script>
 @endsection
