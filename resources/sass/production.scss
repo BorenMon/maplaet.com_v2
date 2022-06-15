@@ -1,39 +1,86 @@
 @font-face {
-  font-family: 'Lazy';
-  src: url('/assets/kumnit/fonts/Kh BL LazySmooth.ttf');
+  font-family: "Riffic";
+  src: url("/assets/kumnit/fonts/riffic.otf");
+}
+@font-face {
+  font-family: "GrandHotel";
+  src: url("/assets/kumnit/fonts/GrandHotel-Regular.ttf");
+}
+@font-face {
+  font-family: "Shartoll";
+  src: url("/assets/kumnit/fonts/Shartoll-Light.otf");
+}
+@font-face {
+  font-family: "Krasar-Bold";
+  src: url("/assets/kumnit/fonts/Krasar-Bold.ttf");
+}
+@font-face {
+  font-family: "Krasar-Regular";
+  src: url("/assets/kumnit/fonts/Krasar-Regular.ttf");
 }
 
 .artwork-preview {
   width: 88vw;
-  height: 88vw;
+  height: 132vw;
   position: relative;
   overflow: hidden;
 
-  .background {
-    width: 100%;
-    height: 100%;
+  .logo {
+    @apply absolute left-1/2 -translate-x-1/2;
+    top: 3%;
+    width: 14%;
   }
 
-  .content {
-    @apply absolute left-0 top-0 w-full h-4/5 flex flex-col items-center justify-center;
+  .main-wrapper {
+    @apply absolute left-1/2 -translate-x-1/2 w-full flex items-center justify-center;
+    top: 14%;
+    height: 20%;
 
-    .text {
-      width: 90%;
-      font-family: 'Lazy';
-      text-align: center;
-      color: #faa61a;
-      word-wrap: break-word;
-      font-size: 5vw;
-      margin: 5vw 0;
-      text-shadow: 0.4vw 0.4vw 0 white;
-    }
-
-    .featured-image {
+    .main {
+      @apply break-words text-center;
+      color: #f5a8a2;
+      font-family: 'Riffic', 'Krasar-Bold';
       width: 80%;
-      height: 55%;
-      @apply object-cover object-center;
-      border-radius: 5vw;
-      box-shadow: 0.7vw 0.7vw 0.5vw rgba($color: #faa61a, $alpha: 0.05);
+      line-height: 1.2;
+      font-size: 10vw;
+    }
+  }
+
+  .secondary {
+    @apply absolute left-1/2 -translate-x-1/2 break-words text-center;
+    font-family: 'Shartoll', 'Krasar-Regular';
+    top: 70%;
+    font-size: 4.5vw;
+    color: #f5a8a2;
+    width: 75%;
+  }
+
+  .from-wrapper {
+    @apply absolute left-1/2 -translate-x-1/2 w-full flex items-center justify-center;
+    bottom: 5%;
+    height: 8%;
+
+    .from {
+      font-family: 'Shartoll', 'Krasar-Regular';
+      font-size: 4.5vw;
+      color: #f5a8a2;
+      white-space: nowrap;
+    }
+  }
+
+  .name-wrapper {
+    @apply absolute left-1/2 -translate-x-1/2 w-full flex items-center justify-center;
+    top: 57%;
+    height: 8.2%;
+
+    .name {
+      @apply break-words text-center;
+      color: white;
+      font-family: 'GrandHotel', 'Krasar-Bold';
+      width: 70%;
+      white-space: nowrap;
+      font-size: 7.5vw;
+      line-height: 0;
     }
   }
 }
@@ -43,57 +90,63 @@
   top: 0;
   left: 0;
   z-index: -1;
+  width: 700vw;
+  height: 990vw;
+  background-color: white;
+  padding: 49vw;
 }
 #download .artwork-preview {
-  width: 616vw;
-  height: 616vw;
+  width: 252vw;
+  height: 378vw;
 
-  .content {
-    .text {
-      font-size: calc(5vw * 7);
-      margin: calc(5vw * 7) 0;
-      text-shadow: calc(0.4vw * 7) calc(0.4vw * 7) 0 white;
-    } 
-    .featured-image {
-      border-radius: calc(5vw * 7);
-      box-shadow: calc(0.7vw * 7) calc(0.7vw * 7) calc(0.5vw * 7) rgba($color: #faa61a, $alpha: 0.05);
+  .main-wrapper {
+    .main {
+      font-size: calc(10vw * 36 / 88 * 7);
+    }
+  }
+
+  .secondary {
+    font-size: calc(3.3vw * 36 / 88 * 7);
+  }
+
+  .from-wrapper {
+    .from {
+      font-size: calc(4.5vw * 36 / 88 * 7);
+    }
+  }
+
+  .name-wrapper {
+    .name {
+      font-size: calc(7.5vw * 36 / 88 * 7);
     }
   }
 }
-@media (min-width: 800px) {
-  .customized-container {
-    flex-direction: row;
-    justify-content: space-between;
-  }
 
+@media (min-width: 800px) {
   .customized-container .artwork-preview {
     width: 36vw;
-    height: 36vw;
+    height: 54vw;
 
-    .content {
-      .text {
-        font-size: calc(5vw * 36 / 88);
-        margin: calc(5vw * 36 / 88) 0;
-        text-shadow: calc(0.4vw * 36 / 88) calc(0.4vw * 36 / 88) 0 white;
-      } 
-      .featured-image {
-        border-radius: calc(5vw * 36 / 88);
-        box-shadow: calc(0.7vw * 36 / 88) calc(0.7vw * 36 / 88) calc(0.5vw * 36 / 88) rgba($color: #faa61a, $alpha: 0.05);
+    .main-wrapper {
+      .main {
+        font-size: calc(10vw * 36 / 88);
       }
     }
-  }
-
-  .customized-container #input-container {
-    margin-top: 0;
-    width: calc(100% - 36vw - 2rem);
-  }
-
-  #saved-backgrounds {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-
-  #saved-backgrounds {
-    margin-top: 3.5rem;
+  
+    .secondary {
+      font-size: calc(3.3vw * 36 / 88);
+    }
+  
+    .from-wrapper {
+      .from {
+        font-size: calc(4.5vw * 36 / 88);
+      }
+    }
+  
+    .name-wrapper {
+      .name {
+        font-size: calc(7.5vw * 36 / 88);
+      }
+    }
   }
 }
