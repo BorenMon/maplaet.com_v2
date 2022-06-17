@@ -1,14 +1,10 @@
 @font-face {
-  font-family: "Riffic";
-  src: url("/assets/kumnit/fonts/riffic.otf");
+  font-family: "ChelaOne";
+  src: url("/assets/kumnit/fonts/ChelaOne-Regular.ttf");
 }
 @font-face {
-  font-family: "GrandHotel";
-  src: url("/assets/kumnit/fonts/GrandHotel-Regular.ttf");
-}
-@font-face {
-  font-family: "Shartoll";
-  src: url("/assets/kumnit/fonts/Shartoll-Light.otf");
+  font-family: "Viltstift";
+  src: url("/assets/kumnit/fonts/Blokletters-Viltstift.ttf");
 }
 @font-face {
   font-family: "Krasar-Bold";
@@ -18,73 +14,72 @@
   font-family: "Krasar-Regular";
   src: url("/assets/kumnit/fonts/Krasar-Regular.ttf");
 }
-
 .artwork-preview {
   width: 88vw;
   height: 132vw;
   position: relative;
   overflow: hidden;
-
-  .logo {
-    @apply absolute left-1/2 -translate-x-1/2;
-    top: 3%;
-    width: 14%;
-  }
-
-  .main-wrapper {
-    @apply absolute left-1/2 -translate-x-1/2 w-full flex items-center justify-center;
-    top: 14%;
-    height: 20%;
-
-    .main {
-      @apply break-words text-center;
-      color: #f5a8a2;
-      font-family: 'Riffic', 'Krasar-Bold';
-      width: 80%;
-      line-height: 1.2;
-      font-size: 10vw;
-    }
-  }
-
-  .secondary {
-    @apply absolute left-1/2 -translate-x-1/2 break-words text-center;
-    font-family: 'Shartoll', 'Krasar-Regular';
-    top: 70%;
-    font-size: 4.5vw;
-    color: #f5a8a2;
-    width: 75%;
-  }
-
+}
+.artwork-preview .logo {
+  position: absolute;
+  top: 3%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 17%;
+}
+.artwork-preview .wrapper {
+  position: absolute;
+  left: 0px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 15%;
+  height: 38%;
+}
+.artwork-preview .wrapper .main {
+  width: 80%;
+  word-wrap: break-word;
+  font-family: "ChelaOne", "Krasar-Bold";
+  font-size: 12vw;
+  text-align: center;
+  line-height: 1.25;
+  color: #e27da6;
+  line-height: 1.25;
+}
+.artwork-preview .wrapper .secondary {
+  width: 70%;
+  word-wrap: break-word;
+  font-family: "Viltstift", "Krasar-Regular";
+  font-size: 2.7vw;
+  margin-top: 5vw;
+  color: white;
+  text-align: center;
+}
+.artwork-preview {
   .from-wrapper {
-    @apply absolute left-1/2 -translate-x-1/2 w-full flex items-center justify-center;
-    bottom: 5%;
-    height: 8%;
+    position: absolute;
+    bottom: 3%;
+    height: 6%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .from {
-      font-family: 'Shartoll', 'Krasar-Regular';
-      font-size: 4.5vw;
-      color: #f5a8a2;
       white-space: nowrap;
-    }
-  }
-
-  .name-wrapper {
-    @apply absolute left-1/2 -translate-x-1/2 w-full flex items-center justify-center;
-    top: 57%;
-    height: 8.2%;
-
-    .name {
-      @apply break-words text-center;
-      color: white;
-      font-family: 'GrandHotel', 'Krasar-Bold';
-      width: 70%;
-      white-space: nowrap;
-      font-size: 7.5vw;
-      line-height: 0;
+      text-align: center;
+      --tw-text-opacity: 1;
+      color: rgb(255 255 255/var(--tw-text-opacity));
+      font-family: "Viltstift", "Krasar-Regular";
+      bottom: 3%;
+      font-size: 2.7vw;
+      color: #fff;
     }
   }
 }
-
 #download {
   position: fixed;
   top: 0;
@@ -98,55 +93,30 @@
 #download .artwork-preview {
   width: 252vw;
   height: 378vw;
-
-  .main-wrapper {
-    .main {
-      font-size: calc(10vw * 36 / 88 * 7);
-    }
-  }
-
-  .secondary {
-    font-size: calc(3.3vw * 36 / 88 * 7);
-  }
-
-  .from-wrapper {
-    .from {
-      font-size: calc(4.5vw * 36 / 88 * 7);
-    }
-  }
-
-  .name-wrapper {
-    .name {
-      font-size: calc(7.5vw * 36 / 88 * 7);
-    }
-  }
 }
-
+#download .artwork-preview .wrapper .main {
+  font-size: calc(12vw * 36 / 88 * 7);
+}
+#download .artwork-preview .wrapper .secondary {
+  font-size: calc(2.7vw * 36 / 88 * 7);
+    margin-top: calc(5vw * 36 / 88 * 7);
+}
+#download .artwork-preview .from-wrapper .from {
+  font-size: calc(2.7vw * 36 / 88 * 7);
+}
 @media (min-width: 800px) {
   .customized-container .artwork-preview {
     width: 36vw;
     height: 54vw;
-
-    .main-wrapper {
-      .main {
-        font-size: calc(10vw * 36 / 88);
-      }
-    }
-  
-    .secondary {
-      font-size: calc(3.3vw * 36 / 88);
-    }
-  
-    .from-wrapper {
-      .from {
-        font-size: calc(4.5vw * 36 / 88);
-      }
-    }
-  
-    .name-wrapper {
-      .name {
-        font-size: calc(7.5vw * 36 / 88);
-      }
-    }
+  }
+  .customized-container .artwork-preview .wrapper .main {
+    font-size: calc(12vw * 36 / 88);
+  }
+  .customized-container .artwork-preview .wrapper .secondary {
+    font-size: calc(2.7vw * 36 / 88);
+    margin-top: calc(5vw * 36 / 88);
+  }
+  .customized-container .artwork-preview .from-wrapper .from {
+    font-size: calc(2.7vw * 36 / 88);
   }
 }

@@ -11,12 +11,8 @@
       src: url("/assets/kumnit/fonts/riffic.otf");
     }
     @font-face {
-      font-family: "GrandHotel";
-      src: url("/assets/kumnit/fonts/GrandHotel-Regular.ttf");
-    }
-    @font-face {
-      font-family: "Shartoll";
-      src: url("/assets/kumnit/fonts/Shartoll-Light.otf");
+      font-family: "Viltstift";
+      src: url("/assets/kumnit/fonts/Blokletters-Viltstift.ttf");
     }
     @font-face {
       font-family: "Krasar-Bold";
@@ -34,85 +30,53 @@
     }
     .artwork-preview .logo {
       position: absolute;
-      left: 50%;
-      --tw-translate-x: -50%;
-      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
       top: 3%;
-      width: 14%;
-    }
-    .artwork-preview .main-wrapper {
-      position: absolute;
       left: 50%;
+      transform: translate(-50%);
+      width: 17%;
+    }
+    .artwork-preview .wrapper {
+      position: absolute;
+      left: 0px;
       display: flex;
       width: 100%;
-      --tw-translate-x: -50%;
-      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-      align-items: center;
-      justify-content: center;
-      top: 14%;
-      height: 20%;
-    }
-    .artwork-preview .main-wrapper .main {
-      overflow-wrap: break-word;
-      text-align: center;
-      color: #f5a8a2;
-      font-family: "Riffic", "Krasar-Bold";
-      width: 80%;
-      line-height: 1.2;
-      font-size: 10vw;
-    }
-    .artwork-preview .secondary {
-      position: absolute;
-      left: 50%;
-      --tw-translate-x: -50%;
-      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-      overflow-wrap: break-word;
-      text-align: center;
-      font-family: "Shartoll", "Krasar-Regular";
-      top: 70%;
-      font-size: 4.5vw;
-      color: #f5a8a2;
-      width: 75%;
-    }
-    .artwork-preview .from-wrapper {
-      position: absolute;
-      left: 50%;
-      display: flex;
-      width: 100%;
-      --tw-translate-x: -50%;
-      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-      align-items: center;
-      justify-content: center;
-      bottom: 5%;
-      height: 8%;
-    }
-    .artwork-preview .from-wrapper .from {
-      font-family: "Shartoll", "Krasar-Regular";
-      font-size: 4.5vw;
-      color: #f5a8a2;
-      white-space: nowrap;
-    }
-    .artwork-preview .name-wrapper {
-      position: absolute;
-      left: 50%;
-      display: flex;
-      width: 100%;
-      --tw-translate-x: -50%;
-      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       top: 57%;
-      height: 8.2%;
+      color: white;
     }
-    .artwork-preview .name-wrapper .name {
+    .artwork-preview .wrapper .main {
+      width: 85%;
+      word-wrap: break-word;
+      font-family: "Riffic", "Krasar-Bold";
+      font-size: 9vw;
+      text-shadow: 0.7vw 0.7vw 1vw rgba(193, 47, 107, 0.2);
+      text-align: center;
+      line-height: 1.25;
+    }
+    .artwork-preview .wrapper .secondary {
+      width: 85%;
+      word-wrap: break-word;
+      font-family: "Viltstift", "Krasar-Regular";
+      font-size: 2.7vw;
+      margin-top: 5vw;
+      text-align: center;
+    }
+    .artwork-preview .from {
+      position: absolute;
+      left: 50%;
+      width: 80%;
+      --tw-translate-x: -50%;
+      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
       overflow-wrap: break-word;
       text-align: center;
-      color: white;
-      font-family: "GrandHotel", "Krasar-Bold";
-      width: 70%;
-      white-space: nowrap;
-      font-size: 7.5vw;
-      line-height: 0;
+      --tw-text-opacity: 1;
+      color: rgb(255 255 255/var(--tw-text-opacity));
+      font-family: "Viltstift", "Krasar-Regular";
+      bottom: 3%;
+      font-size: 2.7vw;
+      color: #fff;
     }
     #download {
       position: fixed;
@@ -128,34 +92,35 @@
       width: 252vw;
       height: 378vw;
     }
-    #download .artwork-preview .main-wrapper .main {
-      font-size: 28.6363636364vw;
+    #download .artwork-preview .wrapper .main {
+      font-size: 25.7727272727vw;
+      text-shadow: 2.0045454545vw 2.0045454545vw 2.8636363636vw rgba(193, 47, 107, 0.2);
     }
-    #download .artwork-preview .secondary {
-      font-size: 9.45vw;
+    #download .artwork-preview .wrapper .secondary {
+      font-size: 7.7318181818vw;
+      margin-top: 14.3181818182vw;
     }
-    #download .artwork-preview .from-wrapper .from {
-      font-size: 12.8863636364vw;
-    }
-    #download .artwork-preview .name-wrapper .name {
-      font-size: 21.4772727273vw;
+    #download .artwork-preview .from {
+      font-size: 7.7318181818vw;
     }
     @media (min-width: 800px) {
       .customized-container .artwork-preview {
         width: 36vw;
         height: 54vw;
       }
-      .customized-container .artwork-preview .main-wrapper .main {
-        font-size: 4.0909090909vw;
+
+      .customized-container .artwork-preview .wrapper .main {
+        font-size: 3.6818181818vw;
+        text-shadow: 0.2863636364vw 0.2863636364vw 0.4090909091vw rgba(193, 47, 107, 0.2);
       }
-      .customized-container .artwork-preview .secondary {
-        font-size: 1.35vw;
+
+      .customized-container .artwork-preview .wrapper .secondary {
+        font-size: 1.1045454545vw;
+        margin-top: 2.0454545455vw;
       }
-      .customized-container .artwork-preview .from-wrapper .from {
-        font-size: 1.8409090909vw;
-      }
-      .customized-container .artwork-preview .name-wrapper .name {
-        font-size: 3.0681818182vw;
+
+      .customized-container .artwork-preview .from {
+        font-size: 1.1045454545vw;
       }
     }
   </style>
@@ -165,35 +130,25 @@
 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
   <div id="download">
     <div class="artwork-preview">
-      <img src="{{ asset('assets/kumnit/images/kon-store/girl-postcard/1/background.svg') }}" alt="background">
+      <img src="{{ asset('assets/kumnit/images/kon-store/girl-postcard/3/background.svg') }}" alt="background">
       <img src="{{ asset('assets/kumnit/images/logo/default/kon-store-logo.svg') }}" alt="logo" class="logo">
-      <div class="main-wrapper">
+      <div class="wrapper">
         <div class="main"></div>
+        <div class="secondary"></div>
       </div>
-      <div class="secondary"></div>
-      <div class="from-wrapper">
-        <div class="from"></div>
-      </div>
-      <div class="name-wrapper">
-        <div class="name"></div>
-      </div>
+      <div class="from"></div>
     </div>
   </div>
 
   <div class="customized-container">
     <div class="artwork-preview shadow">
-      <img src="{{ asset('assets/kumnit/images/kon-store/girl-postcard/1/background.svg') }}" alt="background">
+      <img src="{{ asset('assets/kumnit/images/kon-store/girl-postcard/3/background.svg') }}" alt="background">
       <img src="{{ asset('assets/kumnit/images/logo/default/kon-store-logo.svg') }}" alt="logo" class="logo">
-      <div class="main-wrapper">
+      <div class="wrapper">
         <div class="main"></div>
+        <div class="secondary"></div>
       </div>
-      <div class="secondary"></div>
-      <div class="from-wrapper">
-        <div class="from"></div>
-      </div>
-      <div class="name-wrapper">
-        <div class="name"></div>
-      </div>
+      <div class="from"></div>
     </div>
     
     <div id="input-container">
@@ -214,12 +169,6 @@
             <textarea id="main" rows="2" style="resize: none;"></textarea>
             <label for="main-font-size-percentage" class="mr-2 mb-2">Font Size Percentage (%)</label>
             <input type="number" id="main-font-size-percentage" min="0" value="100">
-          </div>
-          <div>
-            <label for="name" class="mr-2 mb-2">Name</label>
-            <textarea id="name" rows="2" style="resize: none;"></textarea>
-            <label for="name-font-size-percentage" class="mr-2 mb-2">Font Size Percentage (%)</label>
-            <input type="number" id="name-font-size-percentage" min="0" value="100">
           </div>
           <div>
             <label for="secondary" class="mr-2 mb-2">Secondary</label>
@@ -271,16 +220,8 @@
         else $(this).addClass('hidden')
       })
     })
-    $('#name').on('input', function(){
-      const name = this.value.trim()
-      $('.name').each(function(){
-        this.innerText = name
-        if(name) $(this).removeClass('hidden')
-        else $(this).addClass('hidden')
-      })
-    })
 
-    let windowWidth = $(window).width(), mainFontSizePercentage = 100, secondaryFontSizePercentage = 100, fromFontSizePercentage = 100, nameFontSizePercentage = 100
+    let windowWidth = $(window).width(), mainFontSizePercentage = 100, secondaryFontSizePercentage = 100, fromFontSizePercentage = 100
 
     $('#main-font-size-percentage').on('input', function() {
       mainFontSizePercentage = this.value
@@ -294,10 +235,6 @@
       fromFontSizePercentage = this.value
       fontSizePercentageChanger()
     })
-    $('#name-font-size-percentage').on('input', function() {
-      nameFontSizePercentage = this.value
-      fontSizePercentageChanger()
-    })
 
     // Font Size Percentage Change Handler
     const fontSizePercentageChanger = () => {
@@ -306,12 +243,12 @@
           switch(i) {
             case 0 : {
               $(obj).css({
-                'font-size' : `calc(10vw * 36 / 88 * 7 * (${mainFontSizePercentage} / 100))`,
+                'font-size' : `calc(9vw * 36 / 88 * 7 * (${mainFontSizePercentage} / 100))`,
               })             
             } break
             case 1 : {
               $(obj).css({
-                'font-size' : `calc(10vw * (${mainFontSizePercentage} / 100))`,
+                'font-size' : `calc(9vw * (${mainFontSizePercentage} / 100))`,
               })             
             } break
           }
@@ -320,12 +257,12 @@
           switch(i) {
             case 0 : {
               $(obj).css({
-                'font-size' : `calc(4.5vw * 36 / 88 * 7 * (${secondaryFontSizePercentage} / 100))`,
+                'font-size' : `calc(2.7vw * 36 / 88 * 7 * (${secondaryFontSizePercentage} / 100))`,
               })             
             } break
             case 1 : {
               $(obj).css({
-                'font-size' : `calc(4.5vw * (${secondaryFontSizePercentage} / 100))`,
+                'font-size' : `calc(2.7vw * (${secondaryFontSizePercentage} / 100))`,
               })             
             } break
           }
@@ -334,26 +271,12 @@
           switch(i) {
             case 0 : {
               $(obj).css({
-                'font-size' : `calc(4.5vw * 36 / 88 * 7 * (${fromFontSizePercentage} / 100))`,
+                'font-size' : `calc(2.7vw * 36 / 88 * 7 * (${fromFontSizePercentage} / 100))`,
               })             
             } break
             case 1 : {
               $(obj).css({
-                'font-size' : `calc(4.5vw * (${fromFontSizePercentage} / 100))`,
-              })             
-            } break
-          }
-        })
-        $('.name').each((i, obj) => {
-          switch(i) {
-            case 0 : {
-              $(obj).css({
-                'font-size' : `calc(7.5vw * 36 / 88 * 7 * (${nameFontSizePercentage} / 100))`,
-              })             
-            } break
-            case 1 : {
-              $(obj).css({
-                'font-size' : `calc(7.5vw * (${nameFontSizePercentage} / 100))`,
+                'font-size' : `calc(2.7vw * (${fromFontSizePercentage} / 100))`,
               })             
             } break
           }
@@ -363,12 +286,12 @@
           switch(i) {
             case 0 : {
               $(obj).css({
-                'font-size' : `calc(10vw * 36 / 88 * 7 * (${mainFontSizePercentage} / 100))`,
+                'font-size' : `calc(9vw * 36 / 88 * 7 * (${mainFontSizePercentage} / 100))`,
               })             
             } break
             case 1 : {
               $(obj).css({
-                'font-size' : `calc(10vw * 36 / 88 * (${mainFontSizePercentage} / 100))`,
+                'font-size' : `calc(9vw * 36 / 88 * (${mainFontSizePercentage} / 100))`,
               })             
             } break
           }
@@ -377,12 +300,12 @@
           switch(i) {
             case 0 : {
               $(obj).css({
-                'font-size' : `calc(4.5vw * 36 / 88 * 7 * (${secondaryFontSizePercentage} / 100))`,
+                'font-size' : `calc(2.7vw * 36 / 88 * 7 * (${secondaryFontSizePercentage} / 100))`,
               })             
             } break
             case 1 : {
               $(obj).css({
-                'font-size' : `calc(4.5vw * 36 / 88 * (${secondaryFontSizePercentage} / 100))`,
+                'font-size' : `calc(2.7vw * 36 / 88 * (${secondaryFontSizePercentage} / 100))`,
               })             
             } break
           }
@@ -391,26 +314,12 @@
           switch(i) {
             case 0 : {
               $(obj).css({
-                'font-size' : `calc(4.5vw * 36 / 88 * 7 * (${fromFontSizePercentage} / 100))`,
+                'font-size' : `calc(2.7vw * 36 / 88 * 7 * (${fromFontSizePercentage} / 100))`,
               })             
             } break
             case 1 : {
               $(obj).css({
-                'font-size' : `calc(4.5vw * 36 / 88 * (${fromFontSizePercentage} / 100))`,
-              })             
-            } break
-          }
-        })
-        $('.name').each((i, obj) => {
-          switch(i) {
-            case 0 : {
-              $(obj).css({
-                'font-size' : `calc(7.5vw * 36 / 88 * 7 * (${nameFontSizePercentage} / 100))`,
-              })             
-            } break
-            case 1 : {
-              $(obj).css({
-                'font-size' : `calc(7.5vw * 36 / 88 * (${nameFontSizePercentage} / 100))`,
+                'font-size' : `calc(2.7vw * 36 / 88 * (${fromFontSizePercentage} / 100))`,
               })             
             } break
           }
