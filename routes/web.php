@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Artisan;
 */
 
 Route::get('/', function() {
-    Artisan::call('storage:link');
+    // Artisan::call('storage:link');
     return redirect()->route('login');
 });
 Route::get('/register', function() {
