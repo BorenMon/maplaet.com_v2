@@ -3,6 +3,7 @@
 use App\Models\User;
 use App\Models\Artwork;
 use App\Models\AdminPage;
+use App\Models\SavedImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -77,17 +78,22 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
             $artworkCategory = $artwork->artworkCategory;
             $brandPage = $artworkCategory->brandPage;
             $adminPage = $brandPage->admin_page;
+            $savedImages = SavedImage::where('user_id', '=', Auth::id())->where('artwork_id', '=', $artwork->id)->get();
             
             Gate::authorize('preview_artwork', $artwork);
 
-            return view("user-area.normal-user.artwork.$adminPage->folder_name.$brandPage->folder_name.$artworkCategory->folder_name.$artwork->number", compact('brandPage', 'artworkCategory', 'artwork'));
+            return view("user-area.normal-user.artwork.$adminPage->folder_name.$brandPage->folder_name.$artworkCategory->folder_name.$artwork->number", compact('brandPage', 'artworkCategory', 'artwork', 'savedImages'));
         })->name('artwork-preview');
+
+        // Save Artwork's Images
+        Route::prefix('/saved-image')->name('saved-image.')->group(function() {
+            Route::post('/store', 'NormalUser\SavedImageController@store')->name('store');
+            Route::get('/destroy/{saved_image}', 'NormalUser\SavedImageController@destroy')->name('destroy');
+        });
     });
 });
 
 Route::post('/user/update-telegram-id', function(Request $request){
-    // $request->validate(['telegram_id' => 'required']);
-
     User::find(Auth::id())->update([
         'telegram_id' => $request->telegram_id
     ]);

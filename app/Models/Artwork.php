@@ -14,4 +14,9 @@ class Artwork extends Model
     public function artworkCategory(){
         return $this->belongsTo(ArtworkCategory::class);
     }
+
+    public function savedImages()
+    {
+        return $this->hasMany(SavedImage::class);
+    }
 }

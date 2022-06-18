@@ -393,6 +393,25 @@
         </div>
       </div>
     </div>
+
+    {{--  Saved Background  --}}
+    <div id="saved-backgrounds">
+      <h2 class="text-md mb-4">Saved Profiles</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-h-96 overflow-auto">
+        @foreach ($savedImages as $image)
+        @if ($image->type == 'profile')
+        <div class="saved-background">
+          <img src="{{ Storage::url($image->url) }}">
+          <i class="fa-solid fa-circle-minus" data-image="{{ $image->id }}"></i>
+        </div>
+        @endif
+        @endforeach
+        <label for="add-background" style="padding-top: 100%;" class="border-2 border-dashed border-gray-200 relative cursor-pointer">
+          <i class="fa-solid fa-plus text-gray-200 text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+        </label>
+      </div>
+    </div>
+    <input type="file" class="hidden" accept="image/*" id="add-background" name="saved_background">
   
     <!-- Cropper Modal -->
     <div id="backdrop" class="hidden"></div>
@@ -435,30 +454,88 @@
 @endsection
 
 @section('js')
+@include('layouts.normal-user.default-artwork-js')
 <script>
-  // ***Here is the code for converting "image source" (url) to "Base64".***
+// Add Preview After Storing Background Function
+const addBgPreview = (node) => {
+  document.querySelector('label[for="add-background"]').parentNode.insertBefore(node, document.querySelector('label[for="add-background"]'))
+}
 
-let url = 'https://cdn.shopify.com/s/files/1/0234/8017/2591/products/young-man-in-bright-fashion_925x_f7029e2b-80f0-4a40-a87b-834b9a283c39.jpg'
-const toDataURL = url => fetch(url)
-      .then(response => response.blob())
-      .then(blob => new Promise((resolve, reject) => {
-      const reader = new FileReader()
-      reader.onloadend = () => resolve(reader.result)
-      reader.onerror = reject
-      reader.readAsDataURL(blob)
-     }))
-
-
-// ***Here is code for converting "Base64" to javascript "File Object".***
-
-  function dataURLtoFile(dataurl, filename) {
-     let arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
-     bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-     while(n--){
-     u8arr[n] = bstr.charCodeAt(n);
-     }
-   return new File([u8arr], filename, {type:mime});
+// Save Background
+$('#add-background').on('input', function() {
+  const file = this.files[0]
+  if(file){
+    new Compressor(file, {
+      quality : 0.8,
+      maxHeight: 2000,
+      maxWidth: 2000,
+      success(result) {
+        const formData = new FormData()
+        formData.append('_token', "{{ csrf_token() }}")
+        formData.append('image', result)
+        formData.append('type', 'profile')
+        formData.append('artwork_id', "{{ $artwork->id }}")
+        $('#loading').css('display', 'flex')
+        $.ajax({
+          url: '{{ route("saved-image.store") }}',
+          type: 'POST',
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function(response) {
+            const savedBg = document.createElement('div')
+            savedBg.className = 'saved-background'
+            savedBg.innerHTML = `
+              <img src="/storage/${response.url.replace('public/', '')}">
+              <i class="fa-solid fa-circle-minus" data-image="${response.id}"></i>
+            `
+            addBgPreview(savedBg)
+            refreshBg()
+            $('#loading').css('display', 'none')
+          }
+        })
+      }
+    })
   }
+})
+
+const removeSelectedBg = () => {
+      $('.saved-background').each((i, obj) => {
+        obj.classList.remove('selected')
+      })
+    }
+
+const refreshBg = () => {
+  $('.saved-background i').each((i, obj) => {
+    obj.addEventListener('click', function() {
+      const data = this.dataset
+      const savedBg = this.parentNode
+      $.ajax({
+        url: `/saved-image/destroy/${data.image}`,
+        type: 'GET',
+        success: function(response) {
+          if(response.success) {
+            savedBg.remove()
+          }
+        }
+      })
+    })
+  })
+  $('.saved-background img').each((i, obj) => {
+    obj.addEventListener('click', function() {
+      const savedBg = this.parentNode
+      removeSelectedBg()
+      savedBg.classList.add('selected')
+
+      destroyCropper()
+      $('.profile').each((i, obj) => {
+        obj.src = this.src
+      })
+      $('#cropperImg').attr('src', this.src)
+    })
+  })
+}
+refreshBg()
 
   // Upload Image Into Artwork Handler
   const inputImageURL = url => {

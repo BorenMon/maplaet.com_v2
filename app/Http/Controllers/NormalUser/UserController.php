@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\NormalUser;
 
 use App\Models\User;
+use App\Models\AdminPage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\AdminPage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -124,6 +125,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        foreach($user->savedImages as $image){
+            Storage::delete($image->url);
+        }
+        $user->savedImages()->delete();
         $user->delete();
 
         return redirect()->back()->with([

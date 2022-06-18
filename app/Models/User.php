@@ -68,4 +68,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(AdminPage::class);
     }
+    
+    public function savedImages()
+    {
+        return $this->hasMany(SavedImage::class);
+    }
 }

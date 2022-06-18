@@ -90,7 +90,7 @@
 
       const deleteHandler = (el, pageName) => {
           Swal.fire({
-              title: `Are you sure to delete "${pageName}" admin page?`,
+              title: `Are you sure to delete "${pageName}" user?`,
               text: "You won't be able to revert this!",
               icon: 'warning',
               showCancelButton: true,

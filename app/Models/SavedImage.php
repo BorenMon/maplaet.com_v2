@@ -15,4 +15,14 @@ class SavedImage extends Model
         'type',
         'url'
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function artworks()
+    {
+        return $this->belongsToMany(Artwork::class);
+    }
 }
