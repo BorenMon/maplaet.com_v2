@@ -44,7 +44,7 @@ class SavedImageController extends Controller
             'artwork_id' => 'required'
         ]);
 
-        $url = $request->file('image')->store('public/artwork-image-preview');
+        $url = $request->file('image')->store('public');
 
         $validated['user_id'] = Auth::user()->id;
         $validated['url'] = $url;
