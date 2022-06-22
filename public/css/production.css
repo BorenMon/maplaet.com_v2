@@ -1,121 +1,136 @@
-@font-face {
-  font-family: "ChelaOne";
-  src: url("/assets/kumnit/fonts/ChelaOne-Regular.ttf");
-}
-@font-face {
-  font-family: "Viltstift";
-  src: url("/assets/kumnit/fonts/Blokletters-Viltstift.ttf");
-}
-@font-face {
-  font-family: "Krasar-Bold";
-  src: url("/assets/kumnit/fonts/Krasar-Bold.ttf");
-}
-@font-face {
-  font-family: "Krasar-Regular";
-  src: url("/assets/kumnit/fonts/Krasar-Regular.ttf");
-}
 .artwork-preview {
   width: 88vw;
-  height: 132vw;
+  height: 88vw;
   position: relative;
   overflow: hidden;
-}
-.artwork-preview .logo {
-  position: absolute;
-  top: 3%;
-  left: 50%;
-  transform: translate(-50%);
-  width: 17%;
-}
-.artwork-preview .wrapper {
-  position: absolute;
-  left: 0px;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  top: 15%;
-  height: 38%;
-}
-.artwork-preview .wrapper .main {
-  width: 80%;
-  word-wrap: break-word;
-  font-family: "ChelaOne", "Krasar-Bold";
-  font-size: 12vw;
-  text-align: center;
-  color: #e27da6;
-  line-height: 1.25;
-}
-.artwork-preview .wrapper .secondary {
-  width: 70%;
-  word-wrap: break-word;
-  font-family: "Viltstift", "Krasar-Regular";
-  font-size: 2.7vw;
-  margin-top: 5vw;
   color: white;
-  text-align: center;
 }
-.artwork-preview .from-wrapper {
-  position: absolute;
-  bottom: 3%;
-  height: 6%;
-  left: 0;
+.artwork-preview .background {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
 }
-.artwork-preview .from-wrapper .from {
+.artwork-preview .content {
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  top: 40%;
+  transform: translateY(-40%);
+}
+.artwork-preview .content .info {
+  display: flex;
+  align-items: center;
+  height: 11.5vw;
+  margin-bottom: 3.5vw;
+}
+.artwork-preview .content .info .profile {
+  width: 11.5vw;
+  height: 11.5vw;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  margin-right: 2.5vw;
+}
+.artwork-preview .content .info .contact {
+  display: flex;
+  flex-direction: column;
+}
+.artwork-preview .content .info .contact .page {
+  display: flex;
+}
+.artwork-preview .content .info .contact .page .name {
+  font-family: "Stem-Medium", "Krasar-Medium", sans-serif;
   white-space: nowrap;
-  text-align: center;
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255/var(--tw-text-opacity));
-  font-family: "Viltstift", "Krasar-Regular";
-  bottom: 3%;
-  font-size: 2.7vw;
-  color: #fff;
+  font-size: 3vw;
+  margin-right: 1vw;
+}
+.artwork-preview .content .info .contact .page .verified {
+  width: 2.5vw;
+}
+.artwork-preview .content .info .contact .at {
+  font-size: 2.5vw;
+  font-family: "Stem-Regular", "Krasar-Regular", sans-serif;
+  opacity: 0.7;
+}
+.artwork-preview .content .quote {
+  font-family: "Stem-Regular", "Krasar-Regular", sans-serif;
+  word-wrap: break-word;
+  font-size: 4.12vw;
 }
 #download {
   position: fixed;
   top: 0;
   left: 0;
   z-index: -1;
-  width: 700vw;
-  height: 990vw;
-  background-color: white;
-  padding: 49vw;
 }
 #download .artwork-preview {
-  width: 252vw;
-  height: 378vw;
+  width: 616vw;
+  height: 616vw;
 }
-#download .artwork-preview .wrapper .main {
-  font-size: 34.3636363636vw;
+#download .artwork-preview .content .info {
+  height: 80.5vw;
+  margin-bottom: 24.5vw;
 }
-#download .artwork-preview .wrapper .secondary {
-  font-size: 7.7318181818vw;
-  margin-top: 14.3181818182vw;
+#download .artwork-preview .content .info .profile {
+  width: 80.5vw;
+  height: 80.5vw;
+  margin-right: 17.5vw;
 }
-#download .artwork-preview .from-wrapper .from {
-  font-size: 7.7318181818vw;
+#download .artwork-preview .content .info .contact .page .name {
+  font-size: 21vw;
+  margin-right: 7vw;
+}
+#download .artwork-preview .content .info .contact .page .verified {
+  width: 17.5vw;
+}
+#download .artwork-preview .content .info .contact .at {
+  font-size: 17.5vw;
+}
+#download .artwork-preview .content .quote {
+  font-size: 28.84vw;
 }
 @media (min-width: 800px) {
+  .customized-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
   .customized-container .artwork-preview {
     width: 36vw;
-    height: 54vw;
+    height: 36vw;
+  }
+  .customized-container .artwork-preview .content .info {
+    height: 4.7045454545vw;
+    margin-bottom: 1.4318181818vw;
+  }
+  .customized-container .artwork-preview .content .info .profile {
+    width: 4.7045454545vw;
+    height: 4.7045454545vw;
+    margin-right: 1.0227272727vw;
+  }
+  .customized-container .artwork-preview .content .info .contact .page .name {
+    font-size: 1.2272727273vw;
+    margin-right: 0.4090909091vw;
+  }
+  .customized-container .artwork-preview .content .info .contact .page .verified {
+    width: 1.0227272727vw;
+  }
+  .customized-container .artwork-preview .content .info .contact .at {
+    font-size: 1.0227272727vw;
+  }
+  .customized-container .artwork-preview .content .quote {
+    font-size: 1.6854545455vw;
+  }
+  .customized-container #input-container {
+    width: calc(100% - 36vw - 2rem);
   }
 
-  .customized-container .artwork-preview .wrapper .main {
-    font-size: 4.9090909091vw;
+  #saved-backgrounds {
+    margin-left: 0px;
+    margin-right: 0px;
   }
 
-  .customized-container .artwork-preview .wrapper .secondary {
-    font-size: 1.1045454545vw;
-    margin-top: 2.0454545455vw;
-  }
-
-  .customized-container .artwork-preview .from-wrapper .from {
-    font-size: 1.1045454545vw;
+  #saved-backgrounds {
+    margin-top: 3.5rem;
   }
 }

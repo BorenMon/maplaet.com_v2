@@ -11,98 +11,60 @@
       height: 88vw;
       position: relative;
       overflow: hidden;
+      color: white;
     }
     .artwork-preview .background {
       width: 100%;
       height: 100%;
+    }
+    .artwork-preview .content {
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      top: 40%;
+      transform: translateY(-40%);
+    }
+    .artwork-preview .content .info {
+      display: flex;
+      align-items: center;
+      height: 11.5vw;
+      margin-bottom: 3.5vw;
+    }
+    .artwork-preview .content .info .profile {
+      width: 11.5vw;
+      height: 11.5vw;
+      border-radius: 50%;
       -o-object-fit: cover;
         object-fit: cover;
       -o-object-position: center;
         object-position: center;
+      margin-right: 2.5vw;
     }
-    .artwork-preview .overlay {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #2857a5 0%, #0a3e89 100%);
-      opacity: 90%;
-    }
-    .artwork-preview .box,
-    .artwork-preview .mark,
-    .artwork-preview .info {
-      position: absolute;
-    }
-    .artwork-preview .box {
-      top: 60%;
-      left: 50%;
-      transform: translate(-50%, -60%);
-      min-height: 35%;
-      width: 67.5%;
-      background-color: rgba(255, 255, 255, 0.88);
-      padding: 5.5vw 0;
-      border-radius: 3vw;
+    .artwork-preview .content .info .contact {
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
     }
-    .artwork-preview .box .mark {
-      left: 50%;
-      top: 0;
-      transform: translate(-50%, -50%);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.88) 51%, rgba(255, 255, 255, 0) 51%, rgba(255, 255, 255, 0) 100%);
-      width: 10vw;
-      height: 10vw;
-      border-radius: 50%;
+    .artwork-preview .content .info .contact .page {
       display: flex;
-      align-items: center;
-      justify-content: center;
     }
-    .artwork-preview .box .mark img {
-      width: 4.5vw;
-    }
-    .artwork-preview .box .quote {
-      text-align: center;
-      font-family: "Stem-Bold", "Krasar-Bold", sans-serif;
-      line-height: 1.5;
-      width: 85%;
-      word-wrap: break-word;
-      font-size: 4.5vw;
-    }
-    .artwork-preview .box .info {
-      width: 133%;
-      overflow: hidden;
-      bottom: 0;
-      transform: translate(-50%, 100%);
-      left: 50%;
-      padding-top: 1vw;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-    }
-    .artwork-preview .box .info .page {
-      font-size: 1.8vw;
-      letter-spacing: 0.2vw;
-      font-family: "Stem-Regular";
-      line-height: 0;
-    }
-    .artwork-preview .box .info .divider {
-      margin: 0 1vw;
-      width: 0.3vw;
-      height: 3vw;
-      background-color: #fff;
-    }
-    .artwork-preview .box .info img {
-      height: 3vw;
-    }
-    .artwork-preview .box .info .name {
-      font-family: "Stem-Medium", "Krasar-Medium";
+    .artwork-preview .content .info .contact .page .name {
+      font-family: "Stem-Medium", "Krasar-Medium", sans-serif;
       white-space: nowrap;
-      line-height: 0;
-      font-size: 1.8vw;
-      margin-left: 1vw;
+      font-size: 3vw;
+      margin-right: 1vw;
+    }
+    .artwork-preview .content .info .contact .page .verified {
+      width: 2.5vw;
+    }
+    .artwork-preview .content .info .contact .at {
+      font-size: 2.5vw;
+      font-family: "Stem-Regular", "Krasar-Regular", sans-serif;
+      opacity: 0.7;
+    }
+    .artwork-preview .content .quote {
+      font-family: "Stem-Regular", "Krasar-Regular", sans-serif;
+      word-wrap: break-word;
+      font-size: 4.12vw;
     }
     #download {
       position: fixed;
@@ -114,38 +76,27 @@
       width: 616vw;
       height: 616vw;
     }
-    #download .artwork-preview .box {
-      padding: 38.5vw 0;
-      border-radius: 21vw;
+    #download .artwork-preview .content .info {
+      height: 80.5vw;
+      margin-bottom: 24.5vw;
     }
-    #download .artwork-preview .box .mark {
-      width: 70vw;
-      height: 70vw;
+    #download .artwork-preview .content .info .profile {
+      width: 80.5vw;
+      height: 80.5vw;
+      margin-right: 17.5vw;
     }
-    #download .artwork-preview .box .mark img {
-      width: 31.5vw;
+    #download .artwork-preview .content .info .contact .page .name {
+      font-size: 21vw;
+      margin-right: 7vw;
     }
-    #download .artwork-preview .box .quote {
-      font-size: 31.5vw;
+    #download .artwork-preview .content .info .contact .page .verified {
+      width: 17.5vw;
     }
-    #download .artwork-preview .box .info {
-      padding-top: 7vw;
+    #download .artwork-preview .content .info .contact .at {
+      font-size: 17.5vw;
     }
-    #download .artwork-preview .box .info .page {
-      font-size: 12.6vw;
-      letter-spacing: 1.4vw;
-    }
-    #download .artwork-preview .box .info .divider {
-      margin: 0 7vw;
-      width: 2.1vw;
-      height: 21vw;
-    }
-    #download .artwork-preview .box .info img {
-      height: 21vw;
-    }
-    #download .artwork-preview .box .info .name {
-      font-size: 12.6vw;
-      margin-left: 7vw;
+    #download .artwork-preview .content .quote {
+      font-size: 28.84vw;
     }
     @media (min-width: 800px) {
       .customized-container {
@@ -156,41 +107,29 @@
         width: 36vw;
         height: 36vw;
       }
-      .customized-container .artwork-preview .box {
-        padding: 2.25vw 0;
-        border-radius: 1.2272727273vw;
+      .customized-container .artwork-preview .content .info {
+        height: 4.7045454545vw;
+        margin-bottom: 1.4318181818vw;
       }
-      .customized-container .artwork-preview .box .mark {
-        width: 4.0909090909vw;
-        height: 4.0909090909vw;
+      .customized-container .artwork-preview .content .info .profile {
+        width: 4.7045454545vw;
+        height: 4.7045454545vw;
+        margin-right: 1.0227272727vw;
       }
-      .customized-container .artwork-preview .box .mark img {
-        width: 1.8409090909vw;
+      .customized-container .artwork-preview .content .info .contact .page .name {
+        font-size: 1.2272727273vw;
+        margin-right: 0.4090909091vw;
       }
-      .customized-container .artwork-preview .box .quote {
-        font-size: 1.8409090909vw;
+      .customized-container .artwork-preview .content .info .contact .page .verified {
+        width: 1.0227272727vw;
       }
-      .customized-container .artwork-preview .box .info {
-        padding-top: 0.4090909091vw;
+      .customized-container .artwork-preview .content .info .contact .at {
+        font-size: 1.0227272727vw;
       }
-      .customized-container .artwork-preview .box .info .page {
-        font-size: 0.7363636364vw;
-        letter-spacing: 0.0818181818vw;
-      }
-      .customized-container .artwork-preview .box .info .divider {
-        margin: 0 0.4090909091vw;
-        width: 0.1227272727vw;
-        height: 1.2272727273vw;
-      }
-      .customized-container .artwork-preview .box .info img {
-        height: 1.2272727273vw;
-      }
-      .customized-container .artwork-preview .box .info .name {
-        font-size: 0.7363636364vw;
-        margin-left: 0.4090909091vw;
+      .customized-container .artwork-preview .content .quote {
+        font-size: 1.6854545455vw;
       }
       .customized-container #input-container {
-        margin-top: 0;
         width: calc(100% - 36vw - 2rem);
       }
 
@@ -211,23 +150,21 @@
   <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
     <div id="download">
       <div class="artwork-preview">
-        <img src="{{ asset('assets/general-assets/images/background.jpg') }}" class="background">
-        <div class="overlay hidden"></div>
-            
-        <div class="box">
-          <div class="mark">
-            <img src="{{ asset('assets/kumnit/images/kumnit/general-personal-social-media-post/1/kumnit-quote-mark.svg') }}">
+        <img src="{{ asset('assets/kumnit/images/kumnit/general-personal-social-media-post/2/kumnit-background.svg') }}" class="background">
+        
+        <div class="content">
+          <div class="info">
+            <img src="{{ asset('assets/general-assets/images/maplaet-user-profile.svg') }}" class="profile">
+            <div class="contact">
+              <div class="page">
+                <div class="name"></div>
+                <img src="{{ asset('assets/kumnit/images/kumnit/general-personal-social-media-post/2/verified.svg') }}" class="verified">
+              </div>
+              <div class="at">@kumnit</div>
+            </div>
           </div>
           <div class="quote">
-            
-          </div>
-          <div class="info">
-            <div class="page"></div>
-            <div class="divider"></div>
-            <img src="{{ asset('assets/kumnit/images/kumnit/general-personal-social-media-post/1/social-media-icon.svg') }}">
-            <div class="name">
-              
-            </div>
+  
           </div>
         </div>
       </div>
@@ -235,23 +172,21 @@
   
     <div class="customized-container">
       <div class="artwork-preview shadow">
-        <img src="{{ asset('assets/general-assets/images/background.jpg') }}" class="background">
-        <div class="overlay hidden"></div>
-            
-        <div class="box">
-          <div class="mark">
-            <img src="{{ asset('assets/kumnit/images/kumnit/general-personal-social-media-post/1/kumnit-quote-mark.svg') }}">
+        <img src="{{ asset('assets/kumnit/images/kumnit/general-personal-social-media-post/2/kumnit-background.svg') }}" class="background">
+        
+        <div class="content">
+          <div class="info">
+            <img src="{{ asset('assets/general-assets/images/maplaet-user-profile.svg') }}" class="profile">
+            <div class="contact">
+              <div class="page">
+                <div class="name"></div>
+                <img src="{{ asset('assets/kumnit/images/kumnit/general-personal-social-media-post/2/verified.svg') }}" class="verified">
+              </div>
+              <div class="at">@kumnit</div>
+            </div>
           </div>
           <div class="quote">
-            
-          </div>
-          <div class="info">
-            <div class="page"></div>
-            <div class="divider"></div>
-            <img src="{{ asset('assets/kumnit/images/kumnit/general-personal-social-media-post/1/social-media-icon.svg') }}">
-            <div class="name">
-              
-            </div>
+  
           </div>
         </div>
       </div>
@@ -262,49 +197,15 @@
           <h3 class="label">Page</h3>
           <div class="flex">
             <div class="form-check mr-4">
-              <input class="form-check-input focus:ring-opacity-5" type="radio" name="background" id="bg-1" data-bg="kumnit" data-page="WWW.KUMNIT.COM" checked>
+              <input class="form-check-input focus:ring-opacity-5" type="radio" name="background" id="bg-1" data-page="kumnit" checked>
               <label class="form-check-label" for="bg-1">
                 KUMNIT
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" id="bg-2" name="background" data-bg="viniyuk" data-page="VINIYUK HUB">
+              <input class="form-check-input" type="radio" id="bg-2" name="background" data-page="viniyuk">
               <label class="form-check-label" for="bg-2">
                 VINIYUK
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-4">
-          <h3 class="label">Mark</h3>
-          <div class="flex">
-            <div class="form-check mr-4">
-              <input class="form-check-input" type="radio" id="mark-2" name="mark" data-mark="quote" checked>
-              <label class="form-check-label" for="mark-2">
-                Quote
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="mark" id="mark-1" data-bg="/kumnit.jpg" data-mark="question">
-              <label class="form-check-label" for="mark-1">
-                Question
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-4">
-          <h3 class="label">Overlay</h3>
-          <div class="flex">
-            <div class="form-check mr-4">
-              <input class="form-check-input" type="radio" name="overlay" value="1" checked>
-              <label class="form-check-label" for="mark-1">
-                Hide
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" value="0" name="overlay">
-              <label class="form-check-label" for="mark-2">
-                show
               </label>
             </div>
           </div>
@@ -314,19 +215,6 @@
           <textarea id="quote" style="height: 111px; resize: none;"></textarea>
           <label for="quote-font-size-percentage" class="mr-2 mb-2">Size Percentage (%) :</label>
           <input type="number" id="quote-font-size-percentage" min="0" value="100">
-        </div>
-        <div class="input-group mb-4">
-          <label for="website" class="label">Website</label>
-          <div class="mb-3 grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <div class="relative ">
-              <input type="text" id="website" placeholder="Enter or Select Your Website"/>
-            </div>
-            
-            <select class="block text-gray-700 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-maplaet-1 focus:border-maplaet-1" id="select-website">
-              
-            </select>
-
-          </div>
         </div>
         <div class="input-group">
           <label for="social-media" class="label">Social Media</label>
@@ -345,10 +233,10 @@
 
     {{--  Saved Background  --}}
     <div id="saved-backgrounds">
-      <h2 class="text-md mb-4">Saved Background</h2>
+      <h2 class="text-md mb-4">Saved Profile</h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-h-96 overflow-auto">
         @foreach ($savedImages as $image)
-        @if ($image->type == 'background')
+        @if ($image->type == 'profile')
         <div class="saved-background">
           <img src="{{ Storage::url($image->url) }}">
           <i class="fa-solid fa-circle-minus" data-image="{{ $image->id }}"></i>
@@ -406,17 +294,22 @@
 @section('js')
 @include('layouts.normal-user.default-artwork-js')
 <script>
-    $('input[name="overlay"]').on('change', function(){
-      if(+this.value){
-        $('.overlay').each(function(){
-          $(this).addClass('hidden')
-        })
-      } else {
-        $('.overlay').each(function(){
-          $(this).removeClass('hidden')
-        })
-      }
+  const bg = document.querySelectorAll('.background')
+  const at = document.querySelectorAll('.at')
+
+  document.querySelectorAll('input[name="background"]').forEach(el => {
+    el.addEventListener('click', function() {
+      const page = this.dataset.page
+      bg.forEach(el => {
+        if(page == 'viniyuk') el.src = "{{ asset('assets/kumnit/images/kumnit/general-personal-social-media-post/2/viniyuk-background.svg') }}"
+        else el.src = "{{ asset('assets/kumnit/images/kumnit/general-personal-social-media-post/2/kumnit-background.svg') }}"
+      })
+      at.forEach(el => {
+        if(page == 'viniyuk') el.innerText = '@viniyukhub'
+        else el.innerText = '@kumnit'
+      })
     })
+  })
 
     let windowWidth = $(window).width(), quoteFontSizePercentage = 100
 
@@ -432,12 +325,12 @@
           switch(i) {
             case 0 : {
               $(obj).css({
-                'font-size' : `calc(4.5vw * 7 * (${quoteFontSizePercentage} / 100))`,
+                'font-size' : `calc(4.12vw * 7 * (${quoteFontSizePercentage} / 100))`,
               })             
             } break
             case 1 : {
               $(obj).css({
-                'font-size' : `calc(4.5vw * (${quoteFontSizePercentage} / 100))`,
+                'font-size' : `calc(4.12vw * (${quoteFontSizePercentage} / 100))`,
               })             
             } break
           }
@@ -447,12 +340,12 @@
           switch(i) {
             case 0 : {
               $(obj).css({
-                'font-size' : `calc(4.5vw * 7 * (${quoteFontSizePercentage} / 100))`,
+                'font-size' : `calc(4.12vw * 7 * (${quoteFontSizePercentage} / 100))`,
               })             
             } break
             case 1 : {
               $(obj).css({
-                'font-size' : `calc(4.5vw * 36 / 88 * (${quoteFontSizePercentage} / 100))`,
+                'font-size' : `calc(4.12vw * 36 / 88 * (${quoteFontSizePercentage} / 100))`,
               })             
             } break
           }
@@ -483,7 +376,7 @@
             maxHeight: 2000,
             maxWidth: 2000,
             success(result) {
-              $('.background').each((i, obj) => {
+              $('.profile').each((i, obj) => {
                 obj.src = URL.createObjectURL(result)
               })
               $('#cropperImg').attr('src', URL.createObjectURL(result))
@@ -521,7 +414,7 @@
         maxHeight: 2000,
         maxWidth: 2000,
         success(result) {
-          $('.background').each((i, obj) => {
+          $('.profile').each((i, obj) => {
             obj.src = URL.createObjectURL(result)
           })
           $('#cropperImg').attr('src', URL.createObjectURL(result))
@@ -544,38 +437,6 @@
       })
     }
 
-    document.querySelectorAll('input[name="background"]').forEach(el => {
-      el.addEventListener('click', function() {
-        const data = this.dataset
-        
-        let markSrc = document.querySelector('.mark img').src
-        if(markSrc.includes('viniyuk')) {
-          markSrc = markSrc.replace('viniyuk-', data.bg+'-')
-        } else markSrc = markSrc.replace('kumnit-', data.bg+'-')
-        document.querySelectorAll('.mark img').forEach(el => el.src = markSrc)
-        if(data.bg == 'kumnit') {
-          $('.overlay').each(function(){
-            this.style.background = 'linear-gradient(135deg, rgba(40,87,165,1) 0%, rgba(10,62,137,1) 100%)'
-          })
-        } else {
-          $('.overlay').each(function(){
-            this.style.background = 'linear-gradient(135deg, rgba(165,40,40,1) 0%, rgba(129,6,6,1) 100%)'
-          })
-        }
-      })
-    })
-
-    document.querySelectorAll('input[name="mark"]').forEach(el => {
-      el.addEventListener('click', function() {
-        const data = this.dataset.mark + '-mark'
-        let markSrc = document.querySelector('.mark img').src
-        if(markSrc.includes('quote-mark')) {
-          markSrc = markSrc.replace('quote-mark', data)
-        } else markSrc = markSrc.replace('question-mark', data)
-        document.querySelectorAll('.mark img').forEach(el => el.src = markSrc)
-      })
-    })
-
     document.getElementById('quote').addEventListener('input', function () {
       document.querySelectorAll('.quote').forEach(el => el.innerText = this.value)
     })
@@ -592,7 +453,7 @@
           maxHeight: 2000,
           maxWidth: 2000,
           success(result) {
-            $('.background').each((i, obj) => {
+            $('.profile').each((i, obj) => {
               obj.src = URL.createObjectURL(result)
             })
             $('#cropperImg').attr('src', URL.createObjectURL(result))
@@ -624,7 +485,7 @@
     $('#crop').on('click', () => {
       canvas = cropper.getCroppedCanvas()
 
-      $('.background').each((i, obj) => {
+      $('.profile').each((i, obj) => {
         obj.src = canvas.toDataURL()
       })
 
@@ -648,7 +509,7 @@
             const formData = new FormData()
             formData.append('_token', "{{ csrf_token() }}")
             formData.append('image', result)
-            formData.append('type', 'background')
+            formData.append('type', 'profile')
             formData.append('artwork_id', "{{ $artwork->id }}")
             $('#loading').css('display', 'flex')
             $.ajax({
@@ -698,7 +559,7 @@
 
           bgImgSrc = this.src
           destroyCropper()
-          $('.background').each((i, obj) => {
+          $('.profile').each((i, obj) => {
             obj.src = bgImgSrc
           })
           $('#cropperImg').attr('src', bgImgSrc)

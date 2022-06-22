@@ -1,122 +1,162 @@
-@font-face {
-  font-family: "ChelaOne";
-  src: url("/assets/kumnit/fonts/ChelaOne-Regular.ttf");
-}
-@font-face {
-  font-family: "Viltstift";
-  src: url("/assets/kumnit/fonts/Blokletters-Viltstift.ttf");
-}
-@font-face {
-  font-family: "Krasar-Bold";
-  src: url("/assets/kumnit/fonts/Krasar-Bold.ttf");
-}
-@font-face {
-  font-family: "Krasar-Regular";
-  src: url("/assets/kumnit/fonts/Krasar-Regular.ttf");
-}
 .artwork-preview {
   width: 88vw;
-  height: 132vw;
+  height: 88vw;
   position: relative;
   overflow: hidden;
-}
-.artwork-preview .logo {
-  position: absolute;
-  top: 3%;
-  left: 50%;
-  transform: translate(-50%);
-  width: 17%;
-}
-.artwork-preview .wrapper {
-  position: absolute;
-  left: 0px;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  top: 15%;
-  height: 38%;
-}
-.artwork-preview .wrapper .main {
-  width: 80%;
-  word-wrap: break-word;
-  font-family: "ChelaOne", "Krasar-Bold";
-  font-size: 12vw;
-  text-align: center;
-  line-height: 1.25;
-  color: #e27da6;
-  line-height: 1.25;
-}
-.artwork-preview .wrapper .secondary {
-  width: 70%;
-  word-wrap: break-word;
-  font-family: "Viltstift", "Krasar-Regular";
-  font-size: 2.7vw;
-  margin-top: 5vw;
   color: white;
-  text-align: center;
-}
-.artwork-preview {
-  .from-wrapper {
-    position: absolute;
-    bottom: 3%;
-    height: 6%;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
-    .from {
-      white-space: nowrap;
-      text-align: center;
-      --tw-text-opacity: 1;
-      color: rgb(255 255 255/var(--tw-text-opacity));
-      font-family: "Viltstift", "Krasar-Regular";
-      bottom: 3%;
-      font-size: 2.7vw;
-      color: #fff;
+  .background {
+    width: 100%;
+    height: 100%;
+  }
+
+  .content
+  {
+    position: absolute;
+  }
+
+  .content {
+    left: 7%;
+    right: 7%;
+    top: 40%;
+    transform: translateY(-40%);
+
+    .info {
+      display: flex;
+      align-items: center;
+      height: 11.5vw;
+      margin-bottom: 3.5vw;
+  
+      .profile {
+        width: 11.5vw;
+        height: 11.5vw;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+        margin-right: 2.5vw;
+      }
+  
+      .contact {
+        display: flex;
+        flex-direction: column;
+  
+        .page {
+          display: flex;
+    
+          .name {
+            font-family: 'Stem-Medium', 'Krasar-Medium', sans-serif;
+            white-space: nowrap;
+            font-size: 3vw;
+            margin-right: 1vw;
+          }
+  
+          .verified {
+            width: 2.5vw;
+          }
+        }
+  
+        .at {
+          font-size: 2.5vw;
+          font-family: 'Stem-Regular', 'Krasar-Regular', sans-serif;
+          opacity: 0.7;
+        }
+      }
+    }
+
+    .quote {
+      font-family: 'Stem-Regular', 'Krasar-Regular', sans-serif;
+      word-wrap: break-word;
+      font-size: 4.12vw;
     }
   }
 }
+
 #download {
   position: fixed;
   top: 0;
   left: 0;
   z-index: -1;
-  width: 700vw;
-  height: 990vw;
-  background-color: white;
-  padding: 49vw;
-}
-#download .artwork-preview {
-  width: 252vw;
-  height: 378vw;
-}
-#download .artwork-preview .wrapper .main {
-  font-size: calc(12vw * 36 / 88 * 7);
-}
-#download .artwork-preview .wrapper .secondary {
-  font-size: calc(2.7vw * 36 / 88 * 7);
-    margin-top: calc(5vw * 36 / 88 * 7);
-}
-#download .artwork-preview .from-wrapper .from {
-  font-size: calc(2.7vw * 36 / 88 * 7);
-}
-@media (min-width: 800px) {
-  .customized-container .artwork-preview {
-    width: 36vw;
-    height: 54vw;
+
+  .artwork-preview {
+    width: calc(88vw * 7);
+    height: calc(88vw * 7);
+
+    .content {   
+      .info {
+        height: calc(11.5vw * 7);
+        margin-bottom: calc(3.5vw * 7);     
+        .profile {
+          width: calc(11.5vw * 7);
+          height: calc(11.5vw * 7);
+          margin-right: calc(2.5vw * 7);
+        }      
+        .contact {     
+          .page {        
+            .name {
+              font-size: calc(3vw * 7);
+              margin-right: calc(1vw * 7);
+            }      
+            .verified {
+              width: calc(2.5vw * 7);
+            }
+          }      
+          .at {
+            font-size: calc(2.5vw * 7);
+          }
+        }
+      }    
+      .quote {
+        font-size: calc(4.12vw * 7);
+      }
+    }
   }
-  .customized-container .artwork-preview .wrapper .main {
-    font-size: calc(12vw * 36 / 88);
+}
+
+@media(min-width: 800px) {
+  .customized-container {
+    flex-direction: row;
+    justify-content: space-between;
+
+    .artwork-preview {
+      width: 36vw;
+      height: 36vw;
+
+      .content {   
+        .info {
+          height: calc(11.5vw * 36 / 88);
+          margin-bottom: calc(3.5vw * 36 / 88);     
+          .profile {
+            width: calc(11.5vw * 36 / 88);
+            height: calc(11.5vw * 36 / 88);
+            margin-right: calc(2.5vw * 36 / 88);
+          }      
+          .contact {     
+            .page {        
+              .name {
+                font-size: calc(3vw * 36 / 88);
+                margin-right: calc(1vw * 36 / 88);
+              }      
+              .verified {
+                width: calc(2.5vw * 36 / 88);
+              }
+            }      
+            .at {
+              font-size: calc(2.5vw * 36 / 88);
+            }
+          }
+        }    
+        .quote {
+          font-size: calc(4.12vw * 36 / 88);
+        }
+      }
+    }
+
+    #input-container {
+      width: calc(100% - 36vw - 2rem);
+    }
   }
-  .customized-container .artwork-preview .wrapper .secondary {
-    font-size: calc(2.7vw * 36 / 88);
-    margin-top: calc(5vw * 36 / 88);
-  }
-  .customized-container .artwork-preview .from-wrapper .from {
-    font-size: calc(2.7vw * 36 / 88);
+
+  #saved-backgrounds {
+    @apply mx-0 mt-14;
   }
 }
