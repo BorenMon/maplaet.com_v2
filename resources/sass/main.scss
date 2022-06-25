@@ -51,6 +51,7 @@ input[type="checkbox"] {
 }
 .saved-inputs {
   div.selected {
-    @apply bg-gray-400 text-white;
+    @apply text-white;
+    background-color: rgb(156 163 175);
   }
 }
