@@ -4,6 +4,7 @@ use App\Models\User;
 use App\Models\Artwork;
 use App\Models\AdminPage;
 use App\Models\SavedImage;
+use App\Models\SavedInput;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -79,10 +80,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
             $brandPage = $artworkCategory->brandPage;
             $adminPage = $brandPage->admin_page;
             $savedImages = SavedImage::where('user_id', '=', Auth::id())->where('artwork_id', '=', $artwork->id)->get();
+            $savedInputs = Auth::user()->savedInputs;
             
             Gate::authorize('preview_artwork', $artwork);
 
-            return view("user-area.normal-user.artwork.$adminPage->folder_name.$brandPage->folder_name.$artworkCategory->folder_name.$artwork->number", compact('brandPage', 'artworkCategory', 'artwork', 'savedImages'));
+            return view("user-area.normal-user.artwork.$adminPage->folder_name.$brandPage->folder_name.$artworkCategory->folder_name.$artwork->number", compact('brandPage', 'artworkCategory', 'artwork', 'savedImages', 'savedInputs'));
         })->name('artwork-preview');
 
         // Save Artwork's Images
@@ -90,13 +92,17 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
             Route::post('/store', 'NormalUser\SavedImageController@store')->name('store');
             Route::get('/destroy/{saved_image}', 'NormalUser\SavedImageController@destroy')->name('destroy');
         });
+
+        // Update Telegram ID
+        Route::post('/user/update-telegram-id', function(Request $request){
+            User::find(Auth::id())->update([
+                'telegram_id' => $request->telegram_id
+            ]);
+        
+            return redirect()->back();
+        })->name('user.update.telegram_id');
+
+        // Save Inputs
+        Route::resource('/saved-input', 'NormalUser\SavedInputController')->only(['store', 'destroy']);
     });
 });
-
-Route::post('/user/update-telegram-id', function(Request $request){
-    User::find(Auth::id())->update([
-        'telegram_id' => $request->telegram_id
-    ]);
-
-    return redirect()->back();
-})->name('user.update.telegram_id');
