@@ -49,10 +49,8 @@ input[type="checkbox"] {
   background-color: rgba($color: #000000, $alpha: 0.7);
   @apply fixed top-0 left-0 w-full h-full flex justify-center items-center;
 }
-
 .saved-inputs {
   div.selected {
-    color: white;
-    background-color: rgb(156 163 175);
+    @apply bg-gray-400 text-white;
   }
 }

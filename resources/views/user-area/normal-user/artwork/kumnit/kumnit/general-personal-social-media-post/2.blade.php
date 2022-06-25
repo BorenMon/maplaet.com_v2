@@ -220,7 +220,7 @@
           <label for="social-media" class="label">Social Media</label>
           <div class="flex">
             <input type="text" id="social-media" placeholder="Enter or Select Your Socail Media" style="width: calc(100% - 4rem) !important;"/>
-            <button onclick="saveSocialMediaInput()" class="btn flex items-center justify-center" style="width: 3rem; margin-left: 1rem; background-color: rgb(156 163 175);"><i class="fa-solid fa-plus"></i></button>
+            <button onclick="saveSocialMediaInput()" class="btn bg-gray-400 flex items-center justify-center" style="width: 3rem; margin-left: 1rem;"><i class="fa-solid fa-plus"></i></button>
           </div>
           <div class="flex flex-wrap mt-4 border saved-inputs" id="savedSocialMediaInputs">
             {{-- <div class="m-4 py-2 px-4 rounded bg-white text-sm cursor-pointer flex items-center selected" style="margin: 0.5rem;"><span class="mr-4">lorem ipsum</span><i class="fa-solid fa-xmark" style="font-family: 'Font Awesome 6 Free';"></i></div> --}}
