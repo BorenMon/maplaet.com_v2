@@ -63,7 +63,8 @@ class UserController extends Controller
 
         $validated['password'] = Hash::make($validated['password']);
         
-        User::create($validated);
+        $user = User::create($validated);
+        $user->sendEmailVerificationNotification();
 
         return redirect()->route('superadmin.admin-page.show', ['admin_page' => $validated['admin_page_id']]);
     }

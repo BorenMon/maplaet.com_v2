@@ -223,7 +223,6 @@
             <button onclick="saveSocialMediaInput()" class="btn bg-gray-400 flex items-center justify-center" style="width: 3rem; margin-left: 1rem;"><i class="fa-solid fa-plus"></i></button>
           </div>
           <div class="flex flex-wrap mt-4 border saved-inputs" id="savedSocialMediaInputs">
-            {{-- <div class="m-4 py-2 px-4 rounded bg-white text-sm cursor-pointer flex items-center selected" style="margin: 0.5rem;"><span class="mr-4">lorem ipsum</span><i class="fa-solid fa-xmark" style="font-family: 'Font Awesome 6 Free';"></i></div> --}}
             @foreach ($savedInputs as $input)
               @if ($input->category_name == 'Social Media')
                 <div class="m-4 py-2 px-4 rounded bg-white text-sm cursor-pointer flex items-center" style="margin: 0.5rem;"><span class="mr-4">{{ $input->content }}</span><i data-id="{{ $input->id }}" class="fa-solid fa-xmark" style="font-family: 'Font Awesome 6 Free';"></i></div>
@@ -297,82 +296,6 @@
 @section('js')
 @include('layouts.normal-user.default-artwork-js')
 <script>
-  const saveSocialMediaInput = () => {
-    const dataSet = {
-      category_name: 'Social Media',
-      content: $('#social-media').val().trim(),
-      _token: "{{ csrf_token() }}"
-    }
-    $.ajax({
-      url: "{{ route('saved-input.store') }}",
-      type: 'POST',
-      data: dataSet,
-      success: function(response) {
-        const content = document.createElement('div')
-        content.className = 'm-4 py-2 px-4 rounded bg-white text-sm cursor-pointer flex items-center '
-        content.style.margin = '0.5rem'
-        content.innerHTML = `
-          <span class="mr-4">${response.content}</span><i data-id="${response.id}" class="fa-solid fa-xmark" style="font-family: 'Font Awesome 6 Free';"></i>
-        `
-        $('#savedSocialMediaInputs').append(content)
-
-        $('span', content).on('click', function(){
-          $('#savedSocialMediaInputs div').each(function(){
-            this.classList.remove('selected')
-          })
-          $(this).parent().addClass('selected')
-          const term = this.innerText
-          $('#social-media').val(term)
-          $('.name').each(function() {
-            this.innerText = term
-          })
-        })
-        $('i', content).on('click', function(){
-          const content = $(this).parent()
-          if(confirm('Are you sure to delete this saved input?')){
-            let route = "{{ route('saved-input.destroy', ['saved_input' => ':id']) }}"
-            route = route.replace(':id', $(this).data('id'))
-            $.ajax({
-              url: route,
-              type: 'DELETE',
-              data: {_token: "{{ csrf_token() }}"},
-              success: function(response) {
-                content.remove()
-              }
-            })
-          }
-        })
-      }
-    })
-  }
-  $('#savedSocialMediaInputs div span').on('click', function(){
-    $('#savedSocialMediaInputs div').each(function(){
-      this.classList.remove('selected')
-    })
-    $(this).parent().addClass('selected')
-    const term = this.innerText
-    $('#social-media').val(term)
-    $('.name').each(function() {
-      this.innerText = term
-    })
-  })
-  $('#savedSocialMediaInputs div i').on('click', function(){
-    const content = $(this).parent()
-    if(confirm('Are you sure to delete this saved input?')){
-      let route = "{{ route('saved-input.destroy', ['saved_input' => ':id']) }}"
-      route = route.replace(':id', $(this).data('id'))
-      $.ajax({
-        url: route,
-        type: 'DELETE',
-        data: {_token: "{{ csrf_token() }}"},
-        success: function(response) {
-          content.remove()
-        }
-      })
-    }
-  })
-
-
   const bg = document.querySelectorAll('.background')
   const at = document.querySelectorAll('.at')
 
@@ -647,12 +570,93 @@
     }
     refreshBg()
 
-  // Data Input
+  // Social Media Input
   $('#social-media').on('input', function(){
     const term = this.value
     $('.name').each((i, obj) => {
       obj.innerText = term
     })
+  })
+  const firstSavedSocialMedia = $('#savedSocialMediaInputs div:first')
+  const firstSavedSocialMediaContent = $('span', firstSavedSocialMedia).text()
+  firstSavedSocialMedia.addClass('selected')
+  $('#social-media').val(firstSavedSocialMediaContent)
+  $('.name').each(function() {
+    this.innerText = firstSavedSocialMediaContent
+  })
+  const saveSocialMediaInput = () => {
+    const dataSet = {
+      category_name: 'Social Media',
+      content: $('#social-media').val().trim(),
+      _token: "{{ csrf_token() }}"
+    }
+    $.ajax({
+      url: "{{ route('saved-input.store') }}",
+      type: 'POST',
+      data: dataSet,
+      success: function(response) {
+        const content = document.createElement('div')
+        content.className = 'm-4 py-2 px-4 rounded bg-white text-sm cursor-pointer flex items-center '
+        content.style.margin = '0.5rem'
+        content.innerHTML = `
+          <span class="mr-4">${response.content}</span><i data-id="${response.id}" class="fa-solid fa-xmark" style="font-family: 'Font Awesome 6 Free';"></i>
+        `
+        $('#savedSocialMediaInputs').append(content)
+
+        $('span', content).on('click', function(){
+          $('#savedSocialMediaInputs div').each(function(){
+            this.classList.remove('selected')
+          })
+          $(this).parent().addClass('selected')
+          const term = this.innerText
+          $('#social-media').val(term)
+          $('.name').each(function() {
+            this.innerText = term
+          })
+        })
+        $('i', content).on('click', function(){
+          const content = $(this).parent()
+          if(confirm('Are you sure to delete this saved input?')){
+            let route = "{{ route('saved-input.destroy', ['saved_input' => ':id']) }}"
+            route = route.replace(':id', $(this).data('id'))
+            $.ajax({
+              url: route,
+              type: 'DELETE',
+              data: {_token: "{{ csrf_token() }}"},
+              success: function(response) {
+                content.remove()
+              }
+            })
+          }
+        })
+      }
+    })
+  }
+  $('#savedSocialMediaInputs div span').on('click', function(){
+    $('#savedSocialMediaInputs div').each(function(){
+      this.classList.remove('selected')
+    })
+    $(this).parent().addClass('selected')
+    const term = this.innerText
+    $('#social-media').val(term)
+    $('.name').each(function() {
+      this.innerText = term
+    })
+  })
+  $('#savedSocialMediaInputs div i').on('click', function(){
+    const content = $(this).parent()
+    if(confirm('Are you sure to delete this saved input?')){
+      let route = "{{ route('saved-input.destroy', ['saved_input' => ':id']) }}"
+      route = route.replace(':id', $(this).data('id'))
+      $.ajax({
+        url: route,
+        type: 'DELETE',
+        data: {_token: "{{ csrf_token() }}"},
+        success: function(response) {
+          content.remove()
+        }
+      })
+    }
   })
 
   // Download

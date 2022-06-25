@@ -57,7 +57,8 @@ class UserController extends Controller
         $validated['admin_page_id'] = Auth::user()->admin_page_id;
         $validated['accessible_pages_id'] = [];
         
-        User::create($validated);
+        $user = User::create($validated);
+        $user->sendEmailVerificationNotification();
 
         return redirect()->route('user.index')->with([
             'title' => 'Success',

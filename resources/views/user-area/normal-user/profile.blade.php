@@ -20,7 +20,7 @@
                 <h3 class="text-lg font-medium text-gray-900">Link Telegram</h3>
         
                 <p class="mt-1 text-sm text-gray-600">
-                    Update your telegram account id and let maplaet telegram bot can send messages and files by following provided tutorial video <a href="https://www.youtube.com/channel/UCXVSw-JowZpjR9GZHjQwckQ" target="_blank" class="underline text-maplaet-2">here</a>.
+                    Update your telegram account id and let maplaet telegram bot can send messages and files.
                 </p>
             </div>
         
@@ -46,7 +46,7 @@
                         <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
                     @enderror
                             </div>
-        <p class="col-span-6 sm:col-span-4">If you haven't chat with maplaet bot yet, please click <a href="//t.me/maplaet_bot" target="_blank" class="underline text-maplaet-2">here</a>.</p>
+        <p class="col-span-6 sm:col-span-4">If you haven't chat with maplaet bot yet, please click <a href="//t.me/maplaet_bot" target="_blank" class="underline text-maplaet-2">here</a>. Then, type "/start" or "/myid" to get your telegram id.</p>
                         </div>
                     </div>
         

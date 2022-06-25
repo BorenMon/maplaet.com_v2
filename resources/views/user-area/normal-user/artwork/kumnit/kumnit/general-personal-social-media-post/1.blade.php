@@ -321,10 +321,6 @@
             <div class="relative ">
               <input type="text" id="website" placeholder="Enter or Select Your Website"/>
             </div>
-            
-            <select class="block text-gray-700 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-maplaet-1 focus:border-maplaet-1" id="select-website">
-              
-            </select>
 
           </div>
         </div>
