@@ -570,6 +570,7 @@
     }
     refreshBg()
 
+    
   // Social Media Input
   $('#social-media').on('input', function(){
     const term = this.value
