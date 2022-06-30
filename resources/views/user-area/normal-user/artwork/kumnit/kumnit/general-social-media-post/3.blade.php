@@ -388,6 +388,12 @@
             <option value="center">Center</option>
             <option value="right">Right</option>
           </select>
+          <div class="mt-1 mb-2">
+            <label for="font-family">Font Family</label>
+            <select id="font-family"></select>
+            <label for="font-style">Font Style</label>
+            <select id="font-style"></select>
+          </div>
           <textarea id="quote" class="form-control" placeholder="សម្ដីដកស្រង់" style="min-height: 150px;"></textarea>
           <input id="name" type="text" placeholder="ឈ្មោះម្ចាស់សម្ដី">
         </div>
@@ -456,6 +462,107 @@
 @section('js')
 @include('layouts.normal-user.default-artwork-js')
 <script>
+  // Google Font API
+  let googleFonts
+  window.onload = async () => {
+    const response = await fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyB6rEXLdBoL4enkt4-H6xQ63BksLir8Uio')
+    const data = await response.json()
+    googleFonts = await data.items
+    
+    initGoogleFont()
+  }
+
+  let fontFamily, fontStyle
+
+  function initGoogleFont() {
+    $('#font-family').append(`
+      <option value="krasar">Krasar</option>
+    `)
+    $.each(googleFonts, function(key, value){
+      if(value.subsets.includes('khmer')){
+        fontFamily = value.family
+        $('#font-family').append(`
+          <option value="${value.family}">${value.family}</option>
+        `)
+        $.each(value.files, function(key, value){
+          $('style:first').prepend(`
+            @font-face {
+              font-family: "${fontFamily + '-' + key}";
+              src: url("${value.replace('http://', 'https://')}");
+              font-weight: ${key};
+            }
+          `)
+        })
+      }
+
+      // if(true) {
+      //   fontFamily = value.family
+      //   $('#font-family').append(`
+      //     <option value="${value.family}">${value.family}</option>
+      //   `)
+      //   $.each(value.files, function(key, value){
+      //     $('style:first').prepend(`
+      //       @font-face {
+      //         font-family: "${fontFamily + '-' + key}";
+      //         src: url('${value}');
+      //         font-weight: ${key};
+      //       }
+      //     `)
+      //   })
+      // }
+    })
+    $.each(googleFonts, function(key, value){
+      if(value.family == $('#font-family').val()){
+        $.each(value.files, (style, file) => {
+          $('#font-style').append(`
+            <option value="${file}">${style.toUpperCase()}</option>
+          `)
+        })
+      }
+    })
+    // updateTextStyle()
+  }
+
+  const updateTextStyle = () => {
+    fontFamily = $('#font-family').find(":selected").val()
+    fontStyle = $('#font-style').find(":selected").text().trim().toLowerCase()
+    $('.quote').each(function(){
+      this.style.fontFamily = fontFamily + '-' + fontStyle
+    })
+    $('.name').each(function(){
+      this.style.fontFamily = fontFamily + '-' + fontStyle
+    })
+  }
+
+  $('#font-family').on('change', function(){
+    fontFamily = this.value
+    if(fontFamily == 'krasar') {
+      $('#font-style').html('')
+      $('.quote').each(function(){
+        this.style.fontFamily = '"Stem-Bold", "Krasar-Bold", sans-serif'
+      })
+      $('.name').each(function(){
+        this.style.fontFamily = '"Stem-Bold", "Krasar-Bold", sans-serif'
+      })
+    } else {
+      $.each(googleFonts, function(key, value){
+        if(value.family == fontFamily){
+          $('#font-style').html('')
+          $.each(value.files, (style, file) => {
+            $('#font-style').append(`
+              <option value="${file}">${style.toUpperCase()}</option>
+            `)
+          })
+        }
+      })
+      updateTextStyle()
+    }
+  })
+
+  $('#font-style').on('change', () => {
+    updateTextStyle()
+  })
+
 // Add Preview After Storing Background Function
 const addBgPreview = (node) => {
   document.querySelector('label[for="add-background"]').parentNode.insertBefore(node, document.querySelector('label[for="add-background"]'))
