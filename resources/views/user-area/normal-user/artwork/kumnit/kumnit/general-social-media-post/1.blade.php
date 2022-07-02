@@ -546,11 +546,7 @@
   })
 
 
-
-
-
-
-
+  
   // ***Here is the code for converting "image source" (url) to "Base64".***
 
 let url = 'https://cdn.shopify.com/s/files/1/0234/8017/2591/products/young-man-in-bright-fashion_925x_f7029e2b-80f0-4a40-a87b-834b9a283c39.jpg'

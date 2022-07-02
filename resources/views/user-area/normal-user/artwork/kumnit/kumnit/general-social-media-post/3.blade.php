@@ -5,30 +5,6 @@
 
 @section('css')
   <style>
-    @font-face {
-      font-family: "Krasar-Bold";
-      src: url("/assets/kumnit/fonts/Krasar-Bold.ttf");
-    }
-    @font-face {
-      font-family: "Krasar-Medium";
-      src: url("/assets/kumnit/fonts/Krasar-Medium.ttf");
-    }
-    @font-face {
-      font-family: "Krasar-Regular";
-      src: url("/assets/kumnit/fonts/Krasar-Regular.ttf");
-    }
-    @font-face {
-      font-family: "Stem-Bold";
-      src: url("/assets/kumnit/fonts/Stem-Bold.ttf");
-    }
-    @font-face {
-      font-family: "Stem-Medium";
-      src: url("/assets/kumnit/fonts/Stem-Medium.ttf");
-    }
-    @font-face {
-      font-family: "Stem-Regular";
-      src: url("/assets/kumnit/fonts/Stem-Regular.ttf");
-    }
     .input-group {
       position: relative;
       border-radius: 0.25rem;
@@ -252,7 +228,7 @@
       transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
     }
     .artwork-preview .quote-box .quote {
-      font-family: "Stem-Bold", "Krasar-Bold", sans-serif;
+      /* font-family: "Stem-Bold", "Krasar-Bold", sans-serif; */
       line-height: 1.5;
       overflow-wrap: break-word;
       --tw-text-opacity: 1;
@@ -463,11 +439,30 @@
 @include('layouts.normal-user.default-artwork-js')
 <script>
   // Google Font API
-  let googleFonts
+let googleFonts
   window.onload = async () => {
     const response = await fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyB6rEXLdBoL4enkt4-H6xQ63BksLir8Uio')
     const data = await response.json()
     googleFonts = await data.items
+    googleFonts.unshift(
+      {
+        family: 'Niradei',
+        files: {
+          medium: '/assets/kumnit/fonts/Niradei-Medium.ttf',
+          black: '/assets/kumnit/fonts/Niradei-Black.ttf',
+        },
+        subsets: ['khmer'],
+      },
+      {
+        family: 'Krasar',
+        files: {
+          regular: '/assets/kumnit/fonts/Krasar-Regular.ttf',
+          medium: '/assets/kumnit/fonts/Krasar-Medium.ttf',
+          bold: '/assets/kumnit/fonts/Krasar-Bold.ttf',
+        },
+        subsets: ['khmer'],
+      }
+    )
     
     initGoogleFont()
   }
@@ -475,9 +470,6 @@
   let fontFamily, fontStyle
 
   function initGoogleFont() {
-    $('#font-family').append(`
-      <option value="krasar">Krasar</option>
-    `)
     $.each(googleFonts, function(key, value){
       if(value.subsets.includes('khmer')){
         fontFamily = value.family
@@ -494,22 +486,6 @@
           `)
         })
       }
-
-      // if(true) {
-      //   fontFamily = value.family
-      //   $('#font-family').append(`
-      //     <option value="${value.family}">${value.family}</option>
-      //   `)
-      //   $.each(value.files, function(key, value){
-      //     $('style:first').prepend(`
-      //       @font-face {
-      //         font-family: "${fontFamily + '-' + key}";
-      //         src: url('${value}');
-      //         font-weight: ${key};
-      //       }
-      //     `)
-      //   })
-      // }
     })
     $.each(googleFonts, function(key, value){
       if(value.family == $('#font-family').val()){
@@ -520,7 +496,7 @@
         })
       }
     })
-    // updateTextStyle()
+    updateTextStyle()
   }
 
   const updateTextStyle = () => {
@@ -536,27 +512,17 @@
 
   $('#font-family').on('change', function(){
     fontFamily = this.value
-    if(fontFamily == 'krasar') {
-      $('#font-style').html('')
-      $('.quote').each(function(){
-        this.style.fontFamily = '"Stem-Bold", "Krasar-Bold", sans-serif'
-      })
-      $('.name').each(function(){
-        this.style.fontFamily = '"Stem-Bold", "Krasar-Bold", sans-serif'
-      })
-    } else {
-      $.each(googleFonts, function(key, value){
-        if(value.family == fontFamily){
-          $('#font-style').html('')
-          $.each(value.files, (style, file) => {
-            $('#font-style').append(`
-              <option value="${file}">${style.toUpperCase()}</option>
-            `)
-          })
-        }
-      })
-      updateTextStyle()
-    }
+    $.each(googleFonts, function(key, value){
+      if(value.family == fontFamily){
+        $('#font-style').html('')
+        $.each(value.files, (style, file) => {
+          $('#font-style').append(`
+            <option value="${file}">${style.toUpperCase()}</option>
+          `)
+        })
+      }
+    })
+    updateTextStyle()
   })
 
   $('#font-style').on('change', () => {
