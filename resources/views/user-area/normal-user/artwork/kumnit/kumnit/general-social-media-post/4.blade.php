@@ -5,30 +5,6 @@
 
 @section('css')
   <style>
-    @font-face {
-      font-family: "Krasar-Bold";
-      src: url("/assets/kumnit/fonts/Krasar-Bold.ttf");
-    }
-    @font-face {
-      font-family: "Krasar-Medium";
-      src: url("/assets/kumnit/fonts/Krasar-Medium.ttf");
-    }
-    @font-face {
-      font-family: "Krasar-Regular";
-      src: url("/assets/kumnit/fonts/Krasar-Regular.ttf");
-    }
-    @font-face {
-      font-family: "Stem-Bold";
-      src: url("/assets/kumnit/fonts/Stem-Bold.ttf");
-    }
-    @font-face {
-      font-family: "Stem-Medium";
-      src: url("/assets/kumnit/fonts/Stem-Medium.ttf");
-    }
-    @font-face {
-      font-family: "Stem-Regular";
-      src: url("/assets/kumnit/fonts/Stem-Regular.ttf");
-    }
     .input-group {
       position: relative;
       border-radius: 0.25rem;
@@ -270,7 +246,7 @@
     }
     .artwork-preview .box .text {
       text-align: center;
-      font-family: "Stem-Bold", "Krasar-Bold", sans-serif;
+      /* font-family: "Stem-Bold", "Krasar-Bold", sans-serif; */
       line-height: 1.5;
       width: 85%;
       word-wrap: break-word;
@@ -391,19 +367,7 @@
       </div>
       
       <div id="input-container">
-        <div class="mb-12 text-center" id="_1">
-          <button id="upload-image" class="btn mb-0 text-white mr-2 cursor-pointer" style="background-color: #61c3f5;">
-            Upload
-          </button>
-          <input type="file" id="uploadProfile" class="hidden" accept="image/*">
-
-          <button class="btn mr-1" style="background-color: #725bd2;" id="openCropperModal">
-            Crop
-          </button>
-          <button class="btn" style="background-color: #0a254d;" id="download-poster">
-            Download
-          </button>
-        </div>
+        @include('layouts.normal-user.operation-buttons')
         <div class="mb-3">
           <div class="input-group mb-4">
             <label for="select-page" class="label">Page</label>
@@ -431,9 +395,17 @@
               <input type="radio" name="mark" value="''" checked><label>&nbsp;Quote</label>
             </div>
           </div>
-          <div class="input-group mb-4">
+          <div class="input-group mb-4 space-y-4">
             <label for="text" class="label">Text</label>
             <textarea id="text" class="form-control" placeholder="Enter Text Here" style="min-height: 150px;"></textarea>
+            <div>
+              <label for="font-family">Font Family</label>
+              <select id="font-family"></select>
+            </div>
+            <div>
+              <label for="font-style">Font Style</label>
+              <select id="font-style"></select>
+            </div>
           </div>
         </div>
       </div>
@@ -481,6 +453,96 @@
 
 @section('js')
 <script>
+  // Google Font API
+let googleFonts
+  window.onload = async () => {
+    const response = await fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyB6rEXLdBoL4enkt4-H6xQ63BksLir8Uio')
+    const data = await response.json()
+    googleFonts = await data.items
+    googleFonts.unshift(
+      {
+        family: 'Niradei',
+        files: {
+          medium: '/assets/kumnit/fonts/Niradei-Medium.ttf',
+          black: '/assets/kumnit/fonts/Niradei-Black.ttf',
+        },
+        subsets: ['khmer'],
+      },
+      {
+        family: 'Krasar',
+        files: {
+          regular: '/assets/kumnit/fonts/Krasar-Regular.ttf',
+          medium: '/assets/kumnit/fonts/Krasar-Medium.ttf',
+          bold: '/assets/kumnit/fonts/Krasar-Bold.ttf',
+        },
+        subsets: ['khmer'],
+      }
+    )
+    
+    initGoogleFont()
+  }
+
+  let fontFamily, fontStyle
+
+  function initGoogleFont() {
+    $.each(googleFonts, function(key, value){
+      if(value.subsets.includes('khmer')){
+        fontFamily = value.family
+        $('#font-family').append(`
+          <option value="${value.family}">${value.family}</option>
+        `)
+        $.each(value.files, function(key, value){
+          $('style:first').prepend(`
+            @font-face {
+              font-family: "${fontFamily + '-' + key}";
+              src: url("${value.replace('http://', 'https://')}");
+              font-weight: ${key};
+            }
+          `)
+        })
+      }
+    })
+    $.each(googleFonts, function(key, value){
+      if(value.family == $('#font-family').val()){
+        $.each(value.files, (style, file) => {
+          $('#font-style').append(`
+            <option value="${file}">${style.toUpperCase()}</option>
+          `)
+        })
+      }
+    })
+    updateTextStyle()
+  }
+
+  const updateTextStyle = () => {
+    fontFamily = $('#font-family').find(":selected").val()
+    fontStyle = $('#font-style').find(":selected").text().trim().toLowerCase()
+    $('.text').each(function(){
+      this.style.fontFamily = fontFamily + '-' + fontStyle
+    })
+  }
+
+  $('#font-family').on('change', function(){
+    fontFamily = this.value
+    $.each(googleFonts, function(key, value){
+      if(value.family == fontFamily){
+        $('#font-style').html('')
+        $.each(value.files, (style, file) => {
+          $('#font-style').append(`
+            <option value="${file}">${style.toUpperCase()}</option>
+          `)
+        })
+      }
+    })
+    updateTextStyle()
+  })
+
+  $('#font-style').on('change', () => {
+    updateTextStyle()
+  })
+
+
+
     // ***Here is the code for converting "image source" (url) to "Base64".***
 
 let url = 'https://cdn.shopify.com/s/files/1/0234/8017/2591/products/young-man-in-bright-fashion_925x_f7029e2b-80f0-4a40-a87b-834b9a283c39.jpg'
@@ -695,5 +757,39 @@ const toDataURL = url => fetch(url)
       })
     })
   })
+
+  // Send to Telegram
+  const sendToTelegram = () => {
+    $('#loading').css('display', 'flex')
+    domtoimage.toJpeg(document.getElementById('download'), {
+      quality: 0.8
+    }).then(dataUrl => {
+    domtoimage
+      .toJpeg(document.getElementById('download'), {
+        quality: 0.8
+      })
+      .then(dataUrl => {
+        $('#loading').css('display', 'none')
+        new Compressor(dataURLtoFile(dataUrl), {
+            quality : 0.8,
+            maxHeight: 2000,
+            maxWidth: 2000,
+            success(result) {
+              var chat_id = '{{ Auth::user()->telegram_id }}'
+              var token = "5348766637:AAFS9CRCB1mtG3YirFj-OZV83IDR0LCCgC0"
+
+              var formData = new FormData();
+              formData.append('chat_id', chat_id)
+              formData.append('document', result, 'poster.jpeg')
+
+              var request = new XMLHttpRequest();
+              request.open('POST', `https://api.telegram.org/bot${token}/sendDocument`)
+              request.send(formData)
+            }
+          }
+        )
+      })
+    })
+  }
 </script>
 @endsection

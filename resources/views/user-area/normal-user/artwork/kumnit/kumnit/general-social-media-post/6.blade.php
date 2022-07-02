@@ -6,10 +6,6 @@
 @section('css')
   @include('layouts.normal-user.default-artwork-css')
   <style>
-    @font-face {
-      font-family: "Kh Ang Kouteok";
-      src: url("/assets/kumnit/fonts/Kh Ang Kouteok.ttf");
-    }
     .artwork-preview {
       width: 88vw;
       height: 88vw;
@@ -229,6 +225,25 @@
     const response = await fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyB6rEXLdBoL4enkt4-H6xQ63BksLir8Uio')
     const data = await response.json()
     googleFonts = await data.items
+    googleFonts.unshift(
+      {
+        family: 'Niradei',
+        files: {
+          medium: '/assets/kumnit/fonts/Niradei-Medium.ttf',
+          black: '/assets/kumnit/fonts/Niradei-Black.ttf',
+        },
+        subsets: ['khmer'],
+      },
+      {
+        family: 'Krasar',
+        files: {
+          regular: '/assets/kumnit/fonts/Krasar-Regular.ttf',
+          medium: '/assets/kumnit/fonts/Krasar-Medium.ttf',
+          bold: '/assets/kumnit/fonts/Krasar-Bold.ttf',
+        },
+        subsets: ['khmer'],
+      }
+    )
     
     initGoogleFont()
   }
@@ -237,7 +252,7 @@
 
   function initGoogleFont() {
     $.each(googleFonts, function(key, value){
-      if(value.subsets.includes('khmer') || JSON.stringify(value.subsets)==JSON.stringify(['latin'])){
+      if(value.subsets.includes('khmer')){
         fontFamily = value.family
         $('#font-family').append(`
           <option value="${value.family}">${value.family}</option>
@@ -252,22 +267,6 @@
           `)
         })
       }
-
-      // if(true) {
-      //   fontFamily = value.family
-      //   $('#font-family').append(`
-      //     <option value="${value.family}">${value.family}</option>
-      //   `)
-      //   $.each(value.files, function(key, value){
-      //     $('style:first').prepend(`
-      //       @font-face {
-      //         font-family: "${fontFamily + '-' + key}";
-      //         src: url('${value}');
-      //         font-weight: ${key};
-      //       }
-      //     `)
-      //   })
-      // }
     })
     $.each(googleFonts, function(key, value){
       if(value.family == $('#font-family').val()){

@@ -37,7 +37,7 @@
       transform: translateX(-50%);
       background: white;
       text-align: center;
-      font-family: "Stem-Bold", "Krasar-Bold", sans-serif;
+      /* font-family: "Stem-Bold", "Krasar-Bold", sans-serif; */
       color: #2857a5;
       word-wrap: break-word;
       padding: 2vw 4vw;
@@ -112,19 +112,7 @@
     </div>
     
     <div id="input-container">
-      <div class="mb-12 text-center" id="_1">
-        <button id="upload-image" class="btn mb-0 text-white mr-2 cursor-pointer" style="background-color: #61c3f5;">
-          Upload
-        </button>
-        <input type="file" id="uploadProfile" class="hidden" accept="image/*">
-
-        <button class="btn mr-1" style="background-color: #725bd2;" id="openCropperModal">
-          Crop
-        </button>
-        <button class="btn" style="background-color: #0a254d;" id="download-poster">
-          Download
-        </button>
-      </div>
+      @include('layouts.normal-user.operation-buttons')
       <div class="input-group mb-4 mt-8 space-y-4">
         <h2 class="label">Brand Page</h2>
         <select id="logo">
@@ -140,6 +128,14 @@
             <textarea id="title" rows="2" style="resize: none;"></textarea>
             <label for="title-font-size-percentage" class="mr-2 mb-2">Size Percentage (%) :</label>
             <input type="number" id="title-font-size-percentage" min="0" value="100">
+            <div>
+              <label for="font-family">Font Family</label>
+              <select id="font-family"></select>
+            </div>
+            <div>
+              <label for="font-style">Font Style</label>
+              <select id="font-style"></select>
+            </div>
           </div>
         </div>
       </div>
@@ -426,5 +422,127 @@
       })
     })
   })
+
+  // Google Font API
+  let googleFonts
+  window.onload = async () => {
+    const response = await fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyB6rEXLdBoL4enkt4-H6xQ63BksLir8Uio')
+    const data = await response.json()
+    googleFonts = await data.items
+    googleFonts.unshift(
+      {
+        family: 'Niradei',
+        files: {
+          medium: '/assets/kumnit/fonts/Niradei-Medium.ttf',
+          black: '/assets/kumnit/fonts/Niradei-Black.ttf',
+        },
+        subsets: ['khmer'],
+      },
+      {
+        family: 'Krasar',
+        files: {
+          regular: '/assets/kumnit/fonts/Krasar-Regular.ttf',
+          medium: '/assets/kumnit/fonts/Krasar-Medium.ttf',
+          bold: '/assets/kumnit/fonts/Krasar-Bold.ttf',
+        },
+        subsets: ['khmer'],
+      }
+    )
+    
+    initGoogleFont()
+  }
+
+  let fontFamily, fontStyle
+
+  function initGoogleFont() {
+    $.each(googleFonts, function(key, value){
+      if(value.subsets.includes('khmer')){
+        fontFamily = value.family
+        $('#font-family').append(`
+          <option value="${value.family}">${value.family}</option>
+        `)
+        $.each(value.files, function(key, value){
+          $('style:first').prepend(`
+            @font-face {
+              font-family: "${fontFamily + '-' + key}";
+              src: url("${value.replace('http://', 'https://')}");
+              font-weight: ${key};
+            }
+          `)
+        })
+      }
+    })
+    $.each(googleFonts, function(key, value){
+      if(value.family == $('#font-family').val()){
+        $.each(value.files, (style, file) => {
+          $('#font-style').append(`
+            <option value="${file}">${style.toUpperCase()}</option>
+          `)
+        })
+      }
+    })
+    updateTextStyle()
+  }
+
+  const updateTextStyle = () => {
+    fontFamily = $('#font-family').find(":selected").val()
+    fontStyle = $('#font-style').find(":selected").text().trim().toLowerCase()
+    $('.title').each(function(){
+      this.style.fontFamily = fontFamily + '-' + fontStyle
+    })
+  }
+
+  $('#font-family').on('change', function(){
+    fontFamily = this.value
+    $.each(googleFonts, function(key, value){
+      if(value.family == fontFamily){
+        $('#font-style').html('')
+        $.each(value.files, (style, file) => {
+          $('#font-style').append(`
+            <option value="${file}">${style.toUpperCase()}</option>
+          `)
+        })
+      }
+    })
+    updateTextStyle()
+  })
+
+  $('#font-style').on('change', () => {
+    updateTextStyle()
+  })
+
+    // Send to Telegram
+  const sendToTelegram = () => {
+    $('#loading').css('display', 'flex')
+    domtoimage.toJpeg(document.getElementById('download'), {
+      quality: 0.8
+    }).then(dataUrl => {
+    domtoimage
+      .toJpeg(document.getElementById('download'), {
+        quality: 0.8
+      })
+      .then(dataUrl => {
+        $('#loading').css('display', 'none')
+        new Compressor(dataURLtoFile(dataUrl), {
+            quality : 0.8,
+            maxHeight: 2000,
+            maxWidth: 2000,
+            success(result) {
+              var chat_id = '{{ Auth::user()->telegram_id }}'
+              var token = "5348766637:AAFS9CRCB1mtG3YirFj-OZV83IDR0LCCgC0"
+
+              var formData = new FormData();
+              formData.append('chat_id', chat_id)
+              formData.append('document', result, 'poster.jpeg')
+
+              var request = new XMLHttpRequest();
+              request.open('POST', `https://api.telegram.org/bot${token}/sendDocument`)
+              request.send(formData)
+            }
+          }
+        )
+      })
+    })
+  }
 </script>
 @endsection

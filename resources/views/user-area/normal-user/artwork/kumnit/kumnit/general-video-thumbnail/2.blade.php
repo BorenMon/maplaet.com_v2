@@ -5,34 +5,6 @@
 
 @section('css')
   <style>
-    @font-face {
-        font-family: Krasar-Bold;
-        src: url(/assets/kumnit/fonts/Krasar-Bold.ttf);
-    }
-    @font-face {
-        font-family: Krasar-Medium;
-        src: url(/assets/kumnit/fonts/Krasar-Medium.ttf);
-    }
-    @font-face {
-        font-family: Krasar-Regular;
-        src: url(/assets/kumnit/fonts/Krasar-Regular.ttf);
-    }
-    @font-face {
-        font-family: Stem-Bold;
-        src: url(/assets/kumnit/fonts/Stem-Bold.ttf);
-    }
-    @font-face {
-        font-family: Stem-Medium;
-        src: url(/assets/kumnit/fonts/Stem-Medium.ttf);
-    }
-    @font-face {
-        font-family: Stem-Regular;
-        src: url(/assets/kumnit/fonts/Stem-Regular.ttf);
-    }
-    @font-face {
-        font-family: Koulen;
-        src: url(/assets/kumnit/fonts/Koulen.ttf);
-    }
     .input-group {
         border-radius: 0.25rem;
         border-style: dashed;
@@ -386,6 +358,14 @@
         <h2 class="label">Text SkewX Degree (deg)</h2>
         <input class="form-control" type="number" id="text-skew-degree" min="-365" max="365" value="-5">
       </div>
+      <div class="mb-4">
+        <label for="font-family">Font Family</label>
+        <select id="font-family"></select>
+      </div>
+      <div class="mb-4">
+        <label for="font-style">Font Style</label>
+        <select id="font-style"></select>
+      </div>
       <div class="input-group mb-4">
         <h2 class="label">Main Title</h2>
         <div class="space-y-4">
@@ -736,6 +716,101 @@ const toDataURL = url => fetch(url)
         })
       })
     })
+
+    // Google Font API
+  let googleFonts
+  window.onload = async () => {
+    const response = await fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyB6rEXLdBoL4enkt4-H6xQ63BksLir8Uio')
+    const data = await response.json()
+    googleFonts = await data.items
+    googleFonts.unshift(
+      {
+        family: 'Niradei',
+        files: {
+          medium: '/assets/kumnit/fonts/Niradei-Medium.ttf',
+          black: '/assets/kumnit/fonts/Niradei-Black.ttf',
+        },
+        subsets: ['khmer'],
+      },
+      {
+        family: 'Koulen',
+        files: {
+          regular: '/assets/kumnit/fonts/Koulen.ttf',
+        },
+        subsets: ['khmer'],
+      },
+      {
+        family: 'Krasar',
+        files: {
+          regular: '/assets/kumnit/fonts/Krasar-Regular.ttf',
+          medium: '/assets/kumnit/fonts/Krasar-Medium.ttf',
+          bold: '/assets/kumnit/fonts/Krasar-Bold.ttf',
+        },
+        subsets: ['khmer'],
+      }
+    )
+    
+    initGoogleFont()
+  }
+
+  let fontFamily, fontStyle
+
+  function initGoogleFont() {
+    $.each(googleFonts, function(key, value){
+      if(value.subsets.includes('khmer')){
+        fontFamily = value.family
+        $('#font-family').append(`
+          <option value="${value.family}">${value.family}</option>
+        `)
+        $.each(value.files, function(key, value){
+          $('style:first').prepend(`
+            @font-face {
+              font-family: "${fontFamily + '-' + key}";
+              src: url("${value.replace('http://', 'https://')}");
+              font-weight: ${key};
+            }
+          `)
+        })
+      }
+    })
+    $.each(googleFonts, function(key, value){
+      if(value.family == $('#font-family').val()){
+        $.each(value.files, (style, file) => {
+          $('#font-style').append(`
+            <option value="${file}">${style.toUpperCase()}</option>
+          `)
+        })
+      }
+    })
+    updateTextStyle()
+  }
+
+  const updateTextStyle = () => {
+    fontFamily = $('#font-family').find(":selected").val()
+    fontStyle = $('#font-style').find(":selected").text().trim().toLowerCase()
+    $('.title').each(function(){
+      this.style.fontFamily = fontFamily + '-' + fontStyle
+    })
+  }
+
+  $('#font-family').on('change', function(){
+    fontFamily = this.value
+    $.each(googleFonts, function(key, value){
+      if(value.family == fontFamily){
+        $('#font-style').html('')
+        $.each(value.files, (style, file) => {
+          $('#font-style').append(`
+            <option value="${file}">${style.toUpperCase()}</option>
+          `)
+        })
+      }
+    })
+    updateTextStyle()
+  })
+
+  $('#font-style').on('change', () => {
+    updateTextStyle()
+  })
 
     // Send to Telegram
   const sendToTelegram = () => {
