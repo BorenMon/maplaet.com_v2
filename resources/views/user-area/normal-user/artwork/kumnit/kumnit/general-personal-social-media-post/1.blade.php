@@ -64,7 +64,7 @@
     }
     .artwork-preview .box .quote {
       text-align: center;
-      font-family: "Stem-Bold", "Krasar-Bold", sans-serif;
+      /* font-family: "Stem-Bold", "Krasar-Bold", sans-serif; */
       line-height: 1.5;
       width: 85%;
       word-wrap: break-word;
@@ -314,6 +314,14 @@
           <textarea id="quote" style="height: 111px; resize: none;"></textarea>
           <label for="quote-font-size-percentage" class="mr-2 mb-2">Size Percentage (%) :</label>
           <input type="number" id="quote-font-size-percentage" min="0" value="100">
+          <div>
+            <label for="font-family">Font Family</label>
+            <select id="font-family"></select>
+          </div>
+          <div>
+            <label for="font-style">Font Style</label>
+            <select id="font-style"></select>
+          </div>
         </div>
         <div class="input-group mb-4">
           <label for="website" class="label">Website</label>
@@ -917,7 +925,104 @@
     })
   })
 
-  // Send to Telegram
+  
+
+  // Google Font API
+  let googleFonts
+  window.onload = async () => {
+    const response = await fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyB6rEXLdBoL4enkt4-H6xQ63BksLir8Uio')
+    const data = await response.json()
+    googleFonts = await data.items
+    googleFonts.unshift(
+      {
+        family: 'Niradei',
+        files: {
+          medium: '/assets/kumnit/fonts/Niradei-Medium.ttf',
+          black: '/assets/kumnit/fonts/Niradei-Black.ttf',
+        },
+        subsets: ['khmer'],
+      },
+      {
+        family: 'Koulen',
+        files: {
+          regular: '/assets/kumnit/fonts/Koulen.ttf',
+        },
+        subsets: ['khmer'],
+      },
+      {
+        family: 'Krasar',
+        files: {
+          regular: '/assets/kumnit/fonts/Krasar-Regular.ttf',
+          medium: '/assets/kumnit/fonts/Krasar-Medium.ttf',
+          bold: '/assets/kumnit/fonts/Krasar-Bold.ttf',
+        },
+        subsets: ['khmer'],
+      }
+    )
+    
+    initGoogleFont()
+  }
+
+  let fontFamily, fontStyle
+
+  function initGoogleFont() {
+    $.each(googleFonts, function(key, value){
+      if(value.subsets.includes('khmer')){
+        fontFamily = value.family
+        $('#font-family').append(`
+          <option value="${value.family}">${value.family}</option>
+        `)
+        $.each(value.files, function(key, value){
+          $('style:first').prepend(`
+            @font-face {
+              font-family: "${fontFamily + '-' + key}";
+              src: url("${value.replace('http://', 'https://')}");
+              font-weight: ${key};
+            }
+          `)
+        })
+      }
+    })
+    $.each(googleFonts, function(key, value){
+      if(value.family == $('#font-family').val()){
+        $.each(value.files, (style, file) => {
+          $('#font-style').append(`
+            <option value="${file}">${style.toUpperCase()}</option>
+          `)
+        })
+      }
+    })
+    updateTextStyle()
+  }
+
+  const updateTextStyle = () => {
+    fontFamily = $('#font-family').find(":selected").val()
+    fontStyle = $('#font-style').find(":selected").text().trim().toLowerCase()
+    $('.quote').each(function(){
+      this.style.fontFamily = fontFamily + '-' + fontStyle
+    })
+  }
+
+  $('#font-family').on('change', function(){
+    fontFamily = this.value
+    $.each(googleFonts, function(key, value){
+      if(value.family == fontFamily){
+        $('#font-style').html('')
+        $.each(value.files, (style, file) => {
+          $('#font-style').append(`
+            <option value="${file}">${style.toUpperCase()}</option>
+          `)
+        })
+      }
+    })
+    updateTextStyle()
+  })
+
+  $('#font-style').on('change', () => {
+    updateTextStyle()
+  })
+
+    // Send to Telegram
   const sendToTelegram = () => {
     $('#loading').css('display', 'flex')
     domtoimage.toJpeg(document.getElementById('download'), {
