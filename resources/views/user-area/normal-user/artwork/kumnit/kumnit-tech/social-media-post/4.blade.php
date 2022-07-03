@@ -6,14 +6,6 @@
 @section('css')
   @include('layouts.normal-user.default-artwork-css')
   <style>
-    @font-face {
-      font-family: "Stem-Bold";
-      src: url("/assets/kumnit/fonts/Stem-Bold.ttf");
-    }
-    @font-face {
-      font-family: "Krasar-Bold";
-      src: url("/assets/kumnit/fonts/Krasar-Bold.ttf");
-    }
     .artwork-preview {
       width: 88vw;
       height: 88vw;
@@ -46,7 +38,7 @@
     }
     .artwork-preview .content .text {
       width: 85%;
-      font-family: "Stem-Bold", "Krasar-Bold";
+      /* font-family: "Stem-Bold", "Krasar-Bold"; */
       text-align: center;
       word-wrap: break-word;
       font-size: 5vw;
@@ -150,16 +142,18 @@
         <div class="input-group mb-4 mt-8">
           <h2 class="label">Text</h2>
           <div class="space-y-6">
-            {{-- <div>
-              <label for="font-family">Font Family</label>
-              <select id="font-family"></select>
-              <label for="font-style">Font Style</label>
-              <select id="font-style"></select>
-            </div> --}}
             <div>
               <textarea id="text" rows="2" style="resize: none;"></textarea>
               <label for="text-font-size-percentage" class="mr-2 mb-2">Size Percentage (%) :</label>
               <input type="number" id="text-font-size-percentage" min="0" value="100">
+            </div>
+            <div class="mb-4">
+              <label for="font-family">Font Family</label>
+              <select id="font-family"></select>
+            </div>
+            <div class="mb-4">
+              <label for="font-style">Font Style</label>
+              <select id="font-style"></select>
             </div>
           </div>
         </div>
@@ -210,90 +204,6 @@
 @section('js')
 @include('layouts.normal-user.default-artwork-js')
 <script>
-  // // Google Font API
-  // let googleFonts
-  // window.onload = async () => {
-  //   const response = await fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyB6rEXLdBoL4enkt4-H6xQ63BksLir8Uio')
-  //   const data = await response.json()
-  //   googleFonts = await data.items
-    
-  //   initGoogleFont()
-  // }
-
-  // let fontFamily, fontStyle
-
-  // function initGoogleFont() {
-  //   $.each(googleFonts, function(key, value){
-  //     if(value.subsets.includes('khmer')){
-  //       fontFamily = value.family
-  //       $('#font-family').append(`
-  //         <option value="${value.family}">${value.family}</option>
-  //       `)
-  //       $.each(value.files, function(key, value){
-  //         $('style:first').prepend(`
-  //           @font-face {
-  //             font-family: "${fontFamily + '-' + key}";
-  //             src: url("${value.replace('http://', 'https://')}");
-  //             font-weight: ${key};
-  //           }
-  //         `)
-  //       })
-  //     }
-
-  //     // if(true) {
-  //     //   fontFamily = value.family
-  //     //   $('#font-family').append(`
-  //     //     <option value="${value.family}">${value.family}</option>
-  //     //   `)
-  //     //   $.each(value.files, function(key, value){
-  //     //     $('style:first').prepend(`
-  //     //       @font-face {
-  //     //         font-family: "${fontFamily + '-' + key}";
-  //     //         src: url('${value}');
-  //     //         font-weight: ${key};
-  //     //       }
-  //     //     `)
-  //     //   })
-  //     // }
-  //   })
-  //   $.each(googleFonts, function(key, value){
-  //     if(value.family == $('#font-family').val()){
-  //       $.each(value.files, (style, file) => {
-  //         $('#font-style').append(`
-  //           <option value="${file}">${style.toUpperCase()}</option>
-  //         `)
-  //       })
-  //     }
-  //   })
-  //   updateTextStyle()
-  // }
-
-  // const updateTextStyle = () => {
-  //   fontFamily = $('#font-family').find(":selected").val()
-  //   fontStyle = $('#font-style').find(":selected").text().trim().toLowerCase()
-  //   $('.text').each(function(){
-  //     this.style.fontFamily = fontFamily + '-' + fontStyle
-  //   })
-  // }
-
-  // $('#font-family').on('change', function(){
-  //   fontFamily = this.value
-  //   $.each(googleFonts, function(key, value){
-  //     if(value.family == fontFamily){
-  //       $('#font-style').html('')
-  //       $.each(value.files, (style, file) => {
-  //         $('#font-style').append(`
-  //           <option value="${file}">${style.toUpperCase()}</option>
-  //         `)
-  //       })
-  //     }
-  //   })
-  //   updateTextStyle()
-  // })
-
-  // $('#font-style').on('change', () => {
-  //   updateTextStyle()
-  // })
 
 
   // Upload Image Into Artwork Handler
@@ -499,6 +409,94 @@
         )
       })
     })
+  })
+
+  // Google Font API
+  let googleFonts
+  window.onload = async () => {
+    const response = await fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyB6rEXLdBoL4enkt4-H6xQ63BksLir8Uio')
+    const data = await response.json()
+    googleFonts = await data.items
+    googleFonts.unshift(
+      {
+        family: 'Niradei',
+        files: {
+          medium: '/assets/kumnit/fonts/Niradei-Medium.ttf',
+          black: '/assets/kumnit/fonts/Niradei-Black.ttf',
+        },
+        subsets: ['khmer'],
+      },
+      {
+        family: 'Krasar',
+        files: {
+          regular: '/assets/kumnit/fonts/Krasar-Regular.ttf',
+          medium: '/assets/kumnit/fonts/Krasar-Medium.ttf',
+          bold: '/assets/kumnit/fonts/Krasar-Bold.ttf',
+        },
+        subsets: ['khmer'],
+      }
+    )
+    
+    initGoogleFont()
+  }
+
+  let fontFamily, fontStyle
+
+  function initGoogleFont() {
+    $.each(googleFonts, function(key, value){
+      if(value.subsets.includes('khmer')){
+        fontFamily = value.family
+        $('#font-family').append(`
+          <option value="${value.family}">${value.family}</option>
+        `)
+        $.each(value.files, function(key, value){
+          $('style:first').prepend(`
+            @font-face {
+              font-family: "${fontFamily + '-' + key}";
+              src: url("${value.replace('http://', 'https://')}");
+              font-weight: ${key};
+            }
+          `)
+        })
+      }
+    })
+    $.each(googleFonts, function(key, value){
+      if(value.family == $('#font-family').val()){
+        $.each(value.files, (style, file) => {
+          $('#font-style').append(`
+            <option value="${file}">${style.toUpperCase()}</option>
+          `)
+        })
+      }
+    })
+    updateTextStyle()
+  }
+
+  const updateTextStyle = () => {
+    fontFamily = $('#font-family').find(":selected").val()
+    fontStyle = $('#font-style').find(":selected").text().trim().toLowerCase()
+    $('.text').each(function(){
+      this.style.fontFamily = fontFamily + '-' + fontStyle
+    })
+  }
+
+  $('#font-family').on('change', function(){
+    fontFamily = this.value
+    $.each(googleFonts, function(key, value){
+      if(value.family == fontFamily){
+        $('#font-style').html('')
+        $.each(value.files, (style, file) => {
+          $('#font-style').append(`
+            <option value="${file}">${style.toUpperCase()}</option>
+          `)
+        })
+      }
+    })
+    updateTextStyle()
+  })
+
+  $('#font-style').on('change', () => {
+    updateTextStyle()
   })
 
   // Send to Telegram
