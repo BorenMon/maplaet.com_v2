@@ -237,6 +237,16 @@
         transform-origin: top bottom;
         width: 80%;
     }
+    .artwork-preview .profile {
+      width: 8vw;
+      height: 8vw;
+      position: absolute;
+      right: 3%;
+      top: 5.5%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+    }
     .artwork-preview .title .main-title,
     .artwork-preview .title .sub-title {
         word-wrap: break-word;
@@ -258,6 +268,10 @@
     #download .artwork-preview {
         height: 346.5vw;
         width: 616vw;
+    }
+    #download .artwork-preview .profile {
+      width: calc(8vw * 616 / 88);
+      height: calc(8vw * 616 / 88);
     }
     #download .artwork-preview .title {
         text-shadow: 2.1vw 2.1vw 0 rgba(0, 0, 0, 0.1);
@@ -288,6 +302,10 @@
         .customized-container .artwork-preview {
             height: 20.25vw;
             width: 36vw;
+        }
+        .customized-container .artwork-preview .profile {
+          width: calc(8vw * 36 / 88);
+          height: calc(8vw * 36 / 88);
         }
         .customized-container .artwork-preview .title {
             text-shadow: 0.1227272727vw 0.1227272727vw 0 rgba(0, 0, 0, 0.1);
@@ -323,7 +341,7 @@
         <div class="main-title"></div>
         <div class="sub-title"></div>
       </div>
-      <img src="{{ asset('assets/kumnit/images/logo/default/kumnit-logo.svg') }}" alt="" class="logo hidden">
+      <img src="{{ asset('assets/general-assets/images/maplaet-user-profile.svg') }}" alt="" class="profile hidden">
     </div>
   </div>
   <div id="download-overlay"></div>
@@ -338,20 +356,23 @@
         <div class="main-title"></div>
         <div class="sub-title"></div>
       </div>
-      <img src="{{ asset('assets/kumnit/images/logo/default/kumnit-logo.svg') }}" alt="" class="logo hidden">
+      <img src="{{ asset('assets/general-assets/images/maplaet-user-profile.svg') }}" alt="" class="profile hidden">
     </div>
     
     <div id="input-container">
       @include('layouts.normal-user.operation-buttons')
       <div class="input-group mt-8 mb-4">
-        <h2 class="label">Page</h2>
-        <select id="page">
-          <option value="1">Kumnit</option>
-          <option value="2">Kumnit Tech</option>
-          <option value="3">Kumnit Finance</option>
-          <option value="4">Viniyuk</option>
-          <option value="5">Ponlork</option>
-          <option value="6">Neak Arn</option>
+        <h2 class="label">Overlay</h2>
+        <select id="overlay">
+          <option value="blue">Blue</option>
+          <option value="red">Red</option>
+        </select>
+      </div>
+      <div class="input-group mb-4">
+        <h2 class="label">Show / Hide Profile</h2>
+        <select id="profile-display">
+          <option value="1">Show</option>
+          <option value="0" selected>Hide</option>
         </select>
       </div>
       <div class="input-group mb-4">
@@ -401,6 +422,25 @@
     </div>
   </div>
 
+  {{--  Saved Profiles  --}}
+  <div id="saved-backgrounds">
+    <h2 class="text-md mb-4">Saved Profiles</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-h-96 overflow-auto">
+      @foreach ($savedImages as $image)
+      @if ($image->type == 'profile')
+      <div class="saved-background @if($loop->first) selected @endif">
+        <img src="{{ Storage::url($image->url) }}">
+        <i class="fa-solid fa-circle-minus" data-image="{{ $image->id }}"></i>
+      </div>
+      @endif
+      @endforeach
+      <label for="add-background" style="padding-top: 100%;" class="border-2 border-dashed border-gray-200 relative cursor-pointer">
+        <i class="fa-solid fa-plus text-gray-200 text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+      </label>
+    </div>
+  </div>
+  <input type="file" class="hidden" accept="image/*" id="add-background" name="saved_background">
+
   <!-- Cropper Modal -->
   <div id="backdrop" class="hidden"></div>
   <div class="bg-white max-w-xl w-11/12 absolute top-4 left-1/2 -translate-x-1/2 rounded-md hidden" style="z-index: 21;" id="uploadModal">
@@ -442,6 +482,93 @@
 
 @section('js')
 <script>
+
+// Add Preview After Storing Profile Function
+const addBgPreview = (node) => {
+  document.querySelector('label[for="add-background"]').parentNode.insertBefore(node, document.querySelector('label[for="add-background"]'))
+}
+
+// Save Profile
+$('#add-background').on('input', function() {
+  const file = this.files[0]
+  if(file){
+    new Compressor(file, {
+      quality : 0.8,
+      maxHeight: 2000,
+      maxWidth: 2000,
+      success(result) {
+        const formData = new FormData()
+        formData.append('_token', "{{ csrf_token() }}")
+        formData.append('image', result)
+        formData.append('type', 'profile')
+        formData.append('artwork_id', "{{ $artwork->id }}")
+        $('#loading').css('display', 'flex')
+        $.ajax({
+          url: '{{ route("saved-image.store") }}',
+          type: 'POST',
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function(response) {
+            const savedBg = document.createElement('div')
+            savedBg.className = 'saved-background'
+            savedBg.innerHTML = `
+              <img src="/storage/${response.url.replace('public/', '')}">
+              <i class="fa-solid fa-circle-minus" data-image="${response.id}"></i>
+            `
+            addBgPreview(savedBg)
+            refreshBg()
+            $('#loading').css('display', 'none')
+          }
+        })
+      }
+    })
+  }
+})
+
+const removeSelectedBg = () => {
+      $('.saved-background').each((i, obj) => {
+        obj.classList.remove('selected')
+      })
+    }
+
+const refreshBg = () => {
+  $('.saved-background i').each((i, obj) => {
+    obj.addEventListener('click', function() {
+      const data = this.dataset
+      const savedBg = this.parentNode
+      $.ajax({
+        url: `/saved-image/destroy/${data.image}`,
+        type: 'GET',
+        success: function(response) {
+          if(response.success) {
+            savedBg.remove()
+          }
+        }
+      })
+    })
+  })
+  $('.saved-background img').each((i, obj) => {
+    obj.addEventListener('click', function() {
+      const savedBg = this.parentNode
+      removeSelectedBg()
+      savedBg.classList.add('selected')
+
+      destroyCropper()
+      $('.profile').each((i, obj) => {
+        obj.src = this.src
+      })
+    })
+  })
+}
+refreshBg()
+
+if($('.saved-background.selected').length) {
+  $('.profile').each(function() {
+    this.src = $('.saved-background.selected img').attr('src')
+  })
+}
+
   // ***Here is the code for converting "image source" (url) to "Base64".***
 
 let url = 'https://cdn.shopify.com/s/files/1/0234/8017/2591/products/young-man-in-bright-fashion_925x_f7029e2b-80f0-4a40-a87b-834b9a283c39.jpg'
@@ -532,8 +659,6 @@ const toDataURL = url => fetch(url)
     }
   })
 
-  const gradientOverlay = document.querySelectorAll('.gradient-overlay')
-
     const destroyCropper = () => {
       if(cropper) {
         cropper.destroy()
@@ -541,20 +666,18 @@ const toDataURL = url => fetch(url)
       }
     }
 
-    const removeSelectedBg = () => {
-      $('.saved-background').each((i, obj) => {
-        obj.classList.remove('selected')
+    // Overlay Handling
+    $('#overlay').on('change', function(){
+      const value = this.value
+      $('.gradient-overlay').each(function(){
+        $(this).css('background-image', value == 'blue' ? 'linear-gradient(0deg, rgba(40,87,165,1) 0%, rgba(40,87,165,0) 100%)' : 'linear-gradient(0deg, rgba(169,27,13,1) 0%, rgba(169,27,13,0) 100%)')
       })
-    }
+    })
 
-    document.querySelectorAll('input[name="background"]').forEach(el => {
-      el.addEventListener('click', function() {
-        const page = this.dataset.page
-        gradientOverlay.forEach(el => {
-          if(page == 'viniyuk') el.style.background = 'linear-gradient(0deg, rgba(169,27,13,1) 0%, rgba(169,27,13,0) 100%)'
-          else el.style.background = 'linear-gradient(0deg, rgba(40,87,165,1) 0%, rgba(40,87,165,0) 100%)'
-        })
-      })
+    // Profile Display Handling
+    $('#profile-display').on('change', function(){
+      const value = this.value
+      $('.profile').each(function(){ +value ? $(this).removeClass('hidden') : $(this).addClass('hidden') })
     })
 
     $('#text-skew-degree').on('input', function() {
