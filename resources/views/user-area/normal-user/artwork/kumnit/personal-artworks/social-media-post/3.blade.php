@@ -206,12 +206,16 @@
       -o-object-position: center;
         object-position: center;
     }
-    .artwork-preview .logo {
-      width: 10%;
-      right: 5%;
+    .artwork-preview .profile {
+      width: 12%;
+      height: 12%;
       top: 5%;
+      right: 5%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
     }
-    .artwork-preview .logo,
+    .artwork-preview .profile,
     .artwork-preview .box,
     .artwork-preview .mark {
       position: absolute;
@@ -336,7 +340,7 @@
       <div class="artwork-preview">
         <img src="{{ asset('assets/general-assets/images/background.jpg') }}" class="background">
 
-        <img src="{{ asset('assets/kumnit/images/logo/default/kumnit-logo.svg') }}" alt="" class="logo">
+        <img src="{{ asset('assets/general-assets/images/maplaet-user-profile.svg') }}" alt="" class="profile hidden">
             
         <div class="box">
           <div class="mark">
@@ -354,7 +358,7 @@
       <div class="artwork-preview shadow">
         <img src="{{ asset('assets/general-assets/images/background.jpg') }}" class="background">
 
-        <img src="{{ asset('assets/kumnit/images/logo/default/kumnit-logo.svg') }}" alt="" class="logo">
+        <img src="{{ asset('assets/general-assets/images/maplaet-user-profile.svg') }}" alt="" class="profile hidden">
             
         <div class="box">
           <div class="mark">
@@ -370,22 +374,18 @@
         @include('layouts.normal-user.operation-buttons')
         <div class="mb-3">
           <div class="input-group mb-4">
-            <label for="select-page" class="label">Page</label>
-            <select id="select-page" class="mt-1 mb-2">
-              <option value="kumnit">Kumnit</option>
-              <option value="kumnit-finance">Kumnit Finance</option>
-              <option value="kumnit-tech">Kumnit Tech</option>
-              <option value="ponlork">Ponlork</option>
-              <option value="neakarn">Neak Arn</option>
+            <label for="color" class="label">Color</label>
+            <select id="color" class="mt-1 mb-2">
+              <option value="blue">Blue</option>
+              <option value="red">Red</option>
             </select>
           </div>
           <div class="input-group mb-4">
-            <h2 class="label">Want Logo in White Color?</h2>
-            <div class="flex items-center">
-              <input type="radio" name="white_logo" value="1"><label>&nbsp;Yes</label>
-              <div class="mr-4"></div>
-              <input type="radio" name="white_logo" value="0" checked><label>&nbsp;No</label>
-            </div>
+            <h2 class="label">Show / Hide Profile</h2>
+            <select id="profile-display">
+              <option value="1">Show</option>
+              <option value="0" selected>Hide</option>
+            </select>
           </div>
           <div class="input-group mb-4">
             <h2 class="label">Mark</h2>
@@ -410,6 +410,25 @@
         </div>
       </div>
     </div>
+
+    {{--  Saved Profiles  --}}
+  <div id="saved-backgrounds">
+    <h2 class="text-md mb-4">Saved Profiles</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-h-96 overflow-auto">
+      @foreach ($savedImages as $image)
+      @if ($image->type == 'profile')
+      <div class="saved-background @if($loop->first) selected @endif">
+        <img src="{{ Storage::url($image->url) }}">
+        <i class="fa-solid fa-circle-minus" data-image="{{ $image->id }}"></i>
+      </div>
+      @endif
+      @endforeach
+      <label for="add-background" style="padding-top: 100%;" class="border-2 border-dashed border-gray-200 relative cursor-pointer">
+        <i class="fa-solid fa-plus text-gray-200 text-5xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+      </label>
+    </div>
+  </div>
+  <input type="file" class="hidden" accept="image/*" id="add-background" name="saved_background">
   
     <!-- Cropper Modal -->
     <div id="backdrop" class="hidden"></div>
@@ -453,6 +472,93 @@
 
 @section('js')
 <script>
+
+// Add Preview After Storing Profile Function
+const addBgPreview = (node) => {
+  document.querySelector('label[for="add-background"]').parentNode.insertBefore(node, document.querySelector('label[for="add-background"]'))
+}
+
+// Save Profile
+$('#add-background').on('input', function() {
+  const file = this.files[0]
+  if(file){
+    new Compressor(file, {
+      quality : 0.8,
+      maxHeight: 2000,
+      maxWidth: 2000,
+      success(result) {
+        const formData = new FormData()
+        formData.append('_token', "{{ csrf_token() }}")
+        formData.append('image', result)
+        formData.append('type', 'profile')
+        formData.append('artwork_id', "{{ $artwork->id }}")
+        $('#loading').css('display', 'flex')
+        $.ajax({
+          url: '{{ route("saved-image.store") }}',
+          type: 'POST',
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function(response) {
+            const savedBg = document.createElement('div')
+            savedBg.className = 'saved-background'
+            savedBg.innerHTML = `
+              <img src="/storage/${response.url.replace('public/', '')}">
+              <i class="fa-solid fa-circle-minus" data-image="${response.id}"></i>
+            `
+            addBgPreview(savedBg)
+            refreshBg()
+            $('#loading').css('display', 'none')
+          }
+        })
+      }
+    })
+  }
+})
+
+const removeSelectedBg = () => {
+      $('.saved-background').each((i, obj) => {
+        obj.classList.remove('selected')
+      })
+    }
+
+const refreshBg = () => {
+  $('.saved-background i').each((i, obj) => {
+    obj.addEventListener('click', function() {
+      const data = this.dataset
+      const savedBg = this.parentNode
+      $.ajax({
+        url: `/saved-image/destroy/${data.image}`,
+        type: 'GET',
+        success: function(response) {
+          if(response.success) {
+            savedBg.remove()
+          }
+        }
+      })
+    })
+  })
+  $('.saved-background img').each((i, obj) => {
+    obj.addEventListener('click', function() {
+      const savedBg = this.parentNode
+      removeSelectedBg()
+      savedBg.classList.add('selected')
+
+      destroyCropper()
+      $('.profile').each((i, obj) => {
+        obj.src = this.src
+      })
+    })
+  })
+}
+refreshBg()
+
+if($('.saved-background.selected').length) {
+  $('.profile').each(function() {
+    this.src = $('.saved-background.selected img').attr('src')
+  })
+}
+
   // Google Font API
 let googleFonts
   window.onload = async () => {
@@ -633,31 +739,16 @@ const toDataURL = url => fetch(url)
     }
   })
 
-  let currentLogo = 'kumnit', logoFolder = 'default', white = '', currentPage = 'kumnit', currentMark = 'quote'
+  let currentColor = 'blue', currentMark = 'quote'
 
   const assetsChangeHandler = () => {
-    const isExceptedWhiteLogo = currentPage != 'kumnit' && currentPage != 'ponlork'
-    $('.logo').each(function() {
-      this.src = `//${location.host}/assets/kumnit/images/logo/${isExceptedWhiteLogo ? 'default' : logoFolder}/${currentPage + (isExceptedWhiteLogo ? '' : white)}-logo.svg`
-    })
     $('.mark img').each(function() {
-      this.src = `//${location.host}/assets/kumnit/images/kumnit/general-social-media-post/4/${currentMark}-marks/${currentPage}-${currentMark}-mark.svg`
+      this.src = `//${location.host}/assets/kumnit/images/personal-artworks/social-media-post/3/${currentMark}-marks/${currentColor}-${currentMark}-mark.svg`
     })
   }
 
-  $('#select-page').on('change', function() {
-    currentPage = this.value
-    assetsChangeHandler()
-  })
-
-  $('input[name="white_logo"]').on('change', function() {
-    if(+this.value) {
-      logoFolder = 'white'
-      white = '-white'
-    } else {
-      logoFolder = 'default'
-      white = ''
-    }
+  $('#color').on('change', function() {
+    currentColor = this.value
     assetsChangeHandler()
   })
 
@@ -668,6 +759,12 @@ const toDataURL = url => fetch(url)
       currentMark = 'quote'
     }
     assetsChangeHandler()
+  })
+
+  // Profile Display Handling
+  $('#profile-display').on('change', function(){
+    const value = this.value
+    $('.profile').each(function(){ +value ? $(this).removeClass('hidden') : $(this).addClass('hidden') })
   })
 
   const destroyCropper = () => {
