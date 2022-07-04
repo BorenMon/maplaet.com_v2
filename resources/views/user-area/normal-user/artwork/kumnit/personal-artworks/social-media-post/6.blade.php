@@ -247,7 +247,7 @@
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-h-96 overflow-auto">
         @foreach ($savedImages as $image)
         @if ($image->type == 'profile')
-        <div class="saved-background">
+        <div class="saved-background @if($loop->first) selected @endif">
           <img src="{{ Storage::url($image->url) }}">
           <i class="fa-solid fa-circle-minus" data-image="{{ $image->id }}"></i>
         </div>
@@ -577,6 +577,12 @@
       })
     }
     refreshBg()
+
+    if($('.saved-background.selected').length) {
+      $('.profile').each(function() {
+        this.src = $('.saved-background.selected img').attr('src')
+      })
+    }
 
     
   // Social Media Input
