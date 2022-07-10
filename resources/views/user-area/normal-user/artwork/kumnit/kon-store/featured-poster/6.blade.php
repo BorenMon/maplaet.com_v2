@@ -5,7 +5,193 @@
 
 @section('css')
   @include('layouts.normal-user.default-artwork-css')
-  <link rel="stylesheet" href="{{ asset('css/production.css') }}">
+  <style>
+    @font-face {
+      font-family: "Lazy";
+      src: url("/assets/kumnit/fonts/LazySmooth.ttf");
+    }
+    .artwork-preview {
+      width: 88vw;
+      height: 88vw;
+      position: relative;
+      overflow: hidden;
+      color: white;
+    }
+    .artwork-preview .background {
+      width: 100%;
+      height: 100%;
+    }
+    .artwork-preview .featured-image {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 15%;
+      border-radius: 5vw;
+      width: 88%;
+      height: 50%;
+      -o-object-fit: cover;
+        object-fit: cover;
+      -o-object-position: center;
+        object-position: center;
+    }
+    .artwork-preview .footer {
+      position: absolute;
+      bottom: 4%;
+      left: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .artwork-preview .footer img {
+      width: 10%;
+    }
+    .artwork-preview .footer .footer-text {
+      margin-left: 2%;
+      font-family: "Lazy", sans-serif;
+      text-shadow: -0.1em 0.1em 0.1em rgba(255, 87, 100, 0.5);
+    }
+    .artwork-preview .footer .footer-text .footer-text-1 {
+      font-size: 2vw;
+    }
+    .artwork-preview .footer .footer-text .footer-text-2 {
+      font-size: 2.4vw;
+    }
+    .artwork-preview .key-messages {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 5%;
+      font-family: "Lazy", sans-serif;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .artwork-preview .key-messages .main::before {
+      width: 100%;
+      display: block;
+      word-wrap: break-word;
+      content: attr(data-text);
+      white-space: pre-wrap;
+      position: absolute;
+      background-color: white;
+      background-clip: text;
+      -webkit-text-stroke-color: transparent;
+      -webkit-text-stroke-width: 0.15em;
+      -webkit-background-clip: text;
+      top: -0.1em;
+      left: 0.1em;
+      padding: 0.1em 1em;
+    }
+    .artwork-preview .key-messages .main {
+      width: 95%;
+      word-wrap: break-word;
+      position: relative;
+      font-size: 7vw;
+      top: 0.1em;
+      left: -0.1em;
+      color: #ff5764;
+      background-color: #ff5764;
+      background-clip: text;
+      -webkit-text-stroke-color: transparent;
+      -webkit-text-stroke-width: 0.15em;
+      -webkit-background-clip: text;
+      padding: 0.1em 1em;
+    }
+    .artwork-preview .key-messages .main::after {
+      display: block;
+      width: 100%;
+      word-wrap: break-word;
+      content: attr(data-text);
+      white-space: pre-wrap;
+      position: absolute;
+      top: -0.1em;
+      left: 0.1em;
+      color: black;
+      background-clip: text;
+      background-image: linear-gradient(176deg, #ff9237 50%, #ffaf00 50%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke-width: 0;
+      padding: 0.1em 1em;
+    }
+    .artwork-preview .key-messages .sub {
+      padding: 0.5vw 1.5vw;
+      border-radius: 100vw;
+      font-size: 3vw;
+      background-color: #ff5764;
+    }
+    #download {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    #download .artwork-preview {
+      width: 616vw;
+      height: 616vw;
+    }
+    #download .artwork-preview .featured-image {
+      border-radius: 35vw;
+    }
+    #download .artwork-preview .footer .footer-text .footer-text-1 {
+      font-size: 14vw;
+    }
+    #download .artwork-preview .footer .footer-text .footer-text-2 {
+      font-size: 16.8vw;
+    }
+    #download .artwork-preview .key-messages .main {
+      font-size: 49vw;
+    }
+    #download .artwork-preview .key-messages .sub {
+      padding: 3.5vw 10.5vw;
+      border-radius: 700vw;
+      font-size: 21vw;
+    }
+    @media (min-width: 800px) {
+      .customized-container {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .customized-container .artwork-preview {
+        width: 36vw;
+        height: 36vw;
+      }
+      .customized-container .artwork-preview .featured-image {
+        border-radius: 2.0454545455vw;
+      }
+      .customized-container .artwork-preview .footer .footer-text .footer-text-1 {
+        font-size: 0.8181818182vw;
+      }
+      .customized-container .artwork-preview .footer .footer-text .footer-text-2 {
+        font-size: 0.9818181818vw;
+      }
+      .customized-container .artwork-preview .key-messages .main {
+        font-size: 2.8636363636vw;
+      }
+      .customized-container .artwork-preview .key-messages .sub {
+        padding: 0.2045454545vw 0.6136363636vw;
+        border-radius: 40.9090909091vw;
+        font-size: 1.2272727273vw;
+      }
+      .customized-container #input-container {
+        width: calc(100% - 36vw - 2rem);
+      }
+
+      #saved-backgrounds {
+        margin-left: 0px;
+        margin-right: 0px;
+      }
+
+      #saved-backgrounds {
+        margin-top: 3.5rem;
+      }
+    }
+  </style>
 @endsection
 
 @section('content')
