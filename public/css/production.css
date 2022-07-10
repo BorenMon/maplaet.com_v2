@@ -80,7 +80,7 @@
   padding: 0.1em 1em;
 }
 .artwork-preview .key-messages .main {
-  max-width: 95%;
+  width: 95%;
   word-wrap: break-word;
   position: relative;
   font-size: 7vw;
