@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dangrek&family=Nunito:ital,wght@1,900&display=swap');
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: rgb(255, 177, 216);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    h1 {
+      font-family: 'Nunito', 'Dangrek', sans-serif;
+      font-size: 11vmax;
+      background-color: white;
+      background-clip: text;
+      -webkit-text-stroke-color: transparent;
+      -webkit-text-stroke-width: 0.1em;
+      -webkit-background-clip: text;
+      padding: 0 1em;
+      color: white;
+      position: relative;
+      top: 0;
+      left: 0;
+    }
+    h1::after{
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      color: black;
+      background-clip: text;
+      background-image: linear-gradient(176deg, rgba(255,136,0,1) 50%, rgba(255,174,0,1) 50%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke-width: 0;
+      padding: 0 1em;
+    }
+    h1.en::after{
+      content: attr(data-text);
+    }
+    h1.kh::after{
+      content: attr(data-text);
+    }
+    h1::before{
+      position: absolute;
+      top: 0.05em;
+      left: -0.05em;
+      z-index: -1;
+      color: rgb(255, 0, 140);
+      background-color: rgb(255, 0, 140);
+      background-clip: text;
+      -webkit-text-stroke-color: transparent;
+      -webkit-text-stroke-width: 0.1em;
+      -webkit-background-clip: text;
+      padding: 0 1em;
+    }
+    h1.en::before{
+      content: attr(data-text);
+    }
+    h1.kh::before{
+      content: attr(data-text);
+    }
+  </style>
+</head>
+<body>
+  <h1 class="en" data-text="HELLO">HELLO</h1>
+  <h1 class="kh" data-text="សួរស្ដី">សួរស្ដី</h1>
+  <input type="text" id="en">
+  <br>
+  <input type="text" id="kh">
+  <script>
+    document.getElementById('en').addEventListener('input', function(){
+      const value = this.value.trim()
+      document.querySelectorAll('.en').forEach(function(el){
+        el.innerText = value
+        el.setAttribute('data-text', value)
+      })
+    })
+    document.getElementById('kh').addEventListener('input', function(){
+      const value = this.value.trim()
+      document.querySelectorAll('.kh').forEach(function(el){
+        el.innerText = value
+        el.setAttribute('data-text', value)
+      })
+    })
+  </script>
+</body>
+</html>

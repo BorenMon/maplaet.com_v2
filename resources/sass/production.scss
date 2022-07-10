@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Lazy';
+  src: url('/assets/kumnit/fonts/LazySmooth.ttf');
+}
+
 .artwork-preview {
   width: 88vw;
   height: 88vw;
@@ -10,63 +15,105 @@
     height: 100%;
   }
 
-  .content
-  {
+  .featured-image {
     position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 15%;
+    border-radius: 5vw;
+    width: 88%;
+    height: 50%;
+    object-fit: cover;
+    object-position: center;
   }
 
-  .content {
-    left: 7%;
-    right: 7%;
-    top: 40%;
-    transform: translateY(-40%);
+  .footer {
+    position: absolute;
+    bottom: 4%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    .info {
-      display: flex;
-      align-items: center;
-      height: 11.5vw;
-      margin-bottom: 3.5vw;
-  
-      .profile {
-        width: 11.5vw;
-        height: 11.5vw;
-        border-radius: 50%;
-        object-fit: cover;
-        object-position: center;
-        margin-right: 2.5vw;
+    img {
+      width: 10%;
+    }
+    .footer-text {
+      margin-left: 2%;
+      font-family: 'Lazy', sans-serif;
+      text-shadow: -0.1em 0.1em 0.1em rgba($color: #ff5764, $alpha: 0.5);
+
+      .footer-text-1 {
+        font-size: 2vw;
       }
-  
-      .contact {
-        display: flex;
-        flex-direction: column;
-  
-        .page {
-          display: flex;
-    
-          .name {
-            font-family: 'Stem-Medium', 'Krasar-Medium', sans-serif;
-            white-space: nowrap;
-            font-size: 3vw;
-            margin-right: 1vw;
-          }
-  
-          .verified {
-            width: 2.5vw;
-          }
-        }
-  
-        .at {
-          font-size: 2.5vw;
-          font-family: 'Stem-Regular', 'Krasar-Regular', sans-serif;
-          opacity: 0.7;
-        }
+      .footer-text-2 {
+        font-size: 2.4vw;
       }
     }
+  }
 
-    .quote {
-      font-family: 'Stem-Regular', 'Krasar-Regular', sans-serif;
+  .key-messages {
+    @apply absolute top-0 left-0 w-full flex flex-col items-center justify-center;
+    margin-top: 5%;
+    font-family: 'Lazy', sans-serif;
+    text-align: center;
+    line-height: 1.4;
+    
+    .main::before{
+      width: 100%;
+      display: block;
       word-wrap: break-word;
-      font-size: 4.12vw;
+      content: attr(data-text);
+      white-space: pre-wrap;
+      position: absolute;
+      background-color: white;
+      background-clip: text;
+      -webkit-text-stroke-color: transparent;
+      -webkit-text-stroke-width: 0.15em;
+      -webkit-background-clip: text;
+      top: -0.1em;
+      left: 0.1em;
+      padding: 0.1em 1em;
+    }
+    .main {
+      max-width: 95%;
+      word-wrap: break-word;
+      position: relative;
+      font-size: 7vw;
+      top: 0.1em;
+      left: -0.1em;
+      color: #ff5764;
+      background-color: #ff5764;
+      background-clip: text;
+      -webkit-text-stroke-color: transparent;
+      -webkit-text-stroke-width: 0.15em;
+      -webkit-background-clip: text;
+      padding: 0.1em 1em;
+    }
+    .main::after{
+      display: block;
+      width: 100%;
+      word-wrap: break-word;
+      content: attr(data-text);
+      white-space: pre-wrap;
+      position: absolute;
+      top: -0.1em;
+      left: 0.1em;
+      color: black;
+      background-clip: text;
+      background-image: linear-gradient(176deg, #ff9237 50%, #ffaf00 50%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke-width: 0;
+      padding: 0.1em 1em;
+    }
+
+    .sub {
+      padding: 0.5vw 1.5vw;
+      border-radius: 100vw;
+      font-size: 3vw;
+      background-color: #ff5764;
     }
   }
 }
@@ -81,32 +128,30 @@
     width: calc(88vw * 7);
     height: calc(88vw * 7);
 
-    .content {   
-      .info {
-        height: calc(11.5vw * 7);
-        margin-bottom: calc(3.5vw * 7);     
-        .profile {
-          width: calc(11.5vw * 7);
-          height: calc(11.5vw * 7);
-          margin-right: calc(2.5vw * 7);
-        }      
-        .contact {     
-          .page {        
-            .name {
-              font-size: calc(3vw * 7);
-              margin-right: calc(1vw * 7);
-            }      
-            .verified {
-              width: calc(2.5vw * 7);
-            }
-          }      
-          .at {
-            font-size: calc(2.5vw * 7);
-          }
+    .featured-image {
+      border-radius: calc(5vw * 7);
+    }
+  
+    .footer {   
+      .footer-text {   
+        .footer-text-1 {
+          font-size: calc(2vw * 7);
         }
-      }    
-      .quote {
-        font-size: calc(4.12vw * 7);
+        .footer-text-2 {
+          font-size: calc(2.4vw * 7);
+        }
+      }
+    }
+  
+    .key-messages {       
+      .main {
+        font-size: calc(7vw * 7);
+      }
+  
+      .sub {
+        padding: calc(0.5vw * 7) calc(1.5vw * 7);
+        border-radius: calc(100vw * 7);
+        font-size: calc(3vw * 7);
       }
     }
   }
@@ -121,32 +166,30 @@
       width: 36vw;
       height: 36vw;
 
-      .content {   
-        .info {
-          height: calc(11.5vw * 36 / 88);
-          margin-bottom: calc(3.5vw * 36 / 88);     
-          .profile {
-            width: calc(11.5vw * 36 / 88);
-            height: calc(11.5vw * 36 / 88);
-            margin-right: calc(2.5vw * 36 / 88);
-          }      
-          .contact {     
-            .page {        
-              .name {
-                font-size: calc(3vw * 36 / 88);
-                margin-right: calc(1vw * 36 / 88);
-              }      
-              .verified {
-                width: calc(2.5vw * 36 / 88);
-              }
-            }      
-            .at {
-              font-size: calc(2.5vw * 36 / 88);
-            }
+      .featured-image {
+        border-radius: calc(5vw * 36 / 88);
+      }
+    
+      .footer {   
+        .footer-text {   
+          .footer-text-1 {
+            font-size: calc(2vw * 36 / 88);
           }
-        }    
-        .quote {
-          font-size: calc(4.12vw * 36 / 88);
+          .footer-text-2 {
+            font-size: calc(2.4vw * 36 / 88);
+          }
+        }
+      }
+    
+      .key-messages {       
+        .main {
+          font-size: calc(7vw * 36 / 88);
+        }
+    
+        .sub {
+          padding: calc(0.5vw * 36 / 88) calc(1.5vw * 36 / 88);
+          border-radius: calc(100vw * 36 / 88);
+          font-size: calc(3vw * 36 / 88);
         }
       }
     }

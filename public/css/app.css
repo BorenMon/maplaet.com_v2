@@ -1573,6 +1573,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(10 37 77 / var(--tw-bg-opacity));
 }
+.bg-gray-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
 .bg-maplaet-3 {
   --tw-bg-opacity: 1;
   background-color: rgb(114 91 210 / var(--tw-bg-opacity));
@@ -1584,10 +1588,6 @@ select {
 .bg-maplaet-2 {
   --tw-bg-opacity: 1;
   background-color: rgb(97 195 245 / var(--tw-bg-opacity));
-}
-.bg-gray-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;

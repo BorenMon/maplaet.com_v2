@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "Lazy";
+  src: url("/assets/kumnit/fonts/LazySmooth.ttf");
+}
 .artwork-preview {
   width: 88vw;
   height: 88vw;
@@ -9,54 +13,109 @@
   width: 100%;
   height: 100%;
 }
-.artwork-preview .content {
+.artwork-preview .featured-image {
   position: absolute;
-  left: 7%;
-  right: 7%;
-  top: 40%;
-  transform: translateY(-40%);
-}
-.artwork-preview .content .info {
-  display: flex;
-  align-items: center;
-  height: 11.5vw;
-  margin-bottom: 3.5vw;
-}
-.artwork-preview .content .info .profile {
-  width: 11.5vw;
-  height: 11.5vw;
-  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 15%;
+  border-radius: 5vw;
+  width: 88%;
+  height: 50%;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
-  margin-right: 2.5vw;
 }
-.artwork-preview .content .info .contact {
+.artwork-preview .footer {
+  position: absolute;
+  bottom: 4%;
+  left: 0;
+  width: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.artwork-preview .footer img {
+  width: 10%;
+}
+.artwork-preview .footer .footer-text {
+  margin-left: 2%;
+  font-family: "Lazy", sans-serif;
+  text-shadow: -0.1em 0.1em 0.1em rgba(255, 87, 100, 0.5);
+}
+.artwork-preview .footer .footer-text .footer-text-1 {
+  font-size: 2vw;
+}
+.artwork-preview .footer .footer-text .footer-text-2 {
+  font-size: 2.4vw;
+}
+.artwork-preview .key-messages {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  width: 100%;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+  font-family: "Lazy", sans-serif;
+  text-align: center;
+  line-height: 1.4;
 }
-.artwork-preview .content .info .contact .page {
-  display: flex;
-}
-.artwork-preview .content .info .contact .page .name {
-  font-family: "Stem-Medium", "Krasar-Medium", sans-serif;
-  white-space: nowrap;
-  font-size: 3vw;
-  margin-right: 1vw;
-}
-.artwork-preview .content .info .contact .page .verified {
-  width: 2.5vw;
-}
-.artwork-preview .content .info .contact .at {
-  font-size: 2.5vw;
-  font-family: "Stem-Regular", "Krasar-Regular", sans-serif;
-  opacity: 0.7;
-}
-.artwork-preview .content .quote {
-  font-family: "Stem-Regular", "Krasar-Regular", sans-serif;
+.artwork-preview .key-messages .main::before {
+  width: 100%;
+  display: block;
   word-wrap: break-word;
-  font-size: 4.12vw;
+  content: attr(data-text);
+  white-space: pre-wrap;
+  position: absolute;
+  background-color: white;
+  background-clip: text;
+  -webkit-text-stroke-color: transparent;
+  -webkit-text-stroke-width: 0.15em;
+  -webkit-background-clip: text;
+  top: -0.1em;
+  left: 0.1em;
+  padding: 0.1em 1em;
+}
+.artwork-preview .key-messages .main {
+  max-width: 95%;
+  word-wrap: break-word;
+  position: relative;
+  font-size: 7vw;
+  top: 0.1em;
+  left: -0.1em;
+  color: #ff5764;
+  background-color: #ff5764;
+  background-clip: text;
+  -webkit-text-stroke-color: transparent;
+  -webkit-text-stroke-width: 0.15em;
+  -webkit-background-clip: text;
+  padding: 0.1em 1em;
+}
+.artwork-preview .key-messages .main::after {
+  display: block;
+  width: 100%;
+  word-wrap: break-word;
+  content: attr(data-text);
+  white-space: pre-wrap;
+  position: absolute;
+  top: -0.1em;
+  left: 0.1em;
+  color: black;
+  background-clip: text;
+  background-image: linear-gradient(176deg, #ff9237 50%, #ffaf00 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 0;
+  padding: 0.1em 1em;
+}
+.artwork-preview .key-messages .sub {
+  padding: 0.5vw 1.5vw;
+  border-radius: 100vw;
+  font-size: 3vw;
+  background-color: #ff5764;
 }
 #download {
   position: fixed;
@@ -68,27 +127,22 @@
   width: 616vw;
   height: 616vw;
 }
-#download .artwork-preview .content .info {
-  height: 80.5vw;
-  margin-bottom: 24.5vw;
+#download .artwork-preview .featured-image {
+  border-radius: 35vw;
 }
-#download .artwork-preview .content .info .profile {
-  width: 80.5vw;
-  height: 80.5vw;
-  margin-right: 17.5vw;
+#download .artwork-preview .footer .footer-text .footer-text-1 {
+  font-size: 14vw;
 }
-#download .artwork-preview .content .info .contact .page .name {
+#download .artwork-preview .footer .footer-text .footer-text-2 {
+  font-size: 16.8vw;
+}
+#download .artwork-preview .key-messages .main {
+  font-size: 49vw;
+}
+#download .artwork-preview .key-messages .sub {
+  padding: 3.5vw 10.5vw;
+  border-radius: 700vw;
   font-size: 21vw;
-  margin-right: 7vw;
-}
-#download .artwork-preview .content .info .contact .page .verified {
-  width: 17.5vw;
-}
-#download .artwork-preview .content .info .contact .at {
-  font-size: 17.5vw;
-}
-#download .artwork-preview .content .quote {
-  font-size: 28.84vw;
 }
 @media (min-width: 800px) {
   .customized-container {
@@ -99,27 +153,22 @@
     width: 36vw;
     height: 36vw;
   }
-  .customized-container .artwork-preview .content .info {
-    height: 4.7045454545vw;
-    margin-bottom: 1.4318181818vw;
+  .customized-container .artwork-preview .featured-image {
+    border-radius: 2.0454545455vw;
   }
-  .customized-container .artwork-preview .content .info .profile {
-    width: 4.7045454545vw;
-    height: 4.7045454545vw;
-    margin-right: 1.0227272727vw;
+  .customized-container .artwork-preview .footer .footer-text .footer-text-1 {
+    font-size: 0.8181818182vw;
   }
-  .customized-container .artwork-preview .content .info .contact .page .name {
+  .customized-container .artwork-preview .footer .footer-text .footer-text-2 {
+    font-size: 0.9818181818vw;
+  }
+  .customized-container .artwork-preview .key-messages .main {
+    font-size: 2.8636363636vw;
+  }
+  .customized-container .artwork-preview .key-messages .sub {
+    padding: 0.2045454545vw 0.6136363636vw;
+    border-radius: 40.9090909091vw;
     font-size: 1.2272727273vw;
-    margin-right: 0.4090909091vw;
-  }
-  .customized-container .artwork-preview .content .info .contact .page .verified {
-    width: 1.0227272727vw;
-  }
-  .customized-container .artwork-preview .content .info .contact .at {
-    font-size: 1.0227272727vw;
-  }
-  .customized-container .artwork-preview .content .quote {
-    font-size: 1.6854545455vw;
   }
   .customized-container #input-container {
     width: calc(100% - 36vw - 2rem);
