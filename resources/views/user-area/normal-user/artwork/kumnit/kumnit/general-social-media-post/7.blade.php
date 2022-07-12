@@ -4,7 +4,151 @@
 @endsection
 
 @section('css')
-  <link rel="stylesheet" href="{{ asset('css/production.css') }}">
+  <style>
+    .customized-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .customized-container #input-container {
+      margin-top: 2rem;
+      width: calc(100% - 3rem);
+    }
+
+    .customized-container #input-container button {
+      color: white;
+    }
+
+    .customized-container #input-container * {
+      font-family: "Stem-Regular", "Krasar-Regular";
+    }
+
+    .artwork-preview {
+      width: 88vw;
+      height: 88vw;
+      position: relative;
+      overflow: hidden;
+      color: white;
+    }
+
+    .artwork-preview .featured-image {
+      width: 100%;
+      height: 84%;
+      -o-object-fit: cover;
+        object-fit: cover;
+      -o-object-position: center;
+        object-position: center;
+    }
+
+    .artwork-preview .logo {
+      position: absolute;
+      width: 11%;
+      top: 4%;
+      right: 4%;
+    }
+
+    .artwork-preview .shape1 {
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      width: 100%;
+      background: url("/assets/kumnit/images/kumnit/general-personal-social-media-post/7/map.svg"), linear-gradient(145deg, #2857a5 0%, #00387c 100%);
+      background-repeat: no-repeat;
+      background-size: 50% auto, cover;
+      line-height: 1.5;
+      padding: 4% 4% 4% 25.5%;
+    }
+
+    .artwork-preview .shape1 img {
+      position: absolute;
+      left: -0.9%;
+      top: -2.8vw;
+      width: 23%;
+      z-index: 1;
+    }
+
+    .artwork-preview .shape1 .message {
+      min-height: 7vw;
+      font-size: 3.3vw;
+      word-wrap: break-word;
+    }
+
+    .artwork-preview .shape1::after {
+      content: "";
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 0.8vw;
+      background-color: #0043b8;
+      transform: translateY(-98%);
+    }
+
+    #download {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    #download .artwork-preview {
+      width: 616vw;
+      height: 616vw;
+    }
+
+    #download .artwork-preview .shape1 img {
+      top: -19.6vw;
+    }
+
+    #download .artwork-preview .shape1 .message {
+      min-height: 49vw;
+      font-size: 23.1vw;
+    }
+
+    #download .artwork-preview .shape1::after {
+      height: 5.6vw;
+    }
+
+    @media (min-width: 800px) {
+      #_1 {
+        text-align: left;
+      }
+
+      .customized-container {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .customized-container .artwork-preview {
+        width: 36vw;
+        height: 36vw;
+      }
+      .customized-container .artwork-preview .shape1 img {
+        top: -1.1454545455vw;
+      }
+      .customized-container .artwork-preview .shape1 .message {
+        min-height: 2.8636363636vw;
+        font-size: 1.35vw;
+      }
+      .customized-container .artwork-preview .shape1::after {
+        height: 0.3272727273vw;
+      }
+
+      .customized-container #input-container {
+        width: calc(100% - 36vw - 2rem);
+      }
+
+      #saved-backgrounds {
+        margin-left: 0px;
+        margin-right: 0px;
+      }
+
+      #saved-backgrounds {
+        margin-top: 3.5rem;
+      }
+    }
+  </style>
 @endsection
 
 @section('content')
