@@ -1,8 +1,18 @@
-@font-face {
-  font-family: 'Lazy';
-  src: url('/assets/kumnit/fonts/LazySmooth.ttf');
+.customized-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
+.customized-container #input-container {
+  margin-top: 2rem;
+  width: calc(100% - 3rem);
+}
+.customized-container #input-container button {
+  color: white;
+}
+.customized-container #input-container * {
+  font-family: "Stem-Regular", "Krasar-Regular";
+}
 .artwork-preview {
   width: 88vw;
   height: 88vw;
@@ -10,111 +20,48 @@
   overflow: hidden;
   color: white;
 
-  .background {
-    width: 100%;
-    height: 100%;
-  }
-
   .featured-image {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 15%;
-    border-radius: 5vw;
-    width: 88%;
-    height: 50%;
+    width: 100%;
+    height: 84%;
     object-fit: cover;
     object-position: center;
   }
 
-  .footer {
+  .logo {
     position: absolute;
-    bottom: 4%;
-    left: 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    img {
-      width: 10%;
-    }
-    .footer-text {
-      margin-left: 2%;
-      font-family: 'Lazy', sans-serif;
-      text-shadow: -0.1em 0.1em 0.1em rgba($color: #ff5764, $alpha: 0.5);
-
-      .footer-text-1 {
-        font-size: 2vw;
-      }
-      .footer-text-2 {
-        font-size: 2.4vw;
-      }
-    }
+    width: 11%;
+    top: 4%;
+    right: 4%;
   }
 
-  .key-messages {
-    @apply absolute top-0 left-0 w-full flex flex-col items-center justify-center;
-    margin-top: 5%;
-    font-family: 'Lazy', sans-serif;
-    text-align: center;
-    line-height: 1.4;
-    
-    .main::before{
-      width: 100%;
-      display: block;
-      word-wrap: break-word;
-      content: attr(data-text);
-      white-space: pre-wrap;
+  .shape1 {
+    @apply absolute bottom-0 left-0 w-full;
+    background: url('/assets/kumnit/images/kumnit/general-personal-social-media-post/7/map.svg'), linear-gradient(145deg, rgba(40,87,165,1) 0%, rgba(0,56,124,1) 100%);
+    background-repeat: no-repeat;
+    background-size: 50% auto, cover;
+    line-height: 1.5;
+    padding: 4% 4% 4% 25.5%;
+
+    img {
       position: absolute;
-      background-color: white;
-      background-clip: text;
-      -webkit-text-stroke-color: transparent;
-      -webkit-text-stroke-width: 0.15em;
-      -webkit-background-clip: text;
-      top: -0.1em;
-      left: 0.1em;
-      padding: 0.1em 1em;
-    }
-    .main {
-      width: 95%;
-      word-wrap: break-word;
-      position: relative;
-      font-size: 7vw;
-      top: 0.1em;
-      left: -0.1em;
-      color: #ff5764;
-      background-color: #ff5764;
-      background-clip: text;
-      -webkit-text-stroke-color: transparent;
-      -webkit-text-stroke-width: 0.15em;
-      -webkit-background-clip: text;
-      padding: 0.1em 1em;
-    }
-    .main::after{
-      display: block;
-      width: 100%;
-      word-wrap: break-word;
-      content: attr(data-text);
-      white-space: pre-wrap;
-      position: absolute;
-      top: -0.1em;
-      left: 0.1em;
-      color: black;
-      background-clip: text;
-      background-image: linear-gradient(176deg, #ff9237 50%, #ffaf00 50%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      -webkit-text-stroke-width: 0;
-      padding: 0.1em 1em;
+      left: -0.9%;
+      top: -2.8vw;
+      width: 23%;
+      z-index: 1;
     }
 
-    .sub {
-      padding: 0.5vw 1.5vw;
-      border-radius: 100vw;
-      font-size: 3vw;
-      background-color: #ff5764;
+    .message {
+      min-height: 7vw;
+      font-size: 3.3vw;
+      word-wrap: break-word;
     }
+  }
+  .shape1::after {
+    content: '';
+    @apply absolute top-0 left-0 w-full;
+    height: 0.8vw;
+    background-color: #0043b8;
+    transform: translateY(-98%);
   }
 }
 
@@ -123,83 +70,63 @@
   top: 0;
   left: 0;
   z-index: -1;
+}
+#download .artwork-preview {
+  width: 616vw;
+  height: 616vw;
 
-  .artwork-preview {
-    width: calc(88vw * 7);
-    height: calc(88vw * 7);
+  .shape1 { 
+    img {
+      top: calc(-2.8vw * 7);
+    }
 
-    .featured-image {
-      border-radius: calc(5vw * 7);
+    .message {
+      min-height: calc(7vw * 7);
+      font-size: calc(3.3vw * 7);
     }
-  
-    .footer {   
-      .footer-text {   
-        .footer-text-1 {
-          font-size: calc(2vw * 7);
-        }
-        .footer-text-2 {
-          font-size: calc(2.4vw * 7);
-        }
-      }
-    }
-  
-    .key-messages {       
-      .main {
-        font-size: calc(7vw * 7);
-      }
-  
-      .sub {
-        padding: calc(0.5vw * 7) calc(1.5vw * 7);
-        border-radius: calc(100vw * 7);
-        font-size: calc(3vw * 7);
-      }
-    }
+  }
+  .shape1::after {
+    height: calc(0.8vw * 7);
   }
 }
 
-@media(min-width: 800px) {
+@media (min-width: 800px) {
+  #_1 {
+    text-align: left;
+  }
   .customized-container {
     flex-direction: row;
     justify-content: space-between;
-
-    .artwork-preview {
-      width: 36vw;
-      height: 36vw;
-
-      .featured-image {
-        border-radius: calc(5vw * 36 / 88);
+  }
+  .customized-container .artwork-preview {
+    width: 36vw;
+    height: 36vw;
+  
+    .shape1 { 
+      img {
+        top: calc(-2.8vw * 36 / 88);
       }
-    
-      .footer {   
-        .footer-text {   
-          .footer-text-1 {
-            font-size: calc(2vw * 36 / 88);
-          }
-          .footer-text-2 {
-            font-size: calc(2.4vw * 36 / 88);
-          }
-        }
-      }
-    
-      .key-messages {       
-        .main {
-          font-size: calc(7vw * 36 / 88);
-        }
-    
-        .sub {
-          padding: calc(0.5vw * 36 / 88) calc(1.5vw * 36 / 88);
-          border-radius: calc(100vw * 36 / 88);
-          font-size: calc(3vw * 36 / 88);
-        }
+  
+      .message {
+        min-height: calc(7vw * 36 / 88);
+        font-size: calc(3.3vw * 36 / 88);
       }
     }
-
-    #input-container {
-      width: calc(100% - 36vw - 2rem);
+    .shape1::after {
+      height: calc(0.8vw * 36 / 88);
     }
   }
 
+  .customized-container #input-container {
+    width: calc(100% - 36vw - 2rem);
+  }
+
   #saved-backgrounds {
-    @apply mx-0 mt-14;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  #saved-backgrounds {
+    margin-top: 3.5rem;
   }
 }
