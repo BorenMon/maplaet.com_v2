@@ -6,20 +6,26 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
-                        <img
+                        {{-- <img
                         @if (str_contains(Auth::user()->adminPage->logo_url, 'public/'))
                         src="{{ Storage::url(Auth::user()->adminPage->logo_url) }}"
                         @else
                         src="{{ asset(Auth::user()->adminPage->logo_url) }}"
                         @endif
-                        alt="" class=" h-12">
+                        alt="" class=" h-12"> --}}
+                        <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="">
+                        {{ __('Personal') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
-                        {{ __('Home') }}
+                        {{ __('Business') }}
                     </x-jet-nav-link>
                 </div>
                 @can('manage_user')
